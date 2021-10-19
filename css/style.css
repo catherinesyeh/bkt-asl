@@ -105,6 +105,32 @@ input:focus {
    outline: none;
 }
 
+/* continue button */
+.continue {
+    position: absolute;
+    bottom: calc(20px + 1vw);
+    left: 50%;
+    font-size: 2.5em !important;
+    z-index: 9999;
+    text-decoration: none;
+    transition: 0.5s;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.continue:hover {
+   transform: scale(1.1);
+   opacity: 0.8;
+}
+
+.continue.hide {
+   pointer-events: none;
+   transform: scale(0) translateY(-100%) !important;
+   height: auto !important;
+   min-height: auto !important;
+}
+
+
 /* slides */
 .hide {
    visibility: hidden;
@@ -169,6 +195,12 @@ form .button {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+form .button:hover {
+   background-color: var(--dark-pink);
+   transition: 0.5s;
 }
 
 .clicked .one-input {
@@ -203,8 +235,15 @@ form .button {
 }
 
 #bkt-image {
-   max-width: 600px;
-   padding-bottom: calc(18px + 0.5vw);
+   max-width: 80%;
+   display: inline-block;
+   column-count: 3;
+   column-gap: 0;
+}
+
+#bkt-image .letter-image {
+   max-width: 120px;
+   width: 100%;
 }
 
 .output {
@@ -249,7 +288,7 @@ form .button {
   position: relative;
 }
 
-.letter-image {
+.letter .letter-image {
   max-width: 100px;
   width: 80%;
 }

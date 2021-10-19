@@ -9,14 +9,20 @@
    <meta property="og:image" content="img/socimg.png" />
    <link rel="stylesheet" href="css/style.css">
    <link rel="shortcut icon" href="img/icon.png">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <!-- Intro/P(guess) -->
 <body>
+   <!-- Slide 1 -->
    <section id='read-bkt'>
       <div class='content'>
-         <img id='bkt-image' src="img/bkt.png" title="Guess the word" alt="BKT spelled in American Sign Language">
+         <div id='bkt-image' title="Guess the word" alt="BKT spelled in American Sign Language">
+            <img class="letter-image" src="img/b.jpg" title="Guess the word" alt="The letter B in ASL">
+            <img class="letter-image" src="img/k.jpg" title="Guess the word" alt="The letter K in ASL">
+            <img class="letter-image" src="img/t.jpg" title="Guess the word" alt="The letter T in ASL">
+         </div>
          <h3>What is the word above?</h3>
          <p><em>Hint: It's what we're going to be learning about today!</em></p>
          <form id="q1" class="one-input">
@@ -25,7 +31,7 @@
          </form>
       </div>
    </section>
-
+   <!-- Slide 2 -->
    <section id='intro' class='hide'>
       <div class="content">
          <p id="guess" class="output"><b>You guessed:</b> </p>
@@ -55,7 +61,12 @@
             </div>
             <p>This spells <b>BKT</b>, which stands for <b>Bayesian Knowledge Tracing</b>.</p>
          </div>
+         <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#guess-slider"></i>
       </div>
+   </section>
+
+   <section id="guess-slider" class="hide">
+      <h3>Test!</h3>
    </section>
    <script src="js/script.js"></script>
 </body>
