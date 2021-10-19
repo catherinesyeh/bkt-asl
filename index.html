@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <title>Bayesian Knowledge Tracing</title>
+   <meta name="description" content="Explaining Bayesian Knowledge Tracing Using ASL">
+   <meta property="og:image" content="img/socimg.png" />
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="shortcut icon" href="img/icon.png">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<!-- Intro/P(guess) -->
+<body>
+   <section id='read-bkt'>
+      <div class='content'>
+         <img id='bkt-image' src="img/bkt.png" title="Guess the word" alt="BKT spelled in American Sign Language">
+         <h3>What is the word above?</h3>
+         <p><em>Hint: It's what we're going to be learning about today!</em></p>
+         <form id="q1" class="one-input">
+            <input class="text" type="text" id="a1" title="Type guess here..." placeholder="Type guess here..."/>
+            <input class="button" id="b1" title="Submit guess!" type="button" value="Submit guess!" link="#intro">
+         </form>
+      </div>
+   </section>
+
+   <section id='intro' class='hide'>
+      <div class="content">
+         <p id="guess" class="output"><b>You guessed:</b> </p>
+         <p>
+            You may have recognized the hand signals above as <b>American Sign Language (ASL)</b>,
+            but chances are, you probably didn’t know what specific letters they were.
+            The process of spelling words using hand shapes in ASL is called
+            <b>fingerspelling</b>.
+         </p>
+         <p>
+            Ready for the answer? <span id="reveal-bkt" title="Yes!" class="link">Yes!</span>
+         </p>
+         <div id="bkt-answer" class="hide">
+            <div id="bkt-box">
+               <div class="letter">
+                  <img class="letter-image" src="img/b.jpg" title="B" alt="The letter B in ASL">
+                  <div class="letter-text"><p>This is a</p> <h3 class="orange">B</h3></div>
+               </div>
+               <div class="letter">
+                  <img class="letter-image" src="img/k.jpg" title="K" alt="The letter K in ASL">
+                  <div class="letter-text"><p>This is a</p> <h3 class="light-pink">K</h3></div>
+               </div>
+               <div class="letter">
+                  <img class="letter-image" src="img/t.jpg" title="T" alt="The letter T in ASL">
+                  <div class="letter-text"><p>This is a</p> <h3 class="dark-pink">T</h3></div>
+               </div>
+            </div>
+            <p>This spells <b>BKT</b>, which stands for <b>Bayesian Knowledge Tracing</b>.</p>
+         </div>
+      </div>
+   </section>
+   <script src="js/script.js"></script>
+</body>
+</html>
