@@ -1,114 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="utf-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-   <title>Bayesian Knowledge Tracing</title>
-   <meta name="description" content="Explaining Bayesian Knowledge Tracing Using ASL">
-   <meta property="og:image" content="img/socimg.png" />
-   <link rel="stylesheet" href="css/style.css">
-   <link rel="shortcut icon" href="img/icon.png">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bayesian Knowledge Tracing</title>
+    <meta name="description" content="Explaining Bayesian Knowledge Tracing Using ASL">
+    <meta property="og:image" content="img/socimg.png" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <!-- Intro/P(guess) -->
 <body>
-   <!-- Slide 1 -->
-   <section id='read-bkt'>
-      <div class='content'>
-         <div id='bkt-image' title="Guess the word" alt="BKT spelled in American Sign Language">
-            <img class="letter-image" src="img/b.jpg" title="Guess the word" alt="The letter B in ASL">
-            <img class="letter-image" src="img/k.jpg" title="Guess the word" alt="The letter K in ASL">
-            <img class="letter-image" src="img/t.jpg" title="Guess the word" alt="The letter T in ASL">
-         </div>
-         <h3>What is the word above?</h3>
-         <p><em>Hint: It's what we're going to be learning about today!</em></p>
-         <form id="q1" class="one-input">
-            <input class="text" type="text" id="a1" title="Type guess here..." placeholder="Type guess here..." output="#guess" />
-            <input class="button" id="b1" title="Submit guess!" type="button" value="Submit guess!" link="#intro">
-         </form>
-      </div>
-   </section>
-   <!-- Slide 2 -->
-   <section id='intro' class='hide'>
-      <div class="content">
-         <p id="guess" class="output"><b>You guessed:</b> </p>
-         <p>
-            You may have recognized the hand signals above as <b>American Sign Language (ASL)</b>,
-            but chances are, you probably didn’t know what specific letters they were.
-            The process of spelling words using hand shapes in ASL is called
-            <b>fingerspelling</b>.
-         </p>
-         <p>
-            Ready for the answer? <span id="reveal-bkt" title="Yes!" class="link reveal">Yes!</span>
-         </p>
-         <div id="bkt-answer" class="hide">
-            <div id="bkt-box">
-               <div class="letter">
-                  <img class="letter-image" src="img/b.jpg" title="B" alt="The letter B in ASL">
-                  <div class="letter-text"><p>This is a</p> <h3 class="orange">B</h3></div>
-               </div>
-               <div class="letter">
-                  <img class="letter-image" src="img/k.jpg" title="K" alt="The letter K in ASL">
-                  <div class="letter-text"><p>This is a</p> <h3 class="light-pink">K</h3></div>
-               </div>
-               <div class="letter">
-                  <img class="letter-image" src="img/t.jpg" title="T" alt="The letter T in ASL">
-                  <div class="letter-text"><p>This is a</p> <h3 class="dark-pink">T</h3></div>
-               </div>
+    <!-- Slide 1 -->
+    <section id='read-bkt' class="quiz">
+        <div class='content'>
+            <div id='bkt-image' class="three-letters" title="Guess the word" alt="BKT spelled in American Sign Language">
+                <img class="letter-image" src="img/b.jpg" title="Guess the word" alt="The letter B in ASL">
+                <img class="letter-image" src="img/k.jpg" title="Guess the word" alt="The letter K in ASL">
+                <img class="letter-image" src="img/t.jpg" title="Guess the word" alt="The letter T in ASL">
             </div>
-            <p>This spells <b>BKT</b>, which stands for <b>Bayesian Knowledge Tracing</b>.</p>
-         </div>
-         <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#guess-slider"></i>
-      </div>
-   </section>
-   <!-- Slide 3 -->
-   <section id="guess-slider" class="hide">
-       <div class="content">
-           <p>
-               Don’t worry if you got it wrong, though. What do you think the chances are that
-               someone who doesn’t know ASL would have guessed this word correctly by chance?
-           </p>
-           <div class="slider-all">
-               <p class="slider-top-text"><i>Drag the slider!</i></p>
-               <div class="slider-container">
-                   <p class="slider-label light-pink">Pretty Small</p>
-                   <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider" id="g-slider" />
-                   <p class="slider-label orange">Pretty Big</p>
-               </div>
-               <input class="button dark center reveal" id="b2" title="Done" type="button" value="Done">
-           </div>
-           <div id="slider-answer" class="hide">
-               <p>If you said pretty small, you’d be right.</p>
-               <p>
-                   So what does this have to do with Bayesian Knowledge Tracing? Well, BKT is
-                   an artificial intelligence algorithm that helps us predict what people know &#8211;
-                   often students, since BKT is typically used in educational contexts
-                   (e.g., intelligent tutoring systems).
-               </p>
-           </div>
-           <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#guess-info"></i>
-       </div>
-   </section>
-   <!-- Slide 4 -->
-   <section id="guess-info" class="hide last-slide">
-       <div class="content">
-           <p>
-               Like many algorithms, BKT relies on parameters to compute its output, which in this case is the
-               probability that a student has learned a skill. Each parameter is essentially a probability
-               (i.e., any number between 0 and 1, inclusive).
-           </p>
-           <p>
-               And <i>guess</i> what? You already know about the first parameter, <b>P(guess)</b>, which is the
-               probability that a student will answer correctly despite not knowing a skill.
-           </p>
-       </div>
+            <h3>What is the word above?</h3>
+            <p><em>Hint: It's what we're going to be learning about today!</em></p>
+            <form id="q1" class="one-input">
+                <input class="text" type="text" id="a1" title="Type guess here..." placeholder="Type guess here..." output="#guess" />
+                <input class="button" id="b1" title="Submit guess!" type="button" value="Submit guess!" link="#intro">
+            </form>
+        </div>
+    </section>
+    <!-- Slide 2 -->
+    <section id='intro' class='hide'>
+        <div class="content">
+            <p id="guess" class="output"><b>You guessed:</b> </p>
+            <p>
+                You may have recognized the hand signals above as <b>American Sign Language (ASL)</b>,
+                but chances are, you probably didn’t know what specific letters they were.
+                The process of spelling words using hand shapes in ASL is called
+                <b>fingerspelling</b>.
+            </p>
+            <p>
+                Ready for the answer? <span id="reveal-bkt" title="Yes!" class="link reveal">Yes!</span>
+            </p>
+            <div id="bkt-answer" class="hide">
+                <div id="bkt-box" class="letter-box">
+                    <div class="letter">
+                        <img class="letter-image" src="img/b.jpg" title="B" alt="The letter B in ASL">
+                        <div class="letter-text"><p>This is a</p> <h3 class="orange">B</h3></div>
+                    </div>
+                    <div class="letter">
+                        <img class="letter-image" src="img/k.jpg" title="K" alt="The letter K in ASL">
+                        <div class="letter-text"><p>This is a</p> <h3 class="light-pink">K</h3></div>
+                    </div>
+                    <div class="letter">
+                        <img class="letter-image" src="img/t.jpg" title="T" alt="The letter T in ASL">
+                        <div class="letter-text"><p>This is a</p> <h3 class="dark-pink">T</h3></div>
+                    </div>
+                </div>
+                <p>This spells <b>BKT</b>, which stands for <b>Bayesian Knowledge Tracing</b>.</p>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#guess-slider"></i>
+        </div>
+    </section>
+    <!-- Slide 3 -->
+    <section id="guess-slider" class="hide">
+        <div class="content">
+            <p>
+                Don’t worry if you got it wrong, though. What do you think the chances are that
+                someone who doesn’t know ASL would have guessed this word correctly by chance?
+            </p>
+            <div class="slider-all">
+                <p class="slider-top-text">Drag the slider!</p>
+                <div class="slider-container">
+                    <p class="slider-label light-pink">Pretty Small</p>
+                    <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider" id="g-slider" />
+                    <p class="slider-label orange">Pretty Big</p>
+                </div>
+                <input class="button dark center reveal" id="b2" title="Done" type="button" value="Done">
+            </div>
+            <div id="slider-answer" class="hide">
+                <p>If you said pretty small, you’d be right.</p>
+                <p>
+                    So what does this have to do with Bayesian Knowledge Tracing? Well, BKT is
+                    an artificial intelligence algorithm that helps us predict what people know &#8211;
+                    often students, since BKT is typically used in educational contexts
+                    (e.g., intelligent tutoring systems).
+                </p>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#guess-info"></i>
+        </div>
+    </section>
+    <!-- Slide 4 -->
+    <section id="guess-info" class="hide last-slide">
+        <div class="content">
+            <p>
+                Like many algorithms, BKT relies on parameters to compute its output, which in this case is the
+                probability that a student has learned a skill. Each parameter is essentially a probability
+                (i.e., any number between 0 and 1, inclusive).
+            </p>
+            <p>
+                And <i>guess</i> what? You already know about the first parameter, <b>P(guess)</b>, which is the
+                probability that a student will answer correctly despite not knowing a skill.
+            </p>
+        </div>
 
-       <a class="next-page hide" title="Next Page" href="init.html" target="blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-   </section>
+        <a class="next-page hide" title="Next Page" href="init.html" target="blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+    </section>
 
-   <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

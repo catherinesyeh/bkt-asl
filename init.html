@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bayesian Knowledge Tracing</title>
+    <meta name="description" content="Explaining Bayesian Knowledge Tracing Using ASL">
+    <meta property="og:image" content="img/socimg.png" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<!-- P(init) -->
+<body>
+    <!-- Slide 1 -->
+    <section id='more-letters' class="auto-cont">
+        <div class="content">
+            <p>
+                Let's learn a few more ASL letters:
+            </p>
+            <div class="letter-box">
+                <div class="letter">
+                    <img class="letter-image" src="img/a.png" title="A" alt="The letter A in ASL">
+                    <div class="letter-text"><p>This is a</p> <h3 class="red">A</h3></div>
+                </div>
+                <div class="letter">
+                    <img class="letter-image" src="img/c.png" title="C" alt="The letter C in ASL">
+                    <div class="letter-text"><p>This is a</p> <h3 class="yellow">C</h3></div>
+                </div>
+                <div class="letter">
+                    <img class="letter-image" src="img/s.png" title="S" alt="The letter S in ASL">
+                    <div class="letter-text"><p>This is a</p> <h3 class="dark-green">S</h3></div>
+                </div>
+            </div>
+            <p>
+                And here are the three letters you already know:
+            </p>
+            <div class="letter-box">
+                <div class="letter">
+                    <img class="letter-image" src="img/b.jpg" title="B" alt="The letter B in ASL">
+                    <div class="letter-text"><p>This is a</p> <h3 class="orange">B</h3></div>
+                </div>
+                <div class="letter">
+                    <img class="letter-image" src="img/k.jpg" title="K" alt="The letter K in ASL">
+                    <div class="letter-text"><p>This is a</p> <h3 class="light-pink">K</h3></div>
+                </div>
+                <div class="letter">
+                    <img class="letter-image" src="img/t.jpg" title="T" alt="The letter T in ASL">
+                    <div class="letter-text"><p>This is a</p> <h3 class="dark-pink">T</h3></div>
+                </div>
+            </div>
+            <i class="continue hide fa fa-caret-down auto" title="Continue" aria-hidden="true" link="#quiz-two"></i>
+        </div>
+    </section>
+    <!-- Slide 2 -->
+    <section id='quiz-two' class="quiz hide">
+        <div class='content'>
+            <p>Ok, time for another quiz!</p>
+            <div class="three-letters" title="Guess the word" alt="CAT spelled in American Sign Language">
+                <img class="letter-image" src="img/c.png" title="Guess the word" alt="The letter C in ASL">
+                <img class="letter-image" src="img/a.png" title="Guess the word" alt="The letter A in ASL">
+                <img class="letter-image" src="img/t.jpg" title="Guess the word" alt="The letter T in ASL">
+            </div>
+            <h3>What is the word above?</h3>
+            <form id="q2" class="one-input">
+                <input class="text" type="text" id="a2" title="Type guess here..." placeholder="Type guess here..." output="#guess" />
+                <input class="button" id="b2" title="Submit guess!" type="button" value="Submit guess!" link="#cat-answer">
+            </form>
+        </div>
+    </section>
+    <!-- Slide 3 -->
+    <section id="cat-answer" class="hide">
+        <div class="content">
+            <p id="guess" class="output"><b>You guessed:</b> </p>
+            <img id="cat-img" src="img/cat.jpg" title="cat" alt="Silhouette of a cat"/>
+            <p class="center answer">
+                <b>Answer:</b> cat
+            </p>
+            <p>
+                Did you get it right? Hopefully, that question was easier than the first one. So what do you think happened?
+                <span id="reveal-init" title="Tell me!" class="link reveal">Tell me!</span>
+            </p>
+            <p class="reveal-text hide">
+                Well, this is connected to our next BKT parameter: <b>P(init)</b>. This is the probability that the student already 
+                knew the skill before being tested. The "init" reflects the fact that P(init) is essentially measuring a student's 
+                level of initial knowledge <i>prior</i> to a practice opportunity.
+            </p>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#init-change"></i>
+        </div>
+    </section>
+    <!-- Slide 4 -->
+    <section id="init-change" class="hide">
+        <div class="content">
+            <p>
+                How do you think your P(init) changed from the first question to the second?
+            </p>
+            <div class="button-container">
+                <p class="button-top-text">I think it...</p>
+                <div class="buttons">
+                    <input class="button choice" id="inc" title="Increased" type="button" value="Increased" correct="yes">
+                    <input class="button choice" id="dec" title="Decreased" type="button" value="Decreased" correct="no">
+                    <input class="button choice" id="same" title="Didn't change" type="button" value="Didn't change" correct="no">
+                </div>
+            </div>
+            <div class="init-ans hide">
+                <p class="reveal-ans">Yes, your P(init) <b>increased!</b></p>
+                <p>
+                    What does that mean? Well, before the first question, you likely didn't know much (or anything) about ASL,
+                    but now you've learned six letters of the alphabet and can recognize some spelled out words. In other words,
+                    your knowledge of ASL has increased.
+                </p>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#mastery-bar"></i>
+        </div>
+    </section>
+    <!-- Slide 5 -->
+    <section id="mastery-bar" class="hide last-slide">
+        <h3>Test!</h3>
+        <a class="next-page hide" title="Next Page" href="init.html" target="blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

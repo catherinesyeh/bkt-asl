@@ -23,7 +23,7 @@ $.fn.nextSlideOnArrow = function(arrow) {
          window.location.hash = hash;
       });
 
-       if (next.hasClass("last-slide")) {
+       if (next.hasClass("last-slide")) { // if on last slide of page, reveal continue button
           setTimeout(() => {
               $(".next-page").removeClass("hide");
           }, 3000);
@@ -33,7 +33,7 @@ $.fn.nextSlideOnArrow = function(arrow) {
 
 // Load next slide after user submits answer
 $.fn.nextSlideOnInput = function(input, button, output) {
-    if (input.val() == '') {
+    if (input.val() == '') { // check for user input
       alert('Please enter a ' + output.attr('id') + '.');
       return;
    }
@@ -68,19 +68,38 @@ $.fn.nextSlideOnInput = function(input, button, output) {
 // reveal rest of slide on button click
 $.fn.revealRest = function(button) {
    var container = button.parent();
-    if (container.hasClass("slider-all")) {
+    if (container.hasClass("slider-all")) { // slider question
         container.addClass("clicked");
     } else {
         button.addClass("clicked");
     }
 
-   var rest = container.next();
+   var rest = container.next(); // rest of slide
    rest.removeClass("hide");
 
-   var cont = rest.next();
+   var cont = rest.next(); // continue button
    setTimeout(() => {
        cont.removeClass("hide");
    }, 3000);
+}
+
+// reveal answer to multiple choice
+$.fn.revealRestMC = function(button) {
+    button.addClass("selected");
+    button.parent().addClass("clicked");
+
+    var rest = button.parent().parent().next(); // rest of slide
+    var ans = rest.children()[0]; // answer
+
+    if (button.attr("correct") == "no") { // user wrong
+        ans.innerHTML = "Actually" + ans.innerHTML.substring(3);
+    } 
+    rest.removeClass("hide");
+
+    var cont = rest.next(); // continue button
+    setTimeout(() => {
+        cont.removeClass("hide");
+    }, 3000);
 }
 
 $(document).ready(function () {
@@ -106,8 +125,16 @@ $(document).ready(function () {
       $.fn.revealRest($(this));
    });
 
-   $('.next-page').on('click', function (event) { // user pressed next page button
-       $(this).addClass("clicked");
-       $('.last-slide').addClass("clicked");
-   })
+    $('.next-page').on('click', function (event) { // user pressed next page button
+        $(this).addClass("clicked");
+        $('.last-slide').addClass("clicked");
+    });
+
+    $('.button.choice').on('click', function (event) { // user answered multiple choice
+        $.fn.revealRestMC($(this));
+    });
+
+    setTimeout(() => {
+        $('.auto-cont .continue').removeClass("hide");
+    }, 5000);
 });
