@@ -218,7 +218,8 @@ section img {
    letter-spacing: 1px;
 }
 
-form.one-input { /* one-field form input */
+/* one-field form input */
+form.one-input { 
   height: calc(32px + 0.8vw);
   display: flex;
   margin: auto;
@@ -235,7 +236,6 @@ form.one-input { /* one-field form input */
         max-width: 600px;
     }
 }
-
 
 form .text {
    border-style: none;
@@ -270,6 +270,18 @@ form .button {
    form .text {
       width: 50%;
    }
+}
+
+.output {
+    color: var(--dark-orange);
+    text-align: center;
+    font-style: italic;
+    font-family: "Roboto Mono", monospace;
+    font-size: calc(12px + 0.4vw);
+    border-top: 2px solid var(--dark-orange);
+    border-bottom: 2px solid var(--dark-orange);
+    padding: calc(8px + 0.2vw);
+    margin-bottom: calc(18px + 0.5vw);
 }
 
 .content .hide {
@@ -352,18 +364,6 @@ form .button {
 #bkt-image .letter-image {
    max-width: 120px;
    width: 100%;
-}
-
-.output {
-   color: var(--dark-orange);
-   text-align: center;
-   font-style: italic;
-   font-family: "Roboto Mono", monospace;
-   font-size: calc(12px + 0.4vw);
-   border-top: 2px solid var(--dark-orange);
-   border-bottom: 2px solid var(--dark-orange);
-   padding: calc(8px + 0.2vw);
-   margin-bottom: calc(18px + 0.5vw);
 }
 
 #bkt-answer {

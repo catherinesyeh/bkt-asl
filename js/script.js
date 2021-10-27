@@ -83,8 +83,8 @@ $.fn.revealRest = function(button) {
    }, 3000);
 }
 
-$(document).ready(function() { // user clicked submit button
-    $('.one-input .button').on('click', function (event) {
+$(document).ready(function () {
+    $('.one-input .button').on('click', function (event) { // user clicked submit button
         var answer = $(this).prev();
         var guess = answer.attr('output');
       $.fn.nextSlideOnInput(answer, $(this), $(guess));
