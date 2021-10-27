@@ -26,6 +26,10 @@
    color: var(--orange);
 }
 
+.dark-orange {
+    color: var(--dark-orange);
+}
+
 /* general stuff */
 ::-moz-selection {
     background: var(--dark-pink);
@@ -131,6 +135,27 @@ input:focus {
    min-height: auto !important;
 }
 
+/* next page button */
+.next-page {
+    position: absolute;
+    bottom: calc(20px + 1vw);
+    right: calc(20px + 1vw);
+    z-index: 9999;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5em;
+    color: var(--dark-pink);
+    transition: 0.5s;
+}
+.next-page:hover {
+    color: var(--darker-pink);
+    transform: translateY(-5px);
+    transition: 0.5s;
+}
+
+.next-page.clicked {
+    color: var(--text);
+}
 
 /* slides */
 .hide {
@@ -205,6 +230,13 @@ form.one-input { /* one-field form input */
   transition: 0.5s;
 }
 
+@media (min-width: 1600px) {
+    form.one-input {
+        max-width: 600px;
+    }
+}
+
+
 form .text {
    border-style: none;
 }
@@ -233,6 +265,7 @@ form .button {
    background-color: var(--text);
 }
 
+
 @media (max-width: 500px) {
    form .text {
       width: 50%;
@@ -252,6 +285,12 @@ form .button {
 }
 
 /* slider */
+.slider-top-text {
+   text-align: center;
+   margin-bottom: 0;
+   margin-top: calc(24px + 0.4vw);
+}
+
 .slider-container {
    width: 100%;
    display: flex;

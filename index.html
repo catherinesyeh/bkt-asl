@@ -26,7 +26,7 @@
          <h3>What is the word above?</h3>
          <p><em>Hint: It's what we're going to be learning about today!</em></p>
          <form id="q1" class="one-input">
-            <input class="text" type="text" id="a1" title="Type guess here..." placeholder="Type guess here..."/>
+            <input class="text" type="text" id="a1" title="Type guess here..." placeholder="Type guess here..." output="#guess" />
             <input class="button" id="b1" title="Submit guess!" type="button" value="Submit guess!" link="#intro">
          </form>
       </div>
@@ -42,7 +42,7 @@
             <b>fingerspelling</b>.
          </p>
          <p>
-            Ready for the answer? <span id="reveal-bkt" title="Yes!" class="link">Yes!</span>
+            Ready for the answer? <span id="reveal-bkt" title="Yes!" class="link reveal">Yes!</span>
          </p>
          <div id="bkt-answer" class="hide">
             <div id="bkt-box">
@@ -65,34 +65,48 @@
       </div>
    </section>
    <!-- Slide 3 -->
-   <section id="guess-slider">
-      <div class="content">
-         <p>
-            Don’t worry if you got it wrong, though. What do you think the chances are that
-            someone who doesn’t know ASL would have guessed this word correctly by chance?
-         </p>
-         <p><i>Drag the slider!</i></p>
-         <div class="slider-container">
-            <p class="slider-label light-pink">Pretty Small</p>
-            <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider" id="g-slider" />
-            <p class="slider-label orange">Pretty Big</p>
-         </div>
-         <input class="button dark center" id="b2" title="Done" type="button" value="Done">
-         <div id="slider-answer" class="hide">
-            <p>If you said pretty small, you’d be right.</p>
-            <p>
-               So what does this have to do with Bayesian Knowledge Tracing? Well, BKT is
-               an artificial intelligence algorithm that helps us predict what people know &#8211;
-               often students, since BKT is typically used in educational contexts
-               (e.g., intelligent tutoring systems).
-            </p>
-         </div>
-      </div>
-      <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#guess-info"></i>
+   <section id="guess-slider" class="hide">
+       <div class="content">
+           <p>
+               Don’t worry if you got it wrong, though. What do you think the chances are that
+               someone who doesn’t know ASL would have guessed this word correctly by chance?
+           </p>
+           <div class="slider-all">
+               <p class="slider-top-text"><i>Drag the slider!</i></p>
+               <div class="slider-container">
+                   <p class="slider-label light-pink">Pretty Small</p>
+                   <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider" id="g-slider" />
+                   <p class="slider-label orange">Pretty Big</p>
+               </div>
+               <input class="button dark center reveal" id="b2" title="Done" type="button" value="Done">
+           </div>
+           <div id="slider-answer" class="hide">
+               <p>If you said pretty small, you’d be right.</p>
+               <p>
+                   So what does this have to do with Bayesian Knowledge Tracing? Well, BKT is
+                   an artificial intelligence algorithm that helps us predict what people know &#8211;
+                   often students, since BKT is typically used in educational contexts
+                   (e.g., intelligent tutoring systems).
+               </p>
+           </div>
+           <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#guess-info"></i>
+       </div>
    </section>
    <!-- Slide 4 -->
-   <section id="guess-info" class="hide">
-      <h3>Test!</h3>
+   <section id="guess-info" class="hide last-slide">
+       <div class="content">
+           <p>
+               Like many algorithms, BKT relies on parameters to compute its output, which in this case is the
+               probability that a student has learned a skill. Each parameter is essentially a probability
+               (i.e., any number between 0 and 1, inclusive).
+           </p>
+           <p>
+               And <i>guess</i> what? You already know about the first parameter, <b>P(guess)</b>, which is the
+               probability that a student will answer correctly despite not knowing a skill.
+           </p>
+       </div>
+
+       <a class="next-page hide" title="Next Page" href="init.html" target="blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
    </section>
 
    <script src="js/script.js"></script>

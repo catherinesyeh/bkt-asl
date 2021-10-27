@@ -1,11 +1,3 @@
-// INTRO / P(GUESS)
-var a1 = $("#a1");
-var b1 = $("#b1");
-var guess = $("#guess");
-var reveal = $("#reveal-bkt");
-var answer = $("#bkt-answer");
-var b2 = $("#b2");
-
 // Load next slide when user presses continue button
 $.fn.nextSlideOnArrow = function(arrow) {
    // make sure anchor (hash) is provided before overriding default behavior
@@ -30,13 +22,19 @@ $.fn.nextSlideOnArrow = function(arrow) {
          // add hash (#) to URL when done scrolling (default click behavior)
          window.location.hash = hash;
       });
+
+       if (next.hasClass("last-slide")) {
+          setTimeout(() => {
+              $(".next-page").removeClass("hide");
+          }, 3000);
+      }
    }
 }
 
 // Load next slide after user submits answer
 $.fn.nextSlideOnInput = function(input, button, output) {
-   if (input.val() == '') {
-      alert('Please enter a guess.');
+    if (input.val() == '') {
+      alert('Please enter a ' + output.attr('id') + '.');
       return;
    }
 
@@ -69,39 +67,47 @@ $.fn.nextSlideOnInput = function(input, button, output) {
 
 // reveal rest of slide on button click
 $.fn.revealRest = function(button) {
-   var input = button.prev();
-   input.addClass("clicked");
-   button.addClass("clicked");
+   var container = button.parent();
+    if (container.hasClass("slider-all")) {
+        container.addClass("clicked");
+    } else {
+        button.addClass("clicked");
+    }
 
-   var rest = button.next();
+   var rest = container.next();
    rest.removeClass("hide");
+
+   var cont = rest.next();
+   setTimeout(() => {
+       cont.removeClass("hide");
+   }, 3000);
 }
 
 $(document).ready(function() { // user clicked submit button
-   b1.on('click', function(event) {
-      $.fn.nextSlideOnInput(a1, $(this), guess);
+    $('.one-input .button').on('click', function (event) {
+        var answer = $(this).prev();
+        var guess = answer.attr('output');
+      $.fn.nextSlideOnInput(answer, $(this), $(guess));
    });
 
-   a1.keypress(function(e) { // user pressed enter
-      if (e.which == 13) {
-         $.fn.nextSlideOnInput($(this), b1, guess);
+    $('.one-input .text').keypress(function(e) { // user pressed enter
+       if (e.which == 13) {
+           var button = $(this).next();
+           var guess = $(this).attr('output');
+         $.fn.nextSlideOnInput($(this), button, $(guess));
       }
    });
-
-   reveal.on('click', function(event) { // reveal answer
-      answer.removeClass("hide");
-      reveal.addClass("clicked");
-      var cont = answer.next();
-      setTimeout(() => {
-         cont.removeClass("hide");
-      }, 3000);
-   })
 
    $('.continue').on('click', function(event) { // user pressed continue button
       $.fn.nextSlideOnArrow($(this));
    })
 
-   b2.on('click', function(event) {
+   $('.reveal').on('click', function(event) { // reveal rest of slide
       $.fn.revealRest($(this));
    });
+
+   $('.next-page').on('click', function (event) { // user pressed next page button
+       $(this).addClass("clicked");
+       $('.last-slide').addClass("clicked");
+   })
 });
