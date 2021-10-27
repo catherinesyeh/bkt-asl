@@ -6,6 +6,7 @@
     --text: rgba(25, 25, 25); /* #191919 */
     --light-text: rgba(54, 54, 54); /* #363636 */
     --dark-pink: rgba(190, 56, 103); /* #BE3867 */
+    --darker-pink: rgba(95, 28, 52); /* #5F1C34 */
     --light-pink: rgba(213, 166, 189); /* #D5A6BD */
     --extra-light-pink: rgba(245, 233, 234); /* #F5E9EA */
     --dark-orange: rgba(217, 116, 26); /* #D9741A */
@@ -96,7 +97,7 @@ a:hover, .link:hover {
     color: var(--dark-pink);
 }
 
-input {
+input, .slider-label {
    font-family: "Roboto Mono", monospace;
    font-size: calc(12px + 0.4vw);
 }
@@ -161,6 +162,37 @@ section img {
   display: block;
 }
 
+/* button */
+.button {
+   border-style: none;
+   width: auto;
+   background-color: var(--light-pink);
+   color: white;
+   border-radius: 5px;
+   cursor: pointer;
+   transition: 0.5s;
+   padding: calc(8px + 0.1vw) calc(24px + 0.4vw);
+}
+
+.button.dark {
+   background-color: var(--dark-pink);
+}
+
+.button.center {
+   display: block;
+   margin: auto;
+}
+
+.button:hover {
+   background-color: var(--dark-pink);
+   transition: 0.5s;
+}
+
+.button.dark:hover {
+   background-color: var(--darker-pink);
+   letter-spacing: 1px;
+}
+
 form.one-input { /* one-field form input */
   height: calc(32px + 0.8vw);
   display: flex;
@@ -173,7 +205,7 @@ form.one-input { /* one-field form input */
   transition: 0.5s;
 }
 
-form .text, form .button {
+form .text {
    border-style: none;
 }
 
@@ -187,27 +219,17 @@ form .text {
 }
 
 form .button {
-  width: 50%;
-  background-color: var(--light-pink);
-  color: white;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-form .button:hover {
-   background-color: var(--dark-pink);
-   transition: 0.5s;
+  padding: 0;
+  width: 50%;
 }
 
 .clicked .one-input {
    border: 2px solid var(--text);
 }
 
-.clicked .one-input .button {
+.clicked .button {
    background-color: var(--text);
 }
 
@@ -227,6 +249,53 @@ form .button:hover {
    pointer-events: none;
    opacity: 0.6;
    transition: 0.5s;
+}
+
+/* slider */
+.slider-container {
+   width: 100%;
+   display: flex;
+   align-items: center;
+}
+
+.slider-label {
+   text-align: center;
+   line-height: calc(20px + 0.4vw);
+}
+
+.slider {
+   -webkit-appearance: none;
+   width: 100%;
+   height: calc(12px + 0.2vw);
+   background-image: linear-gradient(to right, var(--light-pink), var(--orange));
+   border-radius: 3px;
+   outline: none;
+   opacity: 0.7;
+   transition: 0.5s;
+}
+
+.slider:hover {
+   opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+   -webkit-appearance: none;
+   appearance: none;
+   width: calc(16px + 0.4vw);
+   height: calc(16px + 0.4vw);
+   border-radius: 5px;
+   outline: none;
+   background: var(--text);
+   cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+   width: calc(16px + 0.4vw);
+   height: calc(16px + 0.4vw);
+   border-radius: 5px;
+   outline: none;
+   background: var(--text);
+   cursor: pointer;
 }
 
 /* INTRO / P(GUESS) */
@@ -297,4 +366,13 @@ form .button:hover {
    .letter {
       display: block;
    }
+}
+
+#slider-answer {
+   padding-top: calc(24px + 0.4vw);
+   transition: 0.5s;
+}
+
+#slider-answer.hide {
+   padding-top: calc(24px + 0.4vw) !important;
 }

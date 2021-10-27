@@ -4,6 +4,7 @@ var b1 = $("#b1");
 var guess = $("#guess");
 var reveal = $("#reveal-bkt");
 var answer = $("#bkt-answer");
+var b2 = $("#b2");
 
 // Load next slide when user presses continue button
 $.fn.nextSlideOnArrow = function(arrow) {
@@ -66,6 +67,16 @@ $.fn.nextSlideOnInput = function(input, button, output) {
    }
 }
 
+// reveal rest of slide on button click
+$.fn.revealRest = function(button) {
+   var input = button.prev();
+   input.addClass("clicked");
+   button.addClass("clicked");
+
+   var rest = button.next();
+   rest.removeClass("hide");
+}
+
 $(document).ready(function() { // user clicked submit button
    b1.on('click', function(event) {
       $.fn.nextSlideOnInput(a1, $(this), guess);
@@ -89,4 +100,8 @@ $(document).ready(function() { // user clicked submit button
    $('.continue').on('click', function(event) { // user pressed continue button
       $.fn.nextSlideOnArrow($(this));
    })
+
+   b2.on('click', function(event) {
+      $.fn.revealRest($(this));
+   });
 });
