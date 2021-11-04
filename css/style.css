@@ -70,6 +70,19 @@ select:-webkit-autofill:focus {
     -webkit-transition: 0.5s;
 }
 
+.js-loading *,
+.js-loading *:before,
+.js-loading *:after {
+    animation-play-state: paused !important;
+}
+
+@keyframes fadeInActivate {
+    to {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -81,6 +94,9 @@ html {
 }
 
 body {
+    opacity: 0;
+    pointer-events: none;
+    animation: fadeInActivate 1.5s ease forwards;
     font-size: calc(14px + 0.6vw);
     line-height: calc(28px + 0.8vw);
     font-weight: 400;
@@ -515,3 +531,12 @@ form .button {
 .init-ans {
     transition: 0.5s;
 }
+
+.emphasis {
+    font-weight: 700;
+    letter-spacing: calc(2px + 0.2vw);
+    color: var(--dark-orange);
+    font-style: italic;
+}
+
+/* mastery bar */
