@@ -23,11 +23,17 @@ $.fn.nextSlideOnArrow = function(arrow) {
          window.location.hash = hash;
       });
 
-       if (next.hasClass("last-slide") && !next.hasClass("has-reveal")) {
-          // if on last slide of page, reveal continue button
-          setTimeout(() => {
-              $(".next-page").removeClass("hide");
-          }, 3000);
+       if (next.hasClass("last-slide")) {
+           if (!next.hasClass("has-reveal")) {
+               // if on last slide of page, reveal continue button
+               setTimeout(() => {
+                   $(".next-page").removeClass("hide");
+               }, 3000);
+           }
+           if ($(document.body).hasClass("reveal-mastery")) {
+               // reveal mastery bar
+               $("#mastery").removeClass("hide");
+           }
       }
    }
 }

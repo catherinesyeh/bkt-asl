@@ -540,3 +540,20 @@ form .button {
 }
 
 /* mastery bar */
+#mastery {
+    width: 100%;
+    height: calc(20px + 1vw);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    background-color: var(--extra-light-pink);
+    transition: 0.5s;
+    z-index: 99999;
+}
+
+#progress {
+    background-color: var(--light-pink);
+    height: 100%;
+    transition: 0.5s;
+}
