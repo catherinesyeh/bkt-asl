@@ -14,7 +14,11 @@
 </head>
 
 <!-- P(init) -->
-<body>
+<body class="reveal-mastery">
+    <!-- Mastery Bar -->
+    <div id="mastery" class="hide">
+        <div id="progress" style="width:16%"></div>
+    </div>
     <!-- Slide 1 -->
     <section id='more-letters' class="auto-cont">
         <div class="content">
@@ -75,7 +79,7 @@
     <section id="cat-answer" class="hide">
         <div class="content">
             <p id="guess" class="output"><b>You guessed:</b> </p>
-            <img id="cat-img" src="img/cat.jpg" title="cat" alt="Silhouette of a cat"/>
+            <img id="cat-img" src="img/cat.jpg" title="cat" alt="Silhouette of a cat" />
             <p class="center answer">
                 <b>Answer:</b> cat
             </p>
@@ -84,8 +88,8 @@
                 <span id="reveal-init" title="Tell me!" class="link reveal">Tell me!</span>
             </p>
             <p class="reveal-text hide">
-                Well, this is connected to our next BKT parameter: <b>P(init)</b>. This is the probability that the student already 
-                knew the skill before being tested. The "init" reflects the fact that P(init) is essentially measuring a student's 
+                Well, this is connected to our next BKT parameter: <b>P(init)</b>. This is the probability that the student already
+                knew the skill before being tested. The "init" reflects the fact that P(init) is essentially measuring a student's
                 level of initial knowledge <i>prior</i> to a practice opportunity.
             </p>
             <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#init-change"></i>
@@ -110,18 +114,28 @@
                 <p>
                     What does that mean? Well, before the first question, you likely didn't know much (or anything) about ASL,
                     but now you've learned six letters of the alphabet and can recognize some spelled out words. In other words,
-                    your knowledge of ASL has increased.
+                    your knowledge of ASL has <i>increased</i>.
                 </p>
             </div>
             <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#mastery-bar"></i>
         </div>
     </section>
     <!-- Slide 5 -->
-    <section id="mastery-bar" class="hide last-slide">
-        <h3>Test!</h3>
-        <a class="next-page hide" title="Next Page" href="init.html" target="blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+    <section id="mastery-bar" class="hide last-slide has-reveal">
+        <div class="content">
+            <p>
+                BKT estimates the probability that a student has learned a skill with P(init). As it will turn out,
+                P(guess) and the other BKT parameters help update P(init) over time. Once P(init) exceeds a threshold,
+                which is typically set at <b>0.95</b>, we say that the student has achieved <span class="emphasis">mastery</span>.
+            </p><p>
+                Let’s track your own journey to mastery! You can see your current P(init) with the <b>mastery bar</b> at the top of the page.
+                <span id="reveal-next" title="Got it!" class="link reveal">Got it!</span>
+            </p><p class="reveal-text hide">
+                Alright, let’s continue learning about more parameters!
+            </p>
+        </div>
+        <a class="next-page hide" title="Next Page" href="transit.html" target="_blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
     </section>
-
     <script src="js/script.js"></script>
 </body>
 </html>

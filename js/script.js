@@ -23,10 +23,17 @@ $.fn.nextSlideOnArrow = function(arrow) {
          window.location.hash = hash;
       });
 
-       if (next.hasClass("last-slide")) { // if on last slide of page, reveal continue button
-          setTimeout(() => {
-              $(".next-page").removeClass("hide");
-          }, 3000);
+       if (next.hasClass("last-slide")) {
+           if (!next.hasClass("has-reveal")) {
+               // if on last slide of page, reveal continue button
+               setTimeout(() => {
+                   $(".next-page").removeClass("hide");
+               }, 3000);
+           }
+           if ($(document.body).hasClass("reveal-mastery")) {
+               // reveal mastery bar
+               $("#mastery").removeClass("hide");
+           }
       }
    }
 }
@@ -77,10 +84,18 @@ $.fn.revealRest = function(button) {
    var rest = container.next(); // rest of slide
    rest.removeClass("hide");
 
-   var cont = rest.next(); // continue button
-   setTimeout(() => {
-       cont.removeClass("hide");
-   }, 3000);
+    var section = container.parent().parent(); // section
+    if (section.hasClass("last-slide")) {
+        // if on last slide of page, reveal next button
+        setTimeout(() => {
+            $(".next-page").removeClass("hide");
+        }, 3000);
+    } else {
+        var cont = rest.next(); // continue button
+        setTimeout(() => {
+            cont.removeClass("hide");
+        }, 3000);
+    }
 }
 
 // reveal answer to multiple choice
