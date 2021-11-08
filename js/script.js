@@ -32,7 +32,9 @@ $.fn.nextSlideOnArrow = function(arrow) {
            }
            if ($(document.body).hasClass("reveal-mastery")) {
                // reveal mastery bar
-               $("#mastery").removeClass("hide");
+               setTimeout(() => {
+                   $("#mastery").removeClass("hide");
+               }, 2000);
            }
       }
    }

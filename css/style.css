@@ -5,6 +5,7 @@
 :root {
     --text: rgba(25, 25, 25); /* #191919 */
     --light-text: rgba(89, 89, 89); /* #595959 */
+    --extra-light-text: rgba(214, 214, 214); /* #D6D6D6 */
     --dark-pink: rgba(190, 56, 103); /* #BE3867 */
     --darker-pink: rgba(95, 28, 52); /* #5F1C34 */
     --light-pink: rgba(213, 166, 189); /* #D5A6BD */
@@ -550,10 +551,75 @@ form .button {
     background-color: var(--extra-light-pink);
     transition: 0.5s;
     z-index: 99999;
+    cursor: pointer;
+}
+
+#mastery:hover {
+    background-color: var(--extra-light-text);
+}
+
+#mastery:hover #labels, #mastery:hover .you-label {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+#mastery:hover #progress {
+    background-color: var(--light-text);
+    transition: 0.5s;
+}
+
+#mastery:hover #progress span {
+    opacity: 0;
+    transition: 0.5s;
 }
 
 #progress {
     background-color: var(--light-pink);
     height: 100%;
     transition: 0.5s;
+    font-family: "Roboto Mono", monospace;
+    color: white;
+    padding-left: calc(10px + 0.5vw);
+    font-size: 0.8em;
+    align-items: center;
+    display: flex;
+    transition: 0.5s;
+}
+
+.you-label {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    transition: 0.5s;
+    padding-left: calc(10px + 0.5vw);
+    font-family: "Roboto Mono", monospace;
+}
+
+#labels {
+    opacity: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 calc(10px + 0.5vw);
+    align-items: center;
+    transition: 0.5s;
+}
+
+#labels h5 {
+    width: 50%;
+}
+
+#labels .left {
+    text-align: left;
+    color: white;
+}
+
+#labels .right {
+    text-align: right;
 }
