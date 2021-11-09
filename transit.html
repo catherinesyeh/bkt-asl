@@ -69,19 +69,24 @@
         </div>
     </section>
     <!-- Slide 3 -->
-    <section id="transit-blanks" class="hide last-slide has-reveal">
+    <section id="transit-blanks" class="last-slide has-reveal">
         <div class="content">
             <p>
-                BKT estimates the probability that a student has learned a skill with P(init). As it will turn out,
-                P(guess) and the other BKT parameters help update P(init) over time. Once P(init) exceeds a threshold,
-                which is typically set at <b>0.95</b>, we say that the student has achieved <span class="emphasis">mastery</span>.
+                We measure how hard a skill is to learn with <b>P(transit)</b>, which is the probability that a student will learn a skill on their next try. 
+                A lower P(transit) suggests that the skill is harder to learn, so it's <i>less</i> likely that the student will learn it on their next try.
             </p><p>
-                Let's track your own journey to mastery! You can see your current P(init) with the <b>mastery bar</b> at the top of the page.
-                <i>Hover over the bar to view probabilities.</i>
-                <span id="reveal-next" title="Got it!" class="link reveal">Got it!</span>
-            </p><p class="reveal-text hide">
-                Alright, let's continue learning about more parameters!
+                <i>Fill in the blanks!</i>
             </p>
+            <form id="q3" class="">
+                <p>
+                    On the other hand, a higher P(transit) suggests that the skill is
+                </p>
+                <select id="blank1" name="transit1">
+                    <option value="easier">easier</option>
+                    <option value="harder">harder</option>
+                </select>
+                <input class="button" id="b1" title="Submit guess!" type="button" value="Submit guess!" link="#intro">
+            </form>
         </div>
         <a class="next-page hide" title="Next Page" href="transit.html" target="_blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
     </section>
