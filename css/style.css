@@ -147,12 +147,12 @@ a:hover, .link:hover {
     color: var(--dark-pink);
 }
 
-input, .slider-label {
+input, .slider-label, select {
     font-family: "Roboto Mono", monospace;
     font-size: calc(12px + 0.4vw);
 }
 
-input:focus {
+input:focus, select:focus {
     outline: none;
 }
 
@@ -738,4 +738,55 @@ form .button {
         font-size: 1em;
         padding: calc(4px + 0.05vw) calc(14px + 0.1vw);
     }
+}
+
+/* fill in the blanks question */
+.no-space {
+    margin-bottom: 0 !important;
+}
+
+form.fill-in-blanks .button {
+    display: block;
+    height: calc(32px + 0.8vw);
+    border-radius: 10px !important;
+    width: auto !important;
+    padding: 0 calc(20px + 1vw);
+}
+
+select {
+    height: calc(32px + 0.8vw);
+    width: auto;
+    min-width: 100px;
+    max-width: 240px;
+    padding-left: calc(10px + 0.2vw);
+    padding-right: calc(24px + 1vw);
+    border: 2px solid var(--light-pink);
+    border-radius: 10px;
+    transition: 0.5s;
+    background-image: linear-gradient(45deg, transparent 50%, var(--pink) 50%), linear-gradient(135deg, var(--pink) 50%, transparent 50%), linear-gradient(to right, var(--pink), var(--pink));
+    background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+    background-size: 5px 5px, 5px 5px, 0px 1.5em;
+    background-repeat: no-repeat;
+    margin: 0;
+    color: var(--pink);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+select:hover {
+    border-color: var(--orange);
+    transition: 0.5s;
+}
+
+select:focus {
+    background-image: linear-gradient(45deg, transparent 50%, var(--light-text) 50%), linear-gradient(135deg, var(--light-text) 50%, transparent 50%), linear-gradient(to right, var(--light-text), var(--light-text));
+    background-repeat: no-repeat;
+    border-color: var(--orange);
+    color: var(--text);
+    outline: 0;
+    transition: 0.5s;
 }

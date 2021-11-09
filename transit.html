@@ -74,18 +74,24 @@
             <p>
                 We measure how hard a skill is to learn with <b>P(transit)</b>, which is the probability that a student will learn a skill on their next try. 
                 A lower P(transit) suggests that the skill is harder to learn, so it's <i>less</i> likely that the student will learn it on their next try.
-            </p><p>
+            </p><p class="no-space">
                 <i>Fill in the blanks!</i>
             </p>
-            <form id="q3" class="">
-                <p>
+            <form id="q3" class="fill-in-blanks">
+                <p class="inline">
                     On the other hand, a higher P(transit) suggests that the skill is
                 </p>
                 <select id="blank1" name="transit1">
                     <option value="easier">easier</option>
                     <option value="harder">harder</option>
                 </select>
-                <input class="button" id="b1" title="Submit guess!" type="button" value="Submit guess!" link="#intro">
+                <p class="inline">to learn, so it's</p>
+                <select id="blank2" name="transit2">
+                    <option value="less">less</option>
+                    <option value="more">more</option>
+                </select>
+                <p class="inline">likely that the student will learn in on their next try.</p>
+                <input class="button" id="b3" title="Submit guess!" type="button" value="Submit guess!" link="#intro">
             </form>
         </div>
         <a class="next-page hide" title="Next Page" href="transit.html" target="_blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
