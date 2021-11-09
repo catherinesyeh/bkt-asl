@@ -8,6 +8,7 @@
     --extra-light-text: rgba(214, 214, 214); /* #D6D6D6 */
     --dark-pink: rgba(190, 56, 103); /* #BE3867 */
     --darker-pink: rgba(95, 28, 52); /* #5F1C34 */
+    --pink: rgba(191, 106, 147); /* #BF6A93 */
     --light-pink: rgba(213, 166, 189); /* #D5A6BD */
     --extra-light-pink: rgba(245, 233, 234); /* #F5E9EA */
     --dark-orange: rgba(217, 116, 26); /* #D9741A */
@@ -540,7 +541,36 @@ form .button {
     font-style: italic;
 }
 
+@keyframes floatUpZoom {
+    to {
+        transform: translateY(-75%) scale(1.5);
+        opacity: 1;
+    }
+}
+
+#mastery-bar.hide #mastery-arrow {
+    animation-play-state: paused !important;
+}
+
+#mastery-arrow {
+    color: var(--dark-orange);
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+    opacity: 0;
+    transition: 0.5s;
+    padding-bottom: calc(20px + 1vw);
+    animation: floatUpZoom 1.5s ease forwards;
+    animation-delay: 2s;
+}
+
 /* mastery bar */
+#mastery.hide {
+    transform: scale(1) translateX(-100%) !important;
+    height: auto !important;
+    min-height: auto !important;
+}
+
 #mastery {
     width: 100%;
     height: calc(20px + 1vw);
@@ -554,17 +584,8 @@ form .button {
     cursor: pointer;
 }
 
-#mastery:hover {
-    background-color: var(--extra-light-text);
-}
-
-#mastery:hover #labels, #mastery:hover .you-label {
+#mastery:hover #labels, #mastery:hover .bar-label {
     opacity: 1;
-    transition: 0.5s;
-}
-
-#mastery:hover #progress {
-    background-color: var(--light-text);
     transition: 0.5s;
 }
 
@@ -586,7 +607,11 @@ form .button {
     transition: 0.5s;
 }
 
-.you-label {
+#progress span {
+    transition: 0.5s;
+}
+
+.bar-label {
     opacity: 0;
     position: absolute;
     top: 0;
@@ -596,6 +621,13 @@ form .button {
     transition: 0.5s;
     padding-left: calc(10px + 0.5vw);
     font-family: "Roboto Mono", monospace;
+    color: var(--pink);
+}
+
+.bar-label.right {
+    padding-right: calc(10px + 0.5vw);
+    padding-left: 0;
+    color: var(--dark-pink);
 }
 
 #labels {
@@ -613,6 +645,7 @@ form .button {
 
 #labels h5 {
     width: 50%;
+    color: var(--darker-pink);
 }
 
 #labels .left {
@@ -622,4 +655,26 @@ form .button {
 
 #labels .right {
     text-align: right;
+}
+
+#mastery-line {
+    height: 100%;
+    width: 5%;
+    border-left: calc(2px + 0.2vw) solid var(--dark-pink);
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: 0.5s;
+}
+
+@media (max-width: 500px) {
+    #progress {
+        font-size: 0.6em;
+        padding-left: calc(8px + 0.2vw);
+    }
+
+    #labels {
+        padding: 0 calc(8px + 0.2vw);
+        font-size: 0.6em;
+    }
 }

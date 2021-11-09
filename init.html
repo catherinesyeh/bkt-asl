@@ -16,13 +16,15 @@
 <!-- P(init) -->
 <body class="reveal-mastery">
     <!-- Mastery Bar -->
-    <div id="mastery" class="">
+    <div id="mastery" class="hide">
         <div id="progress" style="width:16%"><span>P(init)</span></div>
-        <h5 class="you-label" style="left:16%">&larr; You</h5>
+        <h5 class="bar-label" style="left:16%">&larr; You (0.16)</h5>
         <div id="labels">
             <h5 class="left">0</h5>
             <h5 class="right">1</h5>
         </div>
+        <h5 class="bar-label right" style="right:5%">Mastery (0.95) &rarr;</h5>
+        <div id="mastery-line"></div>
     </div>
     <!-- Slide 1 -->
     <section id='more-letters' class="auto-cont">
@@ -128,12 +130,14 @@
     <!-- Slide 5 -->
     <section id="mastery-bar" class="hide last-slide has-reveal">
         <div class="content">
+            <i id="mastery-arrow" class="fa fa-long-arrow-up" aria-hidden="true"></i>
             <p>
                 BKT estimates the probability that a student has learned a skill with P(init). As it will turn out,
                 P(guess) and the other BKT parameters help update P(init) over time. Once P(init) exceeds a threshold,
                 which is typically set at <b>0.95</b>, we say that the student has achieved <span class="emphasis">mastery</span>.
             </p><p>
                 Let’s track your own journey to mastery! You can see your current P(init) with the <b>mastery bar</b> at the top of the page.
+                <i>Hover over the bar to view probabilities.</i>
                 <span id="reveal-next" title="Got it!" class="link reveal">Got it!</span>
             </p><p class="reveal-text hide">
                 Alright, let’s continue learning about more parameters!
