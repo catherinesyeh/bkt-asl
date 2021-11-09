@@ -23,6 +23,16 @@ $.fn.nextSlideOnArrow = function (arrow) {
             window.location.hash = hash;
         });
 
+        if (arrow.attr('update') !== "") {
+            setTimeout(() => {
+                // update mastery bar
+                var newProg = arrow.attr('update');
+                $("#progress").css("width", newProg + "%");
+                $("#you-label").css("left", newProg + "%");
+                $("#you-label").html("&larr; You (0." + newProg + ")");
+            }, 1000);
+        }
+
         if (next.hasClass("last-slide")) {
             if (!next.hasClass("has-reveal")) {
                 // if on last slide of page, reveal continue button

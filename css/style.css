@@ -445,6 +445,7 @@ form .button {
 
 .buttons .button:hover:nth-child(3n+3), .buttons.two-opt .button:hover:nth-child(2n) {
     background-color: var(--orange);
+    color: white;
 }
 
 .buttons.two-opt .button {
