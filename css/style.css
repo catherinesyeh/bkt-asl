@@ -47,6 +47,15 @@
     color: var(--dark-green);
 }
 
+/* display */
+.inline {
+    display: inline;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
 /* general stuff */
 ::-moz-selection {
     background: var(--dark-pink);
@@ -415,12 +424,12 @@ form .button {
     border: 2px solid var(--text) !important;
 }
 
-.buttons .button:nth-child(3n+2) {
+.buttons .button:nth-child(3n+2), .buttons.two-opt .button {
     border: 2px solid var(--dark-pink);
     color: var(--dark-pink);
 }
 
-.buttons .button:nth-child(3n+3) {
+.buttons .button:nth-child(3n+3), .buttons.two-opt .button:nth-child(2n) {
     border: 2px solid var(--orange);
     color: var(--orange);
 }
@@ -430,17 +439,24 @@ form .button {
     color: white;
 }
 
-.buttons .button:hover:nth-child(3n+2) {
+.buttons .button:hover:nth-child(3n+2), .buttons.two-opt .button:hover {
     background-color: var(--dark-pink);
 }
 
-.buttons .button:hover:nth-child(3n+3) {
+.buttons .button:hover:nth-child(3n+3), .buttons.two-opt .button:hover:nth-child(2n) {
     background-color: var(--orange);
+}
+
+.buttons.two-opt .button {
+    padding: calc(8px + 0.1vw) calc(32px + 1vw)
 }
 
 @media (max-width: 600px) {
     .buttons {
         display: grid;
+    }
+    .buttons.two-opt {
+        display: flex;
     }
 }
 
@@ -676,5 +692,49 @@ form .button {
     #labels {
         padding: 0 calc(8px + 0.2vw);
         font-size: 0.6em;
+    }
+}
+
+/* P(TRANSIT) */
+/* gifs */
+.gif-grid {
+    padding-top: calc(20px + 1vw);
+    display: flex;
+}
+
+.gif-grid .grid-square {
+    position: relative;
+    width: 50%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.gif-grid img {
+    width: 100%;
+}
+
+.gif-grid h3 {
+    font-weight: 400;
+    align-items: center;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px solid var(--dark-pink);
+    color: var(--dark-pink);
+    padding: calc(6px + 0.1vw) calc(16px + 0.2vw);
+    width: fit-content;
+    font-family: "Roboto Mono", monospace;
+}
+
+.gif-grid h3.orange {
+    color: var(--orange);
+    border: 2px solid var(--orange);
+}
+
+@media (max-width: 500px) {
+    .gif-grid h3 {
+        font-size: 1em;
+        padding: calc(4px + 0.05vw) calc(14px + 0.1vw);
     }
 }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bayesian Knowledge Tracing</title>
+    <meta name="description" content="Explaining Bayesian Knowledge Tracing Using ASL">
+    <meta property="og:image" content="img/socimg.png" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<!-- P(init) -->
+<body>
+    <!-- Mastery Bar -->
+    <div id="mastery">
+        <div id="progress" style="width:16%"><span>P(init)</span></div>
+        <h5 class="bar-label" style="left:16%">&larr; You (0.16)</h5>
+        <div id="labels">
+            <h5 class="left">0</h5>
+            <h5 class="right">1</h5>
+        </div>
+        <h5 class="bar-label right" style="right:5%">Mastery (0.95) &rarr;</h5>
+        <div id="mastery-line"></div>
+    </div>
+    <!-- Slide 1 -->
+    <section id='gifs' class="auto-cont">
+        <div class='content'>
+            <h3>Watch the following two GIFs:</h3>
+            <div class="gif-grid">
+                <div class="grid-square">
+                    <h3 class="number">1</h3>
+                    <img src="gif/cat-slow.gif" title="cat gif (slow)" alt="Cat being signed in ASL slowly" />
+                    <p class="caption"><em>Slower signing</em></p>
+                </div>
+                <div class="grid-square">
+                    <h3 class="number orange">2</h3>
+                    <img src="gif/cat-fast.gif" title="cat gif (fast)" alt="Cat being signed in ASL quickly" />
+                    <p class="caption"><em>Faster signing</em></p>
+                </div>
+            </div>
+            <i class="continue hide fa fa-caret-down auto" title="Continue" aria-hidden="true" link="#gif-quiz"></i>
+        </div>
+    </section>
+    <!-- Slide 2 -->
+    <section id="gif-quiz" class="hide has-reveal">
+        <div class="content">
+            <p>
+                In which scenario would it be more difficult to learn the word being signed?
+            </p>
+            <div class="button-container">
+                <div class="buttons two-opt">
+                    <input class="button choice" id="1" title="1" type="button" value="1" correct="no">
+                    <input class="button choice" id="2" title="2" type="button" value="2" correct="yes">
+                </div>
+            </div>
+            <div class="init-ans hide">
+                <p class="reveal-ans">Yes, <b>Scenario 2</b> is more challenging in this case. Can you think of a reason why?
+                </p><p><span id="reveal-transit" title="Tell me!" class="link reveal">Tell me!</span></p>
+                <p class="reveal-text hide">
+                    Well, one potential reason is that the word is being signed much <i>faster</i> in GIF 2 than GIF 1. 
+                    This makes it harder for someone who is not familiar with ASL to learn.
+                </p>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#transit-blanks"></i>
+        </div>
+    </section>
+    <!-- Slide 3 -->
+    <section id="transit-blanks" class="hide last-slide has-reveal">
+        <div class="content">
+            <p>
+                BKT estimates the probability that a student has learned a skill with P(init). As it will turn out,
+                P(guess) and the other BKT parameters help update P(init) over time. Once P(init) exceeds a threshold,
+                which is typically set at <b>0.95</b>, we say that the student has achieved <span class="emphasis">mastery</span>.
+            </p><p>
+                Let's track your own journey to mastery! You can see your current P(init) with the <b>mastery bar</b> at the top of the page.
+                <i>Hover over the bar to view probabilities.</i>
+                <span id="reveal-next" title="Got it!" class="link reveal">Got it!</span>
+            </p><p class="reveal-text hide">
+                Alright, let's continue learning about more parameters!
+            </p>
+        </div>
+        <a class="next-page hide" title="Next Page" href="transit.html" target="_blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+    </section>
+    <script src="js/script.js"></script>
+</body>
+</html>
