@@ -61,40 +61,84 @@
                 <p class="reveal-ans">Yes, <b>Scenario 2</b> is more challenging in this case. Can you think of a reason why?
                 </p><p><span id="reveal-transit" title="Tell me!" class="link reveal">Tell me!</span></p>
                 <p class="reveal-text hide">
-                    Well, one potential reason is that the word is being signed much <i>faster</i> in GIF 2 than GIF 1. 
+                    Well, one potential reason is that the word is being signed much <i>faster</i> in GIF 2 than GIF 1.
                     This makes it harder for someone who is not familiar with ASL to learn.
                 </p>
             </div>
-            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#transit-blanks" update="20"></i>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#transit-blanks" update="19"></i>
         </div>
     </section>
     <!-- Slide 3 -->
-    <section id="transit-blanks" class="last-slide has-reveal">
+    <section id="transit-blanks" class="hide has-reveal">
         <div class="content">
             <p>
-                We measure how hard a skill is to learn with <b>P(transit)</b>, which is the probability that a student will learn a skill on their next try. 
-                A lower P(transit) suggests that the skill is harder to learn, so it's <i>less</i> likely that the student will learn it on their next try.
-            </p><p class="no-space">
-                <i>Fill in the blanks!</i>
+                We measure how hard a skill is to learn with <b>P(transit)</b>, which is the probability that a student will learn a skill on their next try.
+                A lower P(transit) suggests that the skill is <i>harder</i> to learn, so it's <i>less</i> likely that the student will learn it on their next try.
             </p>
             <form id="q3" class="fill-in-blanks">
+                <p class="no-space light-text">
+                    <i>Click to fill in the blanks!</i>
+                </p>
                 <p class="inline">
                     On the other hand, a higher P(transit) suggests that the skill is
                 </p>
-                <select id="blank1" name="transit1">
+                <select id="blank1" name="transit1" title="Fill in the blank!">
                     <option value="easier">easier</option>
                     <option value="harder">harder</option>
                 </select>
                 <p class="inline">to learn, so it's</p>
-                <select id="blank2" name="transit2">
+                <select id="blank2" name="transit2" title="Fill in the blank!">
                     <option value="less">less</option>
                     <option value="more">more</option>
                 </select>
                 <p class="inline">likely that the student will learn in on their next try.</p>
-                <input class="button" id="b3" title="Submit guess!" type="button" value="Submit guess!" link="#intro">
+                <input class="button reveal" id="b3" title="Submit answer" type="button" value="Submit answer">
             </form>
+            <p class="reveal-text hide">
+                <b>Answers:</b> <span class="blank-answer">easier</span>, <span class="blank-answer">more</span>. Nice work!
+            </p>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#transit-quiz" update="22"></i>
         </div>
-        <a class="next-page hide" title="Next Page" href="transit.html" target="_blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+    </section>
+    <!-- Slide 4 -->
+    <section id="transit-quiz" class="hide last-slide has-reveal">
+        <div class="content full-width">
+            <p>Alright, one more question for now!</p>
+            <form id="q4" class="radio">
+                <p>
+                    Which of the following <b>does not</b> directly impact the value of P(transit) in the context of learning ASL words?
+                </p>
+                <p class="no-space">
+                    <i>Hint: one of these options is more related to P(init)...</i>
+                </p>
+                <div class="radio-choice">
+                    <input type="radio" id="transit-1" name="radio1" value="length" correct="no" />
+                    <span class="checkmark"></span>
+                    <label for="transit-1">The length of the word being signed</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" id="transit-2" name="radio1" value="times" correct="no" />
+                    <span class="checkmark"></span>
+                    <label for="transit-2">Whether the word is signed once or twice</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" id="transit-3" name="radio1" value="feedback" correct="no" />
+                    <span class="checkmark"></span>
+                    <label for="transit-3">Whether the student is given feedback (e.g., the answer or an explanation) after guessing the signed word</label>
+                </div>
+                <div class="radio-choice">
+                    <input type="radio" id="transit-4" name="radio1" value="words" correct="yes" />
+                    <span class="checkmark"></span>
+                    <label for="transit-4">How many words in ASL the student knows</label>
+                </div>
+                <input class="button choice radio-reveal" id="b4" title="Submit answer" type="button" value="Submit answer">
+            </form>
+            <div class="init-ans hide">
+                <p class="reveal-ans">Yes, <span class="blank-answer">how many words in ASL the student knows</span> is more related to P(init). 
+                The other three options could directly impact P(transit).</p>
+            </div>
+        </div>
+        <a class="next-page hide" title="Next Page" href="slip.html" target="_blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
     </section>
     <script src="js/script.js"></script>
 </body>

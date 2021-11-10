@@ -87,7 +87,8 @@ $.fn.nextSlideOnInput = function (input, button, output) {
 // reveal rest of slide on button click
 $.fn.revealRest = function (button) {
     var container = button.parent();
-    if (container.hasClass("slider-all")) { // slider question
+    if (container.hasClass("slider-all") || container.hasClass("fill-in-blanks")) {
+        // slider or fill in the blanks question
         container.addClass("clicked");
     } else {
         button.addClass("clicked");
@@ -115,15 +116,28 @@ $.fn.revealRest = function (button) {
 
 // reveal answer to multiple choice
 $.fn.revealRestMC = function (button) {
-    button.addClass("selected");
-    button.parent().addClass("clicked");
-
     var rest = button.parent().parent().next(); // rest of slide
     var ans = rest.children()[0]; // answer
 
-    if (button.attr("correct") == "no") { // user wrong
-        ans.innerHTML = "Actually" + ans.innerHTML.substring(3);
+    if (button.hasClass("radio-reveal")) { // for radio butotn questions
+        rest = button.parent().next();
+        ans = rest.children()[0];
+        var choice = $(".radio-choice input[type='radio']:checked")[0];
+        if (choice == null) { // check for user input
+            alert('Please select an option.');
+            return;
+        }
+        if (choice.getAttribute("correct") == "no") { // user wrong
+            ans.innerHTML = "Actually" + ans.innerHTML.substring(3);
+        }
+    } else {
+        if (button.attr("correct") == "no") { // user wrong
+            ans.innerHTML = "Actually" + ans.innerHTML.substring(3);
+        }
     }
+
+    button.addClass("selected");
+    button.parent().addClass("clicked");
     rest.removeClass("hide");
 
     var slide = rest.parent().parent(); // current slide
@@ -131,6 +145,11 @@ $.fn.revealRestMC = function (button) {
         var cont = rest.next(); // continue button
         setTimeout(() => {
             cont.removeClass("hide");
+        }, 3000);
+    } else if (slide.hasClass("last-slide")) {
+        // if on last slide of page, reveal continue button
+        setTimeout(() => {
+            $(".next-page").removeClass("hide");
         }, 3000);
     }
 }
