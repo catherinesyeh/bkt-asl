@@ -87,7 +87,8 @@ $.fn.nextSlideOnInput = function (input, button, output) {
 // reveal rest of slide on button click
 $.fn.revealRest = function (button) {
     var container = button.parent();
-    if (container.hasClass("slider-all")) { // slider question
+    if (container.hasClass("slider-all") || container.hasClass("fill-in-blanks")) {
+        // slider or fill in the blanks question
         container.addClass("clicked");
     } else {
         button.addClass("clicked");

@@ -47,13 +47,21 @@
     color: var(--dark-green);
 }
 
-/* display */
+.light-text {
+    color: var(--light-text);
+}
+
+/* display / formatting */
 .inline {
     display: inline;
 }
 
 .inline-block {
     display: inline-block;
+}
+
+.spaced {
+    letter-spacing: 1px;
 }
 
 /* general stuff */
@@ -745,11 +753,19 @@ form .button {
     margin-bottom: 0 !important;
 }
 
+form.fill-in-blanks {
+    padding: calc(20px + 1vw);
+    border: 2px solid var(--extra-light-text);
+    border-radius: 10px;
+    margin-bottom: calc(18px + 0.5vw);
+}
+
 form.fill-in-blanks .button {
     display: block;
     height: calc(32px + 0.8vw);
     border-radius: 10px !important;
     width: auto !important;
+    margin: calc(12px + 0.2vw) 0 0;
     padding: 0 calc(20px + 1vw);
 }
 
@@ -779,14 +795,21 @@ select {
 
 select:hover {
     border-color: var(--orange);
+    background-position: calc(100% - 20px) calc(1em - 1px), calc(100% - 15px) calc(1em - 1px), calc(100% - 2.5em) 0.5em;
     transition: 0.5s;
 }
 
 select:focus {
-    background-image: linear-gradient(45deg, transparent 50%, var(--light-text) 50%), linear-gradient(135deg, var(--light-text) 50%, transparent 50%), linear-gradient(to right, var(--light-text), var(--light-text));
-    background-repeat: no-repeat;
+    background-position: calc(100% - 20px) calc(1em - 1px), calc(100% - 15px) calc(1em - 1px), calc(100% - 2.5em) 0.5em;
+    background-image: linear-gradient(45deg, transparent 50%, var(--orange) 50%), linear-gradient(135deg, var(--orange) 50%, transparent 50%), linear-gradient(to right, var(--orange), var(--orange));
     border-color: var(--orange);
     color: var(--text);
     outline: 0;
     transition: 0.5s;
+}
+
+.blank-answer {
+    color: var(--dark-pink);
+    font-family: "Roboto Mono", monospace;
+    font-size: calc(12px + 0.4vw);
 }
