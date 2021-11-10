@@ -541,7 +541,7 @@ form .button {
 }
 
 /* P(INIT) */
-.reveal-text {
+.reveal-text, .reveal-ans {
     transition: 0.5s;
 }
 
@@ -553,6 +553,10 @@ form .button {
     font-family: 'Montserrat';
     margin-bottom: calc(18px + 1vw);
     letter-spacing: 1px;
+}
+
+.init-ans.hide {
+    transform: scale(1) !important;
 }
 
 .init-ans {
@@ -753,14 +757,14 @@ form .button {
     margin-bottom: 0 !important;
 }
 
-form.fill-in-blanks {
+form.fill-in-blanks, form.radio {
     padding: calc(20px + 1vw);
     border: 2px solid var(--extra-light-text);
     border-radius: 10px;
     margin-bottom: calc(18px + 0.5vw);
 }
 
-form.fill-in-blanks .button {
+form.fill-in-blanks .button, form.radio .button {
     display: block;
     height: calc(32px + 0.8vw);
     border-radius: 10px !important;
@@ -812,4 +816,82 @@ select:focus {
     color: var(--dark-pink);
     font-family: "Roboto Mono", monospace;
     font-size: calc(12px + 0.4vw);
+}
+
+/* select correct answer (radio button form) */
+form.radio {
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+.radio-choice label {
+    margin-left: calc(5px + 0.1vw);
+    pointer-events: none;
+}
+
+.radio-choice {
+    display: flex;
+    position: relative;
+    padding-left: calc(35px + 0.4vw);
+    margin-bottom: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.radio-choice input {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: calc(24px + 0.1vw);
+    width: calc(24px + 0.1vw);
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: calc(24px + 0.1vw);
+    width: calc(24px + 0.1vw);
+    background-color: var(--extra-light-text);
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+.radio-choice input:hover ~ .checkmark {
+    background-color: var(--light-text);
+    transition: 0.5s;
+}
+
+.radio-choice input:checked ~ .checkmark {
+    background-color: var(--dark-pink);
+    transition: 0.5s;
+}
+.radio-choice input:checked ~ .checkmark:after {
+    transition: 0.5s;
+    opacity: 1;
+}
+
+.radio-choice .checkmark:after {
+    content: "";
+    display: block;
+    margin: auto;
+    width: 40%;
+    height: 40%;
+    position: relative;
+    border-radius: 50%;
+    background: white;
+    top: 50%;
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: 0.5s;
+}
+
+.full-width {
+    width: 100%;
 }
