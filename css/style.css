@@ -653,10 +653,19 @@ form .button {
     color: var(--pink);
 }
 
+.bar-label span {
+    margin-right: 10px;
+}
+
 .bar-label.right {
     padding-right: calc(10px + 0.5vw);
     padding-left: 0;
     color: var(--dark-pink);
+}
+
+.bar-label.right span {
+    margin-left: 10px;
+    margin-right: 0;
 }
 
 #labels {
@@ -697,13 +706,35 @@ form .button {
 }
 
 @media (max-width: 500px) {
+    .bar-label {
+        position: relative;
+        display: inline-block;
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    .bar-label.right {
+        float: right;
+    }
+
+    .bar-label span {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        transform: rotate(90deg);
+        display: inline-block;
+    }
+
+    .bar-label.right span {
+        transform: rotate(-90deg);
+    }
+
     #progress {
         font-size: 0.6em;
-        padding-left: calc(8px + 0.2vw);
+        padding-left: calc(6px + 0.2vw);
     }
 
     #labels {
-        padding: 0 calc(8px + 0.2vw);
+        padding: 0 calc(6px + 0.2vw);
         font-size: 0.6em;
     }
 }
