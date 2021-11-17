@@ -863,6 +863,18 @@ select:focus {
     font-size: calc(12px + 0.4vw);
 }
 
+.blank-answer.dark-orange {
+    color: var(--dark-orange);
+}
+
+.blank-answer.pink {
+    color: var(--pink);
+}
+
+.blank-answer.darker-pink {
+    color: var(--darker-pink);
+}
+
 /* select correct answer (radio button form) */
 form.radio {
     font-family: "Source Sans Pro", sans-serif;
@@ -1075,11 +1087,11 @@ form .two-grid select.dark-pink:hover {
     border-color: var(--darker-pink);
 }
 
-form .two-grid select.correct {
+form select.correct {
     background-color: var(--light-green);
 }
 
-form .two-grid select.wrong {
+form select.wrong {
     border-color: var(--red);
 }
 
@@ -1098,4 +1110,12 @@ form .two-grid select.wrong {
     color: var(--dark-green);
     font-size: larger;
     text-align: center;
+}
+
+.ans-list {
+    margin-bottom: calc(14px + 1vw);
+}
+
+.ans-list span {
+    display: block;
 }

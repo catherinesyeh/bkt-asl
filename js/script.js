@@ -249,6 +249,29 @@ $.fn.validateReveal = function (button) {
     }
 }
 
+// validate fill in blanks and reveal rest of slide
+$.fn.blankReveal = function (button) {
+    var correct = true;
+    var form = button.parent();
+    $('#' + form.attr('id') + ' select').not('.correct').each(function () {
+        var q = $(this);
+        if (q.attr('correct') == q.val()) { // correct answer
+            q.addClass('correct clicked');
+            q.removeClass('wrong');
+        } else { // wrong answer
+            q.addClass('wrong');
+            correct = false;
+        }
+    });
+
+    if (!correct) { // ask user to try again
+        alert('Almost there! Please correct the questions outlined in red.');
+        return;
+    }
+    
+    $.fn.revealRest(button); // if valid, reveal rest of slide
+}
+
 $(document).ready(function () {
     $('.one-input .button').on('click', function () { // user clicked submit button
         var answer = $(this).prev();
@@ -295,5 +318,9 @@ $(document).ready(function () {
 
     $('.button.val-reveal').on('click', function () { // validate form and reveal
         $.fn.validateReveal($(this));
+    })
+
+    $('.button.blank-reveal').on('click', function () { // validate fill in the blanks and reveal
+        $.fn.blankReveal($(this));
     })
 });
