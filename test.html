@@ -7,6 +7,7 @@
     <title>Bayesian Knowledge Tracing</title>
     <meta name="description" content="Explaining Bayesian Knowledge Tracing Using ASL">
     <meta property="og:image" content="img/socimg.png" />
+    <link rel="stylesheet" href="css/test.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img/icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -116,198 +117,13 @@
         </div>
     </section>
     <!-- Slide 3 -->
-    <section id="math-mod" class="hide has-reveal last-slide extra-padding">
+    <section id="math-mod" class="">
         <div class="content">
             <p>
-                Let's take a look at the full ASL alphabet. What other letters in the ASL alphabet might increase a student's P(slip)?
+                <i>Optional: Learn about the math behind BKT by expanding the section below.</i> Press continue when you're ready to move on.
             </p>
 
-            <div class="alphabet-grid">
-                <div class="letter">
-                    <img class="letter-image" src="img/a.png" title="A" alt="The letter A in ASL">
-                    <h3>A</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/b.jpg" title="B" alt="The letter B in ASL">
-                    <h3>B</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/c.png" title="C" alt="The letter C in ASL">
-                    <h3>C</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/d.png" title="D" alt="The letter D in ASL">
-                    <h3>D</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/e.png" title="E" alt="The letter E in ASL">
-                    <h3>E</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/f.png" title="F" alt="The letter F in ASL">
-                    <h3>F</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/g.png" title="G" alt="The letter G in ASL">
-                    <h3>G</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/h.png" title="H" alt="The letter H in ASL">
-                    <h3>H</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/i.png" title="I" alt="The letter I in ASL">
-                    <h3>I</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/j.png" title="J" alt="The letter J in ASL">
-                    <h3>J</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/k.jpg" title="K" alt="The letter K in ASL">
-                    <h3>K</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/l.png" title="L" alt="The letter L in ASL">
-                    <h3>L</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/m.png" title="M" alt="The letter M in ASL">
-                    <h3>M</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/n.png" title="N" alt="The letter N in ASL">
-                    <h3>N</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/o.png" title="O" alt="The letter O in ASL">
-                    <h3>O</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/p.png" title="P" alt="The letter P in ASL">
-                    <h3>P</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/q.png" title="W" alt="The letter Q in ASL">
-                    <h3>Q</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/r.png" title="R" alt="The letter R in ASL">
-                    <h3>R</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/s.png" title="S" alt="The letter S in ASL">
-                    <h3>S</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/t.jpg" title="T" alt="The letter T in ASL">
-                    <h3>T</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/u.png" title="U" alt="The letter U in ASL">
-                    <h3>U</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/v.png" title="V" alt="The letter V in ASL">
-                    <h3>V</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/w.png" title="W" alt="The letter W in ASL">
-                    <h3>W</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/x.png" title="X" alt="The letter X in ASL">
-                    <h3>X</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/y.png" title="Y" alt="The letter Y in ASL">
-                    <h3>Y</h3>
-                </div>
-                <div class="letter">
-                    <img class="letter-image" src="img/z.png" title="Z" alt="The letter Z in ASL">
-                    <h3>Z</h3>
-                </div>
-            </div>
-
-
-            <form id="q5" class="fill-in-blanks">
-                <p class="no-space light-text">
-                    <i>Click to fill in the blanks!</i>
-                </p>
-                <p class="inline">
-                    The letters
-                </p>
-                <select id="letter1" name="slip1" title="Fill in the blank!">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                    <option value="E">E</option>
-                    <option value="F">F</option>
-                    <option value="G">G</option>
-                    <option value="H">H</option>
-                    <option value="I">I</option>
-                    <option value="J">J</option>
-                    <option value="K">K</option>
-                    <option value="L">L</option>
-                    <option value="M">M</option>
-                    <option value="N">N</option>
-                    <option value="O">O</option>
-                    <option value="P">P</option>
-                    <option value="Q">Q</option>
-                    <option value="R">R</option>
-                    <option value="S">S</option>
-                    <option value="T">T</option>
-                    <option value="U">U</option>
-                    <option value="V">V</option>
-                    <option value="W">W</option>
-                    <option value="X">X</option>
-                    <option value="Y">Y</option>
-                    <option value="Z">Z</option>
-                </select>
-                <p class="inline">and</p>
-                <select id="letter2" name="slip2" title="Fill in the blank!">
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                    <option value="E">E</option>
-                    <option value="F">F</option>
-                    <option value="G">G</option>
-                    <option value="H">H</option>
-                    <option value="I">I</option>
-                    <option value="J">J</option>
-                    <option value="K">K</option>
-                    <option value="L">L</option>
-                    <option value="M">M</option>
-                    <option value="N">N</option>
-                    <option value="O">O</option>
-                    <option value="P">P</option>
-                    <option value="Q">Q</option>
-                    <option value="R">R</option>
-                    <option value="S">S</option>
-                    <option value="T">T</option>
-                    <option value="U">U</option>
-                    <option value="V">V</option>
-                    <option value="W">W</option>
-                    <option value="X">X</option>
-                    <option value="Y">Y</option>
-                    <option value="Z">Z</option>
-                </select>
-                <p class="inline">might be easily confused for one another, thus increasing a student's P(slip).</p>
-                <input class="button reveal" id="b3" title="Submit answer" type="button" value="Submit answer">
-            </form>
-            <div class="reveal-text hide">
-                <p>
-                    <b>Some possible answers:</b> <span class="blank-answer">G + H</span>, <span class="blank-answer">M + N</span>,
-                    <span class="blank-answer">U + V</span>. Great job!
-                </p>
-                <p>
-                    <i>Optional: Try signing your name before you move on!</i>
-                </p>
-            </div>
         </div>
-        <a class="next-page hide" title="Next Page" href="test.html" target="_blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
     </section>
     <script src="js/script.js"></script>
 </body>

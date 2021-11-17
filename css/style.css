@@ -964,6 +964,10 @@ form.radio {
     }
 }
 
+section.extra-padding.hide {
+    padding-bottom: 0 !important;
+}
+
 section.extra-padding {
     padding-bottom: calc(50px + 4vw) !important;
 }

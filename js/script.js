@@ -228,6 +228,27 @@ $.fn.validateForm = function (button) {
     }
 }
 
+// validate form and reveal rest of slide
+$.fn.validateReveal = function (button) {
+    var form = button.parent();
+    var valid = true;
+    var unique = new Set(); // store unique answers
+
+    $('#' + form.attr('id') + ' select').each(function () {
+        var val = $(this).val();
+        if (unique.has(val)) { // duplicate answer
+            valid = false;
+            alert(form.attr('message'));
+            return;
+        }
+        unique.add(val); // add to set
+    });
+
+    if (valid) {
+        $.fn.revealRest(button); // if valid, reveal rest of slide
+    }
+}
+
 $(document).ready(function () {
     $('.one-input .button').on('click', function () { // user clicked submit button
         var answer = $(this).prev();
@@ -268,7 +289,11 @@ $(document).ready(function () {
         $.fn.updateSlider($(this));
     })
 
-    $('.button.validate').on('click', function () {
+    $('.button.validate').on('click', function () { // validate user answers
         $.fn.validateForm($(this));
+    })
+
+    $('.button.val-reveal').on('click', function () { // validate form and reveal
+        $.fn.validateReveal($(this));
     })
 });
