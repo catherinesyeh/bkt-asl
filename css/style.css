@@ -165,7 +165,7 @@ a:hover, .link:hover {
     color: var(--dark-pink);
 }
 
-input, .slider-label, select, .slider-param-label span {
+input, .slider-label, select, .slider-param-label span, .expand {
     font-family: "Roboto Mono", monospace;
     font-size: calc(12px + 0.4vw);
 }
@@ -1118,4 +1118,42 @@ form select.wrong {
 
 .ans-list span {
     display: block;
+}
+
+/* MATH */
+.button.expand {
+    border-radius: 10px !important;
+    position: relative;
+    background-color: var(--pink);
+}
+
+.button.expand:hover {
+    letter-spacing: normal !important;
+}
+
+.button.expand span {
+    float: right;
+    transition: 0.5s;
+}
+
+.button.expand.active {
+    background-color: var(--dark-pink);
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.button.expand.active:hover {
+    background-color: var(--darker-pink);
+}
+
+.button.expand.active span {
+    transform: rotate(180deg);
+    transition: 0.5s;
+}
+
+.math-desc {
+    transition: 0.5s;
+    border-radius: 0 0 10px 10px;
+    border: 2px solid var(--dark-pink);
+    border-top: none;
+    padding: calc(16px + 1vw);
 }

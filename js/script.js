@@ -272,6 +272,20 @@ $.fn.blankReveal = function (button) {
     $.fn.revealRest(button); // if valid, reveal rest of slide
 }
 
+// expand/collaspe content
+$.fn.toggleContent = function (button) {
+    var content = button.next();
+    content.toggleClass("hide"); // toggle content visibility
+
+    button.toggleClass("active"); // toggle state of button too
+    var symbol = button.children()[0];
+    if (symbol.innerHTML == '+') {
+        symbol.innerHTML = '-';
+    } else {
+        symbol.innerHTML = '+';
+    }
+}
+
 $(document).ready(function () {
     $('.one-input .button').on('click', function () { // user clicked submit button
         var answer = $(this).prev();
@@ -322,5 +336,9 @@ $(document).ready(function () {
 
     $('.button.blank-reveal').on('click', function () { // validate fill in the blanks and reveal
         $.fn.blankReveal($(this));
+    })
+
+    $('.expand').on('click', function () {
+        $.fn.toggleContent($(this)); // expand/collapse content
     })
 });
