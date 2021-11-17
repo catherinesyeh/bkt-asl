@@ -15,12 +15,22 @@
     --orange: rgba(246, 178, 107); /* #F6B26B */
     --light-orange: rgba(253, 236, 218); /* #FDECDA */
     --red: rgba(204, 65, 37); /* #CC4125 */
+    --light-red: rgba(242, 208, 200); /* #F2D0C8 */
     --yellow: rgba(255, 217, 102); /* #FFD966 */
+    --light-green: rgba(231, 242, 228); /* #E7F2E4 */
     --dark-green: rgba(77, 133, 124); /* #4D857C */
+}
+
+.darker-pink {
+    color: var(--darker-pink);
 }
 
 .dark-pink {
     color: var(--dark-pink);
+}
+
+.pink {
+    color: var(--pink);
 }
 
 .light-pink {
@@ -155,7 +165,7 @@ a:hover, .link:hover {
     color: var(--dark-pink);
 }
 
-input, .slider-label, select {
+input, .slider-label, select, .slider-param-label span {
     font-family: "Roboto Mono", monospace;
     font-size: calc(12px + 0.4vw);
 }
@@ -956,4 +966,132 @@ form.radio {
 
 section.extra-padding {
     padding-bottom: calc(50px + 4vw) !important;
+}
+
+/* TEST */
+.two-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transition: 0.5s;
+    column-gap: calc(20px + 1vw);
+    row-gap: calc(20px + 1vw);
+    align-items: center;
+}
+
+@media (max-width: 1000px) {
+    .two-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sliders */
+.sliders.test .slider-label {
+    margin-bottom: 0 !important;
+    color: var(--light-text) !important;
+}
+
+.slider-param-label {
+    text-align: left;
+    font-style: italic;
+}
+
+.slider-param-label span {
+    font-style: normal;
+    transition: 0.5s;
+}
+
+.slider-param-label.inactive span {
+    font-style: normal;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.sliders.test .slider-all {
+    margin-bottom: calc(12px + 0.4vw);
+}
+
+.sliders.test .slider {
+    margin: 0 10px;
+}
+
+.param-desc {
+    font-size: calc(10px + 0.5vw);
+    line-height: calc(18px + 0.5vw);
+    transition: 0.5s;
+}
+
+.slider.pink {
+    background-image: linear-gradient(to right, var(--light-pink), var(--extra-light-pink), var(--light-pink)) !important;
+}
+
+.slider.dark-pink {
+    background-image: linear-gradient(to right, var(--darker-pink), var(--light-pink), var(--darker-pink)) !important;
+}
+
+.slider.orange {
+    background-image: linear-gradient(to right, var(--orange), var(--light-orange), var(--orange)) !important;
+}
+
+/* parameter matching */
+.two-grid form {
+    margin-bottom: 0;
+}
+
+form .two-grid {
+    grid-template-columns: 2fr 1fr;
+    column-gap: calc(10px + 0.5vw);
+    row-gap: calc(10px + 0.5vw);
+    margin-bottom: calc(16px + 1vw);
+}
+
+form .two-grid p {
+    margin-bottom: 0 !important;
+}
+
+form .two-grid select {
+    color: var(--light-text);
+    border: 2px solid var(--extra-light-text);
+    background-image: linear-gradient(45deg, transparent 50%, var(--light-text) 50%), linear-gradient(135deg, var(--light-text) 50%, transparent 50%), linear-gradient(to right, var(--light-text), var(--light-text));
+}
+
+form .two-grid select:hover {
+    letter-spacing: 1px;
+}
+
+form .two-grid select.orange:hover {
+    border-color: var(--orange);
+}
+
+form .two-grid select.pink:hover {
+    border-color: var(--pink);
+}
+
+form .two-grid select.dark-pink:hover {
+    border-color: var(--darker-pink);
+}
+
+form .two-grid select.correct {
+    background-color: var(--light-green);
+}
+
+form .two-grid select.wrong {
+    border-color: var(--red);
+}
+
+@media (max-width: 600px) {
+    form .two-grid {
+        grid-template-columns: 1fr;
+    }
+
+    form .two-grid select {
+        max-width: none;
+        width: 100%;
+    }
+}
+
+.emphasis.dark-green {
+    color: var(--dark-green);
+    font-size: larger;
+    text-align: center;
 }

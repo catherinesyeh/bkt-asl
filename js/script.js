@@ -161,8 +161,75 @@ $.fn.revealRestMC = function (button) {
     }
 }
 
+// update slider value
+$.fn.updateSlider = function (slider) {
+    // get parameter name
+    var param = slider.attr('id');
+    param = param.substring(0, param.indexOf('-'));
+
+    // get slider value
+    var val = slider.val();
+
+    // update label
+    $('#' + param + '-prob')[0].innerHTML = val;
+}
+
+// validate user answers to questions
+$.fn.validateForm = function (button) {
+    var correct = true;
+    var form = button.parent();
+    $('#' + form.attr('id') + ' select').not('.correct').each(function () {
+        var q = $(this);
+        if (q.attr('correct') == q.val()) { // correct answer
+            q.addClass('correct clicked');
+            q.removeClass('wrong');
+        } else { // wrong answer
+            q.addClass('wrong');
+            correct = false;
+        }
+    });
+
+    if (!correct) { // ask user to try again
+        alert('Almost there! Please correct the questions outlined in red.');
+        return;
+    }
+
+    // otherwise all correct and can move on!
+    // fade current slide and reveal next slide
+    form.addClass("clicked");
+    var n = form.parent().parent().parent().next();
+    n.removeClass("hide");
+
+    // make sure anchor (hash) is provided before overriding default behavior
+    if (button.attr('link') !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+
+        // store hash
+        var hash = button.attr('link');
+
+        // using jQuery's animate() method to add smooth page scroll
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, function () {
+            // add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+        });
+    }
+
+    if (button.attr('update') !== "") {
+        setTimeout(() => {
+            // update mastery bar
+            var newProg = button.attr('update');
+            $("#progress").css("width", newProg + "%");
+            $("#you-label").css("left", newProg + "%");
+            $("#you-label").html("&larr; You (0." + newProg + ")");
+        }, 1000);
+    }
+}
+
 $(document).ready(function () {
-    $('.one-input .button').on('click', function (event) { // user clicked submit button
+    $('.one-input .button').on('click', function () { // user clicked submit button
         var answer = $(this).prev();
         var guess = answer.attr('output');
         $.fn.nextSlideOnInput(answer, $(this), $(guess));
@@ -176,24 +243,32 @@ $(document).ready(function () {
         }
     });
 
-    $('.continue').on('click', function (event) { // user pressed continue button
+    $('.continue').on('click', function () { // user pressed continue button
         $.fn.nextSlideOnArrow($(this));
     })
 
-    $('.reveal').on('click', function (event) { // reveal rest of slide
+    $('.reveal').on('click', function () { // reveal rest of slide
         $.fn.revealRest($(this));
     });
 
-    $('.next-page').on('click', function (event) { // user pressed next page button
+    $('.next-page').on('click', function () { // user pressed next page button
         $(this).addClass("clicked");
         $('.last-slide').addClass("clicked");
     });
 
-    $('.button.choice').on('click', function (event) { // user answered multiple choice
+    $('.button.choice').on('click', function () { // user answered multiple choice
         $.fn.revealRestMC($(this));
     });
 
     setTimeout(() => { // show continue arrow automatically on first slide
         $('.auto-cont .continue').removeClass("hide");
     }, 5000);
+
+    $('.sliders.test .slider').change(function () { // update slider value
+        $.fn.updateSlider($(this));
+    })
+
+    $('.button.validate').on('click', function () {
+        $.fn.validateForm($(this));
+    })
 });
