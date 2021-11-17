@@ -47,6 +47,13 @@ $.fn.nextSlideOnArrow = function (arrow) {
                 }, 2000);
             }
         }
+
+        if (next.hasClass("no-reveal")) {
+            // reveal continue button automatically if no reveal
+            setTimeout(() => {
+                $('.no-reveal .continue').removeClass("hide");
+            }, 5000);
+        }
     }
 }
 
@@ -186,7 +193,7 @@ $(document).ready(function () {
         $.fn.revealRestMC($(this));
     });
 
-    setTimeout(() => {
+    setTimeout(() => { // show continue arrow automatically on first slide
         $('.auto-cont .continue').removeClass("hide");
     }, 5000);
 });

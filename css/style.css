@@ -525,6 +525,10 @@ form .button {
     width: 80%;
 }
 
+.single.letter .letter-image {
+    max-width: 120px;
+}
+
 @media (max-width: 750px) {
     .letter {
         display: block;
@@ -925,4 +929,31 @@ form.radio {
 
 .full-width {
     width: 100%;
+}
+
+/* P(SLIP) */
+.alphabet-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    transition: 0.5s;
+    width: 80%;
+    margin: auto;
+    padding: calc(20px + 2vw) 0;
+    margin-bottom: calc(16px + 1px);
+}
+
+.alphabet-grid .letter {
+    display: block;
+}
+
+
+@media (max-width: 700px) {
+    .alphabet-grid {
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+    }
+}
+
+section.extra-padding {
+    padding-bottom: calc(50px + 4vw) !important;
 }
