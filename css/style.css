@@ -1124,7 +1124,6 @@ form select.wrong {
 .button.expand {
     border-radius: 10px !important;
     position: relative;
-    background-color: var(--pink);
 }
 
 .button.expand:hover {
@@ -1137,12 +1136,8 @@ form select.wrong {
 }
 
 .button.expand.active {
-    background-color: var(--dark-pink);
-    border-radius: 10px 10px 0 0 !important;
-}
-
-.button.expand.active:hover {
     background-color: var(--darker-pink);
+    border-radius: 10px 10px 0 0 !important;
 }
 
 .button.expand.active span {
@@ -1153,7 +1148,7 @@ form select.wrong {
 .math-desc {
     transition: 0.5s;
     border-radius: 0 0 10px 10px;
-    border: 2px solid var(--dark-pink);
+    border: 2px solid var(--darker-pink);
     border-top: none;
     padding: calc(16px + 1vw);
 }
