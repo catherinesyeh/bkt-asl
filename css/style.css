@@ -165,7 +165,7 @@ a:hover, .link:hover {
     color: var(--dark-pink);
 }
 
-input, .slider-label, select, .slider-param-label span, .expand {
+input, .slider-label, select, .slider-param-label span, .expand, .button.cont {
     font-family: "Roboto Mono", monospace;
     font-size: calc(12px + 0.4vw);
 }
@@ -1121,7 +1121,7 @@ form select.wrong {
 }
 
 /* MATH */
-.button.expand {
+.button.expand, .button.cont {
     border-radius: 10px !important;
     position: relative;
 }
@@ -1168,4 +1168,11 @@ form select.wrong {
 
 .link.right {
     text-align: right;
+    font-weight: 600;
+    transition: 0.5s;
+}
+
+.link.right:hover {
+    transform: translateX(-5px);
+    transition: 0.5s;
 }
