@@ -1166,13 +1166,18 @@ form select.wrong {
     }
 }
 
-.link.right {
+.align-right {
     text-align: right;
+}
+
+.align-right .link {
+    display: inline-block;
+    position: relative;
     font-weight: 600;
     transition: 0.5s;
 }
 
-.link.right:hover {
+.align-right .link:hover {
     transform: translateX(-5px);
     transition: 0.5s;
 }
