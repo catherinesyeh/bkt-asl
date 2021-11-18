@@ -1160,8 +1160,13 @@ form select.wrong {
     max-width: 900px;
 }
 
+.formula.long {
+    width: 90%;
+    max-width: 980px;
+}
+
 @media (max-width: 800px) {
-    .formula {
+    .formula, .formula.long {
         width: 100%;
     }
 }
