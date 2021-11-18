@@ -126,8 +126,23 @@
             <p>
                 <i>Optional: Learn about the math behind BKT by expanding the section below.</i> Press continue when you're ready to move on.
             </p>
+            <p class="link right">Continue ></p>
             <div class="expand dark button" title="See the math">See the math <span>+</span></div>
-            <div class="math-desc hide"><p>Test</p></div>
+            <div class="math-desc hide">
+                <p>
+                    Every time the student answers a question, BKT calculates <b>P(learned)</b>, the probability that the student has learned the skill
+                    they are working on, using the values of our 4 main parameters. The formula for P(learned) depends on whether their response was correct.
+                </p>
+                <p>
+                    First, we compute the conditional probability that the student learned the skill previously (at time <i>n-1</i>), based on whether they answered the current
+                    question (at time <i>n</i>) correctly or incorrectly.
+                </p>
+                <img class="formula" src="img/formulas/rightformula.png" />
+                <img class="formula" src="img/formulas/wrongformula.png" />
+                <p>Then, we use the result of our first calculation to compute the conditional probability that the student has learned the skill now (at time <i>n</i>).</p>
+                <img class="formula" src="img/formulas/learnedformula.png" />
+                <p>For the next question, we use P(learned) as the new value of P(init). And as you now know, once P(init) &#8805; 0.95, we say that the student has achieved mastery.</p>
+            </div>
         </div>
     </section>
     <script src="js/script.js"></script>

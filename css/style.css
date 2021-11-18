@@ -1152,3 +1152,20 @@ form select.wrong {
     border-top: none;
     padding: calc(16px + 1vw);
 }
+
+.formula {
+    width: 80%;
+    margin-bottom: calc(10px + 0.2vw);
+    transition: 0.5s;
+    max-width: 900px;
+}
+
+@media (max-width: 800px) {
+    .formula {
+        width: 100%;
+    }
+}
+
+.link.right {
+    text-align: right;
+}
