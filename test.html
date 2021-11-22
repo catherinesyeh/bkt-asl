@@ -28,15 +28,23 @@
         <div id="mastery-line"></div>
     </div>
     <!-- Slide 1 -->
-    <section id='match-params'>
+    <section id='match-params' class="start-test">
         <div class='content'>
             <h3>Putting it all together</h3>
             <p class="center"><em>It's time to put your knowledge to the test!</em></p>
-            <p>How do the settings below relate to the BKT parameters? Answer the questions to the right. <i>The sliders will unlock after you submit your answers.</i></p>
-            <div class="two-grid">
+            <p id="test-text">How do the settings below relate to the BKT parameters? Answer the questions to the right. <i>The sliders will unlock after you submit your answers.</i></p>
+            <div id="mini-mastery" class="hide">
+                <h5 class="left">0</h5>
+                <div class="progress-bar">
+                    <div id="progress" style="width:25%"><span><b>P(init):</b> 0.25</span></div>
+                    <div id="mastery-line"></div>
+                </div>
+                <h5 class="right">1</h5>
+            </div>
+            <div id="test-screen" class="two-grid">
                 <div class="sliders test">
                     <div class="slider-all">
-                        <h5 class="slider-param-label dark-orange inactive">Letter Similarity: <span class="prob" id="slip-prob">0.5</span></h5>
+                        <h5 id="slip-label" class="slider-param-label dark-orange inactive" param="P(slip)">Letter Similarity: <span class="prob" id="slip-prob">0.5</span></h5>
                         <p class="param-desc">When similarity is low (closer to 0), you'll see letters that look <i>less</i> similar.</p>
                         <div class="slider-container clicked">
                             <p class="slider-label">0</p>
@@ -45,7 +53,7 @@
                         </div>
                     </div>
                     <div class="slider-all">
-                        <h5 class="slider-param-label pink inactive">Letter Familiarity: <span class="prob" id="guess-prob">0.5</span></h5>
+                        <h5 id="guess-label" class="slider-param-label pink inactive" param="P(guess)">Letter Familiarity: <span class="prob" id="guess-prob">0.5</span></h5>
                         <p class="param-desc">When familiarity is low (closer to 0), you're likely to see letters you <i>haven't</i> learned before.</p>
                         <div class="slider-container clicked">
                             <p class="slider-label">0</p>
@@ -54,7 +62,7 @@
                         </div>
                     </div>
                     <div class="slider-all">
-                        <h5 class="slider-param-label darker-pink inactive">Time to Sign: <span class="prob" id="transit-prob">0.5</span></h5>
+                        <h5 id="transit-label" class="slider-param-label darker-pink inactive" param="P(transit)">Time to Sign: <span class="prob" id="transit-prob">0.5</span></h5>
                         <p class="param-desc">When time is low (closer to 0), words will be signed more <i>quickly</i>.</p>
                         <div class="slider-container clicked">
                             <p class="slider-label">0</p>
@@ -64,10 +72,10 @@
                     </div>
                 </div>
                 <form id="q6" class="fill-in-blanks">
-                    <p class="light-text">
+                    <p id="test-instruct" class="light-text">
                         <i>Click to fill in the blanks! Each parameter should only be used once.</i>
                     </p>
-                    <div class="two-grid">
+                    <div id="match-grid" class="two-grid">
                         <p>
                             Which parameter is <i>most directly</i> impacted by <b class="dark-orange">letter similarity</b>?
                         </p>
@@ -94,6 +102,7 @@
                         </select>
                     </div>
                     <input class="button validate" id="b6" title="Submit answer" type="button" value="Submit answer" link="#match-reveal" update="38">
+                    <input class="button begin hide" id="b7" title="Start" type="button" value="Start">
                 </form>
             </div>
         </div>
@@ -103,8 +112,8 @@
         <div class="content">
             <p class="center ans-list">
                 <b>Answers:</b> <span class="dark-orange blank-answer">letter similarity &#8212; P(slip)</span>
-                                <span class="pink blank-answer">letter familiarity &#8212; P(guess)</span>
-                                <span class="darker-pink blank-answer">time to sign &#8212; P(transit)</span>
+                <span class="pink blank-answer">letter familiarity &#8212; P(guess)</span>
+                <span class="darker-pink blank-answer">time to sign &#8212; P(transit)</span>
             </p>
             <p>
                 You got it! Time for a <b>thought question:</b> why was P(init) not an answer option for the 3 questions you just answered?
@@ -126,7 +135,7 @@
             <p>
                 <i>Optional: Learn about the math behind BKT by expanding the section below.</i> Press continue when you're ready to move on.
             </p>
-            <p class="align-right"><span class="link" title="Continue">Continue &rarr;</span></p>
+            <p class="align-right"><span class="link load-test" title="Continue">Continue &rarr;</span></p>
             <div class="expand dark button" title="See the math">See the math <span>+</span></div>
             <div class="math-desc hide">
                 <p>
@@ -145,6 +154,7 @@
             </div>
         </div>
     </section>
+    <script src="js/test.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

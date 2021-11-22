@@ -373,12 +373,14 @@ form .button {
 .slider-container {
     width: 100%;
     display: flex;
+    transition: 0.5s;
     align-items: center;
 }
 
 .slider-label {
     text-align: center;
     line-height: calc(20px + 0.4vw);
+    transition: 0.5s;
 }
 
 .slider {
@@ -614,7 +616,7 @@ form .button {
     min-height: auto !important;
 }
 
-#mastery {
+#mastery, #mini-mastery .progress-bar {
     width: 100%;
     height: calc(20px + 1vw);
     position: fixed;
@@ -637,6 +639,10 @@ form .button {
     transition: 0.5s;
 }
 
+#mastery.clicked {
+    background-color: var(--extra-light-text);
+}
+
 #progress {
     background-color: var(--light-pink);
     height: 100%;
@@ -650,8 +656,16 @@ form .button {
     transition: 0.5s;
 }
 
+#mastery.clicked #progress {
+    background-color: var(--light-text);
+}
+
 #progress span {
     transition: 0.5s;
+}
+
+#mastery.clicked #progress span {
+    opacity: 0;
 }
 
 .bar-label {
@@ -717,6 +731,10 @@ form .button {
     top: 0;
     right: 0;
     transition: 0.5s;
+}
+
+#mastery.clicked #mastery-line {
+    border-color: var(--text);
 }
 
 @media (max-width: 500px) {
@@ -802,14 +820,14 @@ form .button {
     margin-bottom: 0 !important;
 }
 
-form.fill-in-blanks, form.radio {
+form.fill-in-blanks, form.radio, form.test {
     padding: calc(20px + 1vw);
     border: 2px solid var(--extra-light-text);
     border-radius: 10px;
     margin-bottom: calc(18px + 0.5vw);
 }
 
-form.fill-in-blanks .button, form.radio .button {
+form.fill-in-blanks .button, form.radio .button, form.test .button {
     display: block;
     height: calc(32px + 0.8vw);
     border-radius: 10px !important;
@@ -996,8 +1014,8 @@ section.extra-padding {
 }
 
 @media (max-width: 1000px) {
-    .two-grid {
-        grid-template-columns: 1fr;
+    .two-grid, .two-grid.test {
+        grid-template-columns: 1fr !important;
     }
 }
 
@@ -1185,4 +1203,49 @@ form select.wrong {
 .align-right .link:hover {
     transform: translateX(-5px);
     transition: 0.5s;
+}
+
+/* mini mastery bar */
+#mini-mastery {
+    width: 100%;
+    display: flex;
+    padding-top: calc(12px + 0.4vw);
+    padding-bottom: calc(16px + 1vw);
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+#mini-mastery.hide, #match-grid.hide, .button.hide {
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+}
+
+#mini-mastery .progress-bar {
+    position: relative;
+    margin: 0 calc(10px + 0.2vw);
+    border-radius: 5px;
+}
+
+#mini-mastery #progress {
+    border-radius: 5px 0 0 5px;
+}
+
+#mini-mastery #progress span {
+    position: absolute;
+    color: var(--text);
+}
+
+.two-grid.test {
+    grid-template-columns: 2fr 3fr;
+    transition: 0.5s;
+}
+
+#test-text {
+    transition: 0.5s;
+}
+
+.param-desc.hide {
+    height: 0 !important;
+    min-height: 0 !important;
 }
