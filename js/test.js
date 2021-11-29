@@ -71,7 +71,7 @@ $(document).ready(function () {
 
     // load new question
     $.fn.loadQuestion = function () {
-        var word = "hello";
+        var word = "hello  ";
         var letter = $('#test-img');
 
         var i = 0; // index
@@ -85,6 +85,11 @@ $(document).ready(function () {
                 i = 0;
             }
             char = word.charAt(i);
+
+            if (char == " ") { // add extra blank to designate start of word
+                char = "blank";
+            }
+
             newImg = "gif/letters/" + char + ".gif";
             letter.attr("src", "gif/letters/blank.gif");
             setTimeout(() => {

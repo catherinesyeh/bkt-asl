@@ -1266,6 +1266,7 @@ form select.wrong {
 /* quiz questions */
 #test-img {
     max-width: 150px;
+    height: calc(240px + 4vw);
     transition: 0.5s;
 }
 
