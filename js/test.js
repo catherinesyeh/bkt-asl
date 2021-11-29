@@ -69,9 +69,39 @@ $(document).ready(function () {
         $('#' + param + '-prob')[0].innerHTML = val;
     }
 
-    $.fn.startTest = function () {
+    // load new question
+    $.fn.loadQuestion = function () {
+        var word = "hello";
+        var letter = $('#test-img');
+
+        var i = 0; // index
+        var char = word.charAt(i);
+        var newImg = "gif/letters/" + char + ".gif";
+        letter.attr("src", newImg);
+
+        setInterval(function () { // loop letters
+            i++;
+            if (i == word.length) {
+                i = 0;
+            }
+            char = word.charAt(i);
+            newImg = "gif/letters/" + char + ".gif";
+            letter.attr("src", "gif/letters/blank.gif");
+            setTimeout(() => {
+                letter.attr("src", newImg);
+            }, 100);
+        }, 500);
+    }
+
+    // start test!
+    $.fn.startTest = function () { 
         $('.slider-container').addClass('clicked');
         $('.param-desc').addClass('hide');
+        $.fn.loadQuestion();
+
+        $('#b7').addClass("hide");
+        $('#test-instruct').addClass("hide");
+        $('.test-q').removeClass('hide');
     }
 
 

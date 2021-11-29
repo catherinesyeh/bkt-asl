@@ -1215,7 +1215,7 @@ form select.wrong {
     transition: 0.5s;
 }
 
-#mini-mastery.hide, #match-grid.hide, .button.hide {
+#mini-mastery.hide, #match-grid.hide, .button.hide, .test-q.hide, #test-instruct.hide {
     height: 0 !important;
     min-height: 0 !important;
     margin: 0 !important;
@@ -1225,6 +1225,7 @@ form select.wrong {
     position: relative;
     margin: 0 calc(10px + 0.2vw);
     border-radius: 5px;
+    z-index: 1 !important;
 }
 
 #mini-mastery #progress {
@@ -1237,8 +1238,20 @@ form select.wrong {
 }
 
 .two-grid.test {
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 2fr 4fr;
     transition: 0.5s;
+}
+
+@media (max-width: 1000px) {
+    .two-grid.test {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .two-grid.test {
+        grid-template-columns: 1fr !important;
+    }
 }
 
 #test-text {
@@ -1248,4 +1261,34 @@ form select.wrong {
 .param-desc.hide {
     height: 0 !important;
     min-height: 0 !important;
+}
+
+/* quiz questions */
+#test-img {
+    max-width: 150px;
+    transition: 0.5s;
+}
+
+.test-q {
+    transition: 0.5s;
+}
+
+.test-q input {
+    width: 100% !important;
+    transition: 0.5s;
+}
+
+.test-q .text {
+    border: 2px solid var(--dark-pink);
+    border-radius: 10px;
+    height: calc(32px + 0.8vw);
+}
+
+form .test-q .button {
+    background-color: var(--dark-pink);
+    width: 100% !important;
+}
+
+form .test-q .button:hover {
+    background-color: var(--darker-pink);
 }
