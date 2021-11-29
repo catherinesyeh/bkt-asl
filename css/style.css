@@ -1105,11 +1105,11 @@ form .two-grid select.dark-pink:hover {
     border-color: var(--darker-pink);
 }
 
-form select.correct {
+form select.correct, .test-q .text.correct {
     background-color: var(--light-green);
 }
 
-form select.wrong {
+form select.wrong, .test-q .text.wrong {
     border-color: var(--red);
 }
 
@@ -1242,7 +1242,7 @@ form select.wrong {
     transition: 0.5s;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
     .two-grid.test {
         grid-template-columns: 1fr 1fr !important;
     }
@@ -1292,4 +1292,20 @@ form .test-q .button {
 
 form .test-q .button:hover {
     background-color: var(--darker-pink);
+}
+
+.test-q .text.correct {
+    border-color: var(--dark-green);
+}
+
+.test-q .text.wrong {
+    background-color: var(--light-red);
+}
+
+.test-q .button.correct {
+    background-color: var(--dark-green);
+}
+
+.test-q .button.wrong {
+    background-color: var(--red);
 }

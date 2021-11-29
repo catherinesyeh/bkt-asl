@@ -71,8 +71,10 @@ $(document).ready(function () {
 
     // load new question
     $.fn.loadQuestion = function () {
-        var word = "hello  ";
+        var word = "hello";
         var letter = $('#test-img');
+        letter.next().next().attr("ans", word); // store word as answer
+        word += " ";
 
         var i = 0; // index
         var char = word.charAt(i);
@@ -109,6 +111,61 @@ $(document).ready(function () {
         $('.test-q').removeClass('hide');
     }
 
+    // update mastery
+    $.fn.updateMastery = function (correct) {
+        // get param values
+        var init_label = $('#mini-mastery #progress span').first();
+        var init = parseFloat(init_label.html().split("</b>").pop());
+        var slip = $('#slip-slider').val();
+        var guess = $('#guess-slider').val();
+        var transit = $('#transit-slider').val();
+
+        var p = init;
+        if (correct) { // user answered correctly
+            p = (init * (1 - slip)) / (init * (1 - slip) + (1 - init) * guess);
+        } else { // user answered incorrectly
+            p = (init * slip) / (init * slip + (1 - init) * (1 - guess));
+        }
+        var newProg = p + (1.0 - p) * transit;
+        newProg = newProg.toFixed(2); // round to 2 decimal places
+
+        setTimeout(() => {
+            // update mastery bar
+            $("#mini-mastery #progress").css("width", (newProg * 100) + "%");
+            init_label.html("<b>P(init):</b> " + newProg);
+        }, 1000);
+    }
+
+    // check answer and update mastery
+    $.fn.checkAnswer = function (button) {
+        var input = button.prev();
+        var val = input.val().toLowerCase();
+        if (val == '') { // check for user input
+            alert('Please enter a guess.');
+            return;
+        }
+
+        // is answer correct?
+        var ans = input.attr("ans");
+        var correct = true;
+        if (val == ans) { // yes
+            input.addClass("correct clicked");
+            button.addClass("correct");
+            alert('Correct!');
+        } else { // no
+            input.addClass("wrong clicked");
+            button.addClass("wrong");
+            correct = false;
+            alert('Sorry, that is incorrect. The answer was: ' + ans + '.');
+        }
+
+        button.attr("value", "Next >");
+        button.attr("title", "Next");
+        button.removeClass("test");
+        button.addClass("next");
+
+        $.fn.updateMastery(correct); // update mastery
+    }
 
     // CALL FUNCTIONS
     $('.load-test').on('click', function () { // reload test
@@ -122,4 +179,14 @@ $(document).ready(function () {
     $('.button.begin').on('click', function () { // start test
         $.fn.startTest();
     })
+
+    $('.button.test').on('click', function () { // check user answer
+        $.fn.checkAnswer($(this));
+    })
+
+    $('.test-q input.text').keypress(function (e) { // user pressed enter
+        if (e.which == 13) {
+            $.fn.checkAnswer($(this).next());
+        }
+    });
 });
