@@ -69,9 +69,22 @@ $(document).ready(function () {
         $('#' + param + '-prob')[0].innerHTML = val;
     }
 
+    var newWord = null;
+
     // load new question
     $.fn.loadQuestion = function () {
-        var word = "hello";
+        var input = $('.test-q .text').first();
+        var button = $('.test-q .button').first();
+
+        // reset form
+        input.val(''); // empty guess field
+        input.removeClass("wrong correct clicked");
+        button.attr("value", "Submit guess!");
+        button.attr("title", "Submit guess!");
+        button.removeClass("next wrong correct");
+
+        // choose random word
+        var word = words[Math.floor(Math.random() * words.length)];
         var letter = $('#test-img');
         letter.next().next().attr("ans", word); // store word as answer
         word += " ";
@@ -81,7 +94,7 @@ $(document).ready(function () {
         var newImg = "gif/letters/" + char + ".gif";
         letter.attr("src", newImg);
 
-        setInterval(function () { // loop letters
+        newWord = setInterval(function () { // loop letters
             i++;
             if (i == word.length) {
                 i = 0;
@@ -112,7 +125,8 @@ $(document).ready(function () {
     }
 
     // update mastery
-    $.fn.updateMastery = function (correct) {
+    $.fn.updateMastery = function (correct, button) {
+        clearInterval(newWord);
         // get param values
         var init_label = $('#mini-mastery #progress span').first();
         var init = parseFloat(init_label.html().split("</b>").pop());
@@ -129,10 +143,16 @@ $(document).ready(function () {
         var newProg = p + (1.0 - p) * transit;
         newProg = newProg.toFixed(2); // round to 2 decimal places
 
+        // update mastery bar
+        $("#mini-mastery #progress").css("width", (newProg * 100) + "%");
+        init_label.html("<b>P(init):</b> " + newProg);
+
         setTimeout(() => {
-            // update mastery bar
-            $("#mini-mastery #progress").css("width", (newProg * 100) + "%");
-            init_label.html("<b>P(init):</b> " + newProg);
+            if (newProg >= 0.95) { // acheived mastery!
+                button.addClass("clicked");
+                alert('You did it! Congrats on achieving mastery!')
+                return;
+            } // else, continue
         }, 1000);
     }
 
@@ -159,12 +179,11 @@ $(document).ready(function () {
             alert('Sorry, that is incorrect. The answer was: ' + ans + '.');
         }
 
+        $.fn.updateMastery(correct, button); // update mastery
+
         button.attr("value", "Next >");
         button.attr("title", "Next");
-        button.removeClass("test");
         button.addClass("next");
-
-        $.fn.updateMastery(correct); // update mastery
     }
 
     // CALL FUNCTIONS
@@ -181,7 +200,11 @@ $(document).ready(function () {
     })
 
     $('.button.test').on('click', function () { // check user answer
-        $.fn.checkAnswer($(this));
+        if ($(this).hasClass("next")) {
+            $.fn.loadQuestion(); // load next question
+        } else {
+            $.fn.checkAnswer($(this));
+        }
     })
 
     $('.test-q input.text').keypress(function (e) { // user pressed enter
