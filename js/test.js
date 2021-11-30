@@ -1,5 +1,31 @@
 $(document).ready(function () {
     // FUNCTIONS
+    // change instructions before test
+    $.fn.prepInstructions = function () {
+        $('#congrats-msg').addClass("hide");
+
+        // load instructions again
+        $('#q6').removeClass("fill-in-blanks clicked");
+        $('#q6').addClass("test");
+        $('#b6').addClass("hide");
+        $('#b7').removeClass("hide");
+        $('#test-instruct').removeClass("hide");
+        $('#test-instruct').html("<i>Choose some parameter settings by adjusting the sliders on the right. Press start when you're ready to begin!</i>");
+        $('#test-instruct').addClass("no-space");
+        $('#match-grid').addClass("hide");
+        $('#q6').prependTo("#test-screen");
+        $('#test-screen').addClass("test");
+
+        // reset mastery
+        var init_label = $('#mini-mastery #progress span').first();
+        $("#mini-mastery #progress").css("width", "25%");
+        init_label.html("<b>P(init):</b> 0.25");
+
+        // set up sliders
+        $('.slider-container').removeClass('clicked');
+        $('.param-desc').removeClass('hide');
+    }
+
     // prepare to start test
     $.fn.loadTest = function () {
         var firstSlide = null;
@@ -30,16 +56,8 @@ $(document).ready(function () {
         $('.slider-container').removeClass('clicked');
         $('#test-text').html("Okay, let's see how fast you can get to mastery! <i>Note: this simulation uses a separate mastery bar (below). Your overall mastery bar won't be affected.</i>");
 
-        // update right side content
-        $('#q6').removeClass("fill-in-blanks clicked");
-        $('#q6').addClass("test");
-        $('#b6').addClass("hide");
-        $('#b7').removeClass("hide");
-        $('#test-instruct').html("<i>Choose some parameter settings by adjusting the sliders on the right. Press start when you're ready to begin!</i>");
-        $('#test-instruct').addClass("no-space");
-        $('#match-grid').addClass("hide");
-        $('#q6').prependTo("#test-screen");
-        $('#test-screen').addClass("test");
+        // update left side content
+        $.fn.prepInstructions();
 
 
         setTimeout(() => {
@@ -149,7 +167,8 @@ $(document).ready(function () {
 
         setTimeout(() => {
             if (newProg >= 0.95) { // acheived mastery!
-                button.addClass("clicked");
+                $('.test-q').first().addClass("hide");
+                $('#congrats-msg').removeClass("hide");
                 alert('You did it! Congrats on achieving mastery!')
                 return;
             } // else, continue
@@ -212,4 +231,12 @@ $(document).ready(function () {
             $.fn.checkAnswer($(this).next());
         }
     });
+
+    $('.button.again').on('click', function () { // reload test after 1st time
+        $.fn.prepInstructions();
+    })
+
+    $('.button.cont').on('click', function () { // go to next page
+        $('#match-params').addClass("clicked");
+    })
 });

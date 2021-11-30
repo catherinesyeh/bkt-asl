@@ -165,7 +165,7 @@ a:hover, .link:hover {
     color: var(--dark-pink);
 }
 
-input, .slider-label, select, .slider-param-label span, .expand, .button.cont {
+input, .slider-label, select, .slider-param-label span, .expand, .button.cont, .button.again {
     font-family: "Roboto Mono", monospace;
     font-size: calc(12px + 0.4vw);
 }
@@ -1215,7 +1215,8 @@ form select.wrong, .test-q .text.wrong {
     transition: 0.5s;
 }
 
-#mini-mastery.hide, #match-grid.hide, .button.hide, .test-q.hide, #test-instruct.hide {
+#mini-mastery.hide, #match-grid.hide, .button.hide, .test-q.hide, 
+#test-instruct.hide, #congrats-msg.hide {
     height: 0 !important;
     min-height: 0 !important;
     margin: 0 !important;
@@ -1270,7 +1271,7 @@ form select.wrong, .test-q .text.wrong {
     transition: 0.5s;
 }
 
-.test-q {
+.test-q, #congrats-msg {
     transition: 0.5s;
 }
 
@@ -1308,4 +1309,28 @@ form .test-q .button:hover {
 
 .test-q .button.wrong {
     background-color: var(--red);
+}
+
+#congrats-msg .buttons {
+    padding-top: 0;
+    display: block;
+}
+
+#congrats-msg .button {
+    margin-top: 0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#congrats-msg .button:first-child {
+    margin-bottom: calc(12px + 0.2vw);
+}
+
+@media (max-width: 500px) {
+    #congrats-msg .button {
+        padding: 0 calc(20px + 1vw);
+    }
 }
