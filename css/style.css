@@ -165,7 +165,7 @@ a:hover, .link:hover {
     color: var(--dark-pink);
 }
 
-input, .slider-label, select, .slider-param-label span, .expand, .button.cont {
+input, .slider-label, select, .slider-param-label span, .expand, .button.cont, .button.again {
     font-family: "Roboto Mono", monospace;
     font-size: calc(12px + 0.4vw);
 }
@@ -373,12 +373,14 @@ form .button {
 .slider-container {
     width: 100%;
     display: flex;
+    transition: 0.5s;
     align-items: center;
 }
 
 .slider-label {
     text-align: center;
     line-height: calc(20px + 0.4vw);
+    transition: 0.5s;
 }
 
 .slider {
@@ -614,7 +616,7 @@ form .button {
     min-height: auto !important;
 }
 
-#mastery {
+#mastery, #mini-mastery .progress-bar {
     width: 100%;
     height: calc(20px + 1vw);
     position: fixed;
@@ -637,6 +639,10 @@ form .button {
     transition: 0.5s;
 }
 
+#mastery.clicked {
+    background-color: var(--extra-light-text);
+}
+
 #progress {
     background-color: var(--light-pink);
     height: 100%;
@@ -650,8 +656,16 @@ form .button {
     transition: 0.5s;
 }
 
+#mastery.clicked #progress {
+    background-color: var(--light-text);
+}
+
 #progress span {
     transition: 0.5s;
+}
+
+#mastery.clicked #progress span {
+    opacity: 0;
 }
 
 .bar-label {
@@ -717,6 +731,10 @@ form .button {
     top: 0;
     right: 0;
     transition: 0.5s;
+}
+
+#mastery.clicked #mastery-line {
+    border-color: var(--text);
 }
 
 @media (max-width: 500px) {
@@ -802,14 +820,14 @@ form .button {
     margin-bottom: 0 !important;
 }
 
-form.fill-in-blanks, form.radio {
+form.fill-in-blanks, form.radio, form.test {
     padding: calc(20px + 1vw);
     border: 2px solid var(--extra-light-text);
     border-radius: 10px;
     margin-bottom: calc(18px + 0.5vw);
 }
 
-form.fill-in-blanks .button, form.radio .button {
+form.fill-in-blanks .button, form.radio .button, form.test .button {
     display: block;
     height: calc(32px + 0.8vw);
     border-radius: 10px !important;
@@ -996,8 +1014,8 @@ section.extra-padding {
 }
 
 @media (max-width: 1000px) {
-    .two-grid {
-        grid-template-columns: 1fr;
+    .two-grid, .two-grid.test {
+        grid-template-columns: 1fr !important;
     }
 }
 
@@ -1087,11 +1105,11 @@ form .two-grid select.dark-pink:hover {
     border-color: var(--darker-pink);
 }
 
-form select.correct {
+form select.correct, .test-q .text.correct {
     background-color: var(--light-green);
 }
 
-form select.wrong {
+form select.wrong, .test-q .text.wrong {
     border-color: var(--red);
 }
 
@@ -1185,4 +1203,134 @@ form select.wrong {
 .align-right .link:hover {
     transform: translateX(-5px);
     transition: 0.5s;
+}
+
+/* mini mastery bar */
+#mini-mastery {
+    width: 100%;
+    display: flex;
+    padding-top: calc(12px + 0.4vw);
+    padding-bottom: calc(16px + 1vw);
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+#mini-mastery.hide, #match-grid.hide, .button.hide, .test-q.hide, 
+#test-instruct.hide, #congrats-msg.hide {
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+}
+
+#mini-mastery .progress-bar {
+    position: relative;
+    margin: 0 calc(10px + 0.2vw);
+    border-radius: 5px;
+    z-index: 1 !important;
+}
+
+#mini-mastery #progress {
+    border-radius: 5px 0 0 5px;
+}
+
+#mini-mastery #progress span {
+    position: absolute;
+    color: var(--text);
+}
+
+.two-grid.test {
+    grid-template-columns: 2fr 4fr;
+    transition: 0.5s;
+}
+
+@media (max-width: 1100px) {
+    .two-grid.test {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .two-grid.test {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+#test-text {
+    transition: 0.5s;
+}
+
+.param-desc.hide {
+    height: 0 !important;
+    min-height: 0 !important;
+}
+
+/* quiz questions */
+#test-img {
+    max-width: 150px;
+    height: calc(240px + 4vw);
+    transition: 0.5s;
+}
+
+.test-q, #congrats-msg {
+    transition: 0.5s;
+}
+
+.test-q input {
+    width: 100% !important;
+    transition: 0.5s;
+}
+
+.test-q .text {
+    border: 2px solid var(--dark-pink);
+    border-radius: 10px;
+    height: calc(32px + 0.8vw);
+}
+
+form .test-q .button {
+    background-color: var(--dark-pink);
+    width: 100% !important;
+}
+
+form .test-q .button:hover {
+    background-color: var(--darker-pink);
+}
+
+.test-q .text.correct {
+    border-color: var(--dark-green);
+}
+
+.test-q .text.wrong {
+    background-color: var(--light-red);
+}
+
+.test-q .button.correct {
+    background-color: var(--dark-green);
+}
+
+.test-q .button.wrong {
+    background-color: var(--red);
+}
+
+#congrats-msg .buttons {
+    padding-top: 0;
+    display: block;
+}
+
+#congrats-msg .button {
+    margin-top: 0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#congrats-msg .button:first-child {
+    margin-bottom: calc(12px + 0.2vw);
+}
+
+@media (max-width: 500px) {
+    #congrats-msg .button {
+        padding: 0 calc(20px + 1vw);
+    }
 }
