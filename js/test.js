@@ -104,6 +104,10 @@ $(document).ready(function () {
         button.attr("title", "Submit guess!");
         button.removeClass("next wrong correct");
 
+        if (tested_words.length == word_list.length) {
+            tested_words = []; // empty tested list if already used up all words
+        }
+
         // choose random word
         var word = word_list[Math.floor(Math.random() * word_list.length)];
         while (tested_words.includes(word)) { // make sure word hasn't been tested before
@@ -141,14 +145,14 @@ $(document).ready(function () {
     }
 
     // find range slip/guess prob falls in
-    const max_ind = ranges.length;
     $.fn.getIndex = function (prob) {
+        const max_ind = ranges.length;
         for (var i = 0; i < max_ind; i++) {
             if (prob < ranges[i]) {
-                return i;
+                return max_ind - i;
             }
         }
-        return max_ind;
+        return 0;
     }
 
     // start test!
@@ -167,11 +171,14 @@ $(document).ready(function () {
 
         // filter list of words depending on slip and guess values
         // higher guess = more familiar letters
-        var mismatch = max_ind - $.fn.getIndex(guess);
+        var mismatch = $.fn.getIndex(guess);
         word_list = word_list.filter(word => famWord(word, mismatch));
+
         // higher slip = more similar letters
+        avoid_list = []; // reset list of letters to avoid
         var sim = $.fn.getIndex(slip);
-        word_list = word_list.filter(word => simWord(word, sim));
+        avoidLetters(sim); // choose which letters to avoid accordingly
+        word_list = word_list.filter(word => simWord(word));
 
         // load first question
         $.fn.loadQuestion();

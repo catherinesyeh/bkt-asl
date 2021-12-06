@@ -386,7 +386,7 @@ function famWord(word, mismatch) {
     for (var i = 0; i < word.length; i++) {
         if (!learned.includes(word.charAt(i))) {
             count++;
-            if (count > mismatch) {
+            if (count > mismatch) { // too many unfamiliar letters
                 return false;
             }
         }
@@ -394,25 +394,26 @@ function famWord(word, mismatch) {
     return true;
 }
 
-// see if word contains "enough" similar letters
-function simWord(word, sim) {
-    if (sim == 0) { // if 0, all words similar enough
-        return true;
+// generate list of letters to avoid
+var avoid_list = [];
+function avoidLetters(num) {
+    for (var i = 0; i < num; i++) {
+        // choose random letter to avoid
+        var list = simLetters[i];
+        var letter = list[Math.floor(Math.random() * list.length)];
+        avoid_list.push(letter);
     }
+}
 
-    var simArray = []; // compile arrays
-    for (var i = 0; i < sim; i++) {
-        simArray = simArray.concat(simLetters[i]);
-    }
-
-    // now check word to see if contains similar letters
-    for (var i = 0; i < simArray.length; i++) {
-        if (word.includes(simArray[i])) {
-            // found a match!
-            return true;
+// see if word contains any similar letters it should avoid
+function simWord(word) {
+    for (var i = 0; i < avoid_list.length; i++) {
+        if (word.includes(avoid_list[i])) {
+            // this word contains letters it should avoid, so invalid
+            return false;
         }
     }
-    return false;
+    return true; // yay valid word!
 }
 
 // 7 possible values for familiarity/similarity
