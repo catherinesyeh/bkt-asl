@@ -88,6 +88,9 @@ $(document).ready(function () {
     }
 
     var newWord = null;
+    var speed = 500;
+    var word_list = words;
+    var tested_words = [];
 
     // load new question
     $.fn.loadQuestion = function () {
@@ -102,7 +105,13 @@ $(document).ready(function () {
         button.removeClass("next wrong correct");
 
         // choose random word
-        var word = words[Math.floor(Math.random() * words.length)];
+        var word = word_list[Math.floor(Math.random() * word_list.length)];
+        while (tested_words.includes(word)) { // make sure word hasn't been tested before
+            word = word_list[Math.floor(Math.random() * word_list.length)];
+        }
+        tested_words.push(word); // add word to already tested list
+
+        // time to spell word
         var letter = $('#test-img');
         letter.next().next().attr("ans", word); // store word as answer
         word += " ";
@@ -128,13 +137,43 @@ $(document).ready(function () {
             setTimeout(() => {
                 letter.attr("src", newImg);
             }, 100);
-        }, 500);
+        }, speed);
+    }
+
+    // find range slip/guess prob falls in
+    const max_ind = ranges.length;
+    $.fn.getIndex = function (prob) {
+        for (var i = 0; i < max_ind; i++) {
+            if (prob < ranges[i]) {
+                return i;
+            }
+        }
+        return max_ind;
     }
 
     // start test!
     $.fn.startTest = function () { 
         $('.slider-container').addClass('clicked');
         $('.param-desc').addClass('hide');
+
+        // get param values
+        var slip = $('#slip-slider').val();
+        var guess = $('#guess-slider').val();
+        var transit = $('#transit-slider').val();
+
+        tested_words = [] // reset list of already tested words
+        word_list = words; // reset list of possible words
+        speed = 200 + transit * 1000; // adjust speed of signing
+
+        // filter list of words depending on slip and guess values
+        // higher guess = more familiar letters
+        var mismatch = max_ind - $.fn.getIndex(guess);
+        word_list = word_list.filter(word => famWord(word, mismatch));
+        // higher slip = more similar letters
+        var sim = $.fn.getIndex(slip);
+        word_list = word_list.filter(word => simWord(word, sim));
+
+        // load first question
         $.fn.loadQuestion();
 
         $('#b7').addClass("hide");
@@ -184,6 +223,7 @@ $(document).ready(function () {
             return;
         }
 
+        input.blur(); // unfocus cursor
         // is answer correct?
         var ans = input.attr("ans");
         var correct = true;
@@ -228,6 +268,7 @@ $(document).ready(function () {
 
     $('.test-q input.text').keypress(function (e) { // user pressed enter
         if (e.which == 13) {
+            e.preventDefault();
             $.fn.checkAnswer($(this).next());
         }
     });
