@@ -165,7 +165,8 @@ a:hover, .link:hover {
     color: var(--dark-pink);
 }
 
-input, .slider-label, select, .slider-param-label span, .expand, .button.cont, .button.again {
+input, .slider-label, select, .slider-param-label span, .expand, 
+.button.cont, .button.again, .module .button, .button.orange {
     font-family: "Roboto Mono", monospace;
     font-size: calc(12px + 0.4vw);
 }
@@ -454,6 +455,11 @@ form .button {
     color: var(--orange);
 }
 
+.buttons.four-opt .button:nth-child(4n) {
+    border: 2px solid var(--dark-orange);
+    color: var(--dark-orange);
+}
+
 .buttons .button:hover {
     background-color: var(--light-pink);
     color: white;
@@ -468,6 +474,11 @@ form .button {
     color: white;
 }
 
+.buttons.four-opt .button:hover:nth-child(4n) {
+    background-color: var(--dark-orange);
+    color: white;
+}
+
 .buttons.two-opt .button {
     padding: calc(8px + 0.1vw) calc(32px + 1vw)
 }
@@ -478,6 +489,9 @@ form .button {
     }
     .buttons.two-opt {
         display: flex;
+    }
+    .buttons.four-opt {
+        grid-template-columns: auto auto;
     }
 }
 
@@ -820,14 +834,14 @@ form .button {
     margin-bottom: 0 !important;
 }
 
-form.fill-in-blanks, form.radio, form.test {
+form.fill-in-blanks, form.radio, form.test, .module, #mc-answer {
     padding: calc(20px + 1vw);
     border: 2px solid var(--extra-light-text);
     border-radius: 10px;
     margin-bottom: calc(18px + 0.5vw);
 }
 
-form.fill-in-blanks .button, form.radio .button, form.test .button {
+form.fill-in-blanks .button, form.radio .button, form.test .button, .module .button, .button.orange {
     display: block;
     height: calc(32px + 0.8vw);
     border-radius: 10px !important;
@@ -1316,7 +1330,7 @@ form .test-q .button:hover {
     display: block;
 }
 
-#congrats-msg .button {
+#congrats-msg .button, .module .button {
     margin-top: 0;
     text-decoration: none;
     display: flex;
@@ -1333,4 +1347,64 @@ form .test-q .button:hover {
     #congrats-msg .button {
         padding: 0 calc(20px + 1vw);
     }
+}
+
+/* MODULES */
+.module {
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    margin-top: calc(20px + 1vw);
+    margin-bottom: 0;
+}
+
+.module h5 {
+    font-weight: 600;
+    font-style: italic;
+}
+
+.module .button {
+    margin-top: calc(12px + 0.2vw);
+}
+
+.module .button:hover {
+    color: white;
+}
+
+#mod-tracker {
+    text-align: right;
+    font-family: "Roboto Mono", monospace;
+    color: var(--dark-orange);
+    font-size: calc(12px + 0.4vw);
+}
+
+@media (max-width: 1200px) {
+    .two-grid.test {
+        grid-template-columns: 1fr 2fr !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    #mc-answer {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.button-container.mc .button-top-text {
+    margin-top: 0;
+    font-size: calc(14px + 0.6vw);
+}
+
+.button-container.mc .button-top-text.bold {
+    color: var(--text);
+    font-style: normal;
+}
+
+.button.orange {
+    background-color: var(--orange);
+}
+
+.button.orange:hover {
+    background-color: var(--dark-orange);
 }

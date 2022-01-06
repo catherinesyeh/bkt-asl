@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bayesian Knowledge Tracing</title>
+    <meta name="description" content="Explaining Bayesian Knowledge Tracing Using ASL">
+    <meta property="og:image" content="img/socimg.png" />
+    <link rel="stylesheet" href="css/modules.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<!-- P(slip) -->
+<body>
+    <!-- Mastery Bar -->
+    <div id="mastery">
+        <div id="progress" style="width:55%"><span>P(init)</span></div>
+        <h5 id="you-label" class="bar-label" style="left:55%"><span>&larr;</span> You (0.55)</h5>
+        <div id="labels">
+            <h5 class="left">0</h5>
+            <h5 class="right">1</h5>
+        </div>
+        <h5 class="bar-label right" style="right:5%">Mastery (0.95) <span>&rarr;</span></h5>
+        <div id="mastery-line"></div>
+    </div>
+    <!-- Slide 1 -->
+    <section id='mod-menu'>
+        <div class='content'>
+            <p>
+                Now, let's explore BKT more deeply to find out more about its limitations and behavior in different situations.
+                Complete all four scenarios below to proceed.
+            </p>
+            <p id="mod-tracker" class="no-space"><span id="complete-mods">0</span> / 4 scenarios complete</p>
+            <div id="mod-grid" class="two-grid">
+                <div class="module" mod="incorrect">
+                    <h5>How do Incorrect Answers Impact Mastery?</h5>
+                    <a class="button dark" id="incorrect-button" title="Begin"><span mod="incorrect">Begin</span></a>
+                </div>
+                <div class="module" mod="unexpected">
+                    <h5>What Causes Unexpected Model Behavior?</h5>
+                    <a class="button dark" id="unexpected-button" title="Begin"><span mod="unexpected">Begin</span></a>
+                </div>
+                <div class="module" mod="forgetting">
+                    <h5>When Do You Lose Mastery?</h5>
+                    <a class="button dark" id="forgetting-button" title="Begin"><span mod="forgetting">Begin</span></a>
+                </div>
+                <div class="module" mod="speed">
+                    <h5>What is the Role of Speed in BKT?</h5>
+                    <a class="button dark" id="speed-button" title="Begin"><span mod="speed">Begin</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- INCORRECT -->
+    <!-- Slide 2 -->
+    <section id="incorrect-mod" class="hide" mod="incorrect">
+        <div class="content">
+            <h3>
+                How do Incorrect Answers Impact Mastery?
+            </h3>
+            <p>
+                Answer the multiple-choice question below. <i>Pay attention to what happens to your P(init) after you submit your answer.</i>
+            </p>
+            <div id="mini-mastery">
+                <h5 class="left">0</h5>
+                <div class="progress-bar">
+                    <div id="progress" style="width:25%"><span><b>P(init):</b> 0.25</span></div>
+                    <div id="mastery-line"></div>
+                </div>
+                <h5 class="right">1</h5>
+            </div>
+            <div id="mc-answer" class="two-grid test">
+                <div id="mc-question" word="dog">
+                    <img id="test-img" src="gif/letters/blank.gif" />
+                </div>
+                <div>
+                    <div class="button-container mc">
+                        <h5 class="button-top-text bold">What is the word being signed?</h5>
+                        <p class="button-top-text">Hint: There may not be a correct answer.</p>
+                        <div class="buttons four-opt">
+                            <input class="button choice mc" id="bat" title="Bat" type="button" value="Bat" correct="no">
+                            <input class="button choice mc" id="pen" title="Pen" type="button" value="Pen" correct="no">
+                            <input class="button choice mc" id="log" title="Log" type="button" value="Log" correct="no">
+                            <input class="button choice mc" id="car" title="Car" type="button" value="Car" correct="no">
+                        </div>
+                    </div>
+                    <div class="init-ans hide">
+                        <p class="reveal-ans mc center">Sorry, that is <span class="red">incorrect</span>. The correct answer is: <span class="blank-answer">dog</span>.</p>
+                    </div>
+                </div>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#inc-explain"></i>
+        </div>
+    </section>
+    <!-- Slide 3 -->
+    <section id="inc-explain" class="hide" mod="incorrect">
+        <div class="content">
+            <p>
+                Did you notice that your P(init) increased, even though you got the answer wrong? <i>We promise there really wasn't a correct answer option.</i>
+                This is another interesting characteristic of BKT, but it isn't necessarily a flaw.
+            </p>
+            <p>
+                Why might it make sense for P(init) to increase regardless of the correctness of your answer?
+                <span id="reveal-inc" title="Tell me!" class="link reveal">Tell me!</span>
+            </p>
+            <p class="reveal-text hide">
+                Well, BKT considers every answer, wrong or right, as a learning opportunity that brings you one step closer to mastery.
+                As you might have experienced in real life, reviewing incorrect answers often helps to solidify your knowledge even more
+                and reduce the chance that you'll make the same mistake again.
+            </p>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#inc-think"></i>
+        </div>
+    </section>
+    <!-- Slide 4 -->
+    <section id="inc-think" class="hide" mod="incorrect">
+        <div class="content">
+            <p>
+                Do you think answering incorrectly should always increase P(init). Why or why not?
+            </p>
+            <p>
+                Take a moment to think about this question and when you're ready, click the button below to return to the main scenario menu.
+            </p>
+            <p class="align-right"><span class="link return-to-menu" title="Back" mod="incorrect">&larr; Go Back</span></p>
+        </div>
+    </section>
+    <script src="js/modules.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

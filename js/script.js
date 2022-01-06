@@ -128,7 +128,7 @@ $(document).ready(function () {
         var rest = button.parent().parent().next(); // rest of slide
         var ans = rest.children()[0]; // answer
 
-        if (button.hasClass("radio-reveal")) { // for radio butotn questions
+        if (button.hasClass("radio-reveal")) { // for radio button questions
             rest = button.parent().next();
             ans = rest.children()[0];
             var choice = $(".radio-choice input[type='radio']:checked")[0];
@@ -140,7 +140,7 @@ $(document).ready(function () {
                 ans.innerHTML = "Actually" + ans.innerHTML.substring(3);
             }
         } else {
-            if (button.attr("correct") == "no") { // user wrong
+            if (button.attr("correct") == "no" && !ans.classList.contains("mc")) { // user wrong
                 ans.innerHTML = "Actually" + ans.innerHTML.substring(3);
             }
         }
@@ -150,7 +150,12 @@ $(document).ready(function () {
         rest.removeClass("hide");
 
         var slide = rest.parent().parent(); // current slide
-        if (!slide.hasClass("has-reveal")) {
+        if (button.hasClass("mc")) {
+            var cont = rest.parent().parent().next(); // continue button
+            setTimeout(() => {
+                cont.removeClass("hide");
+            }, 3000);
+        } else if (!slide.hasClass("has-reveal")) {
             var cont = rest.next(); // continue button
             setTimeout(() => {
                 cont.removeClass("hide");

@@ -1,0 +1,21 @@
+.bar-label {
+    position: relative !important;
+    display: inline-block !important;
+    left: 0 !important;
+    right: 0 !important;
+}
+
+.bar-label.right {
+    float: right !important;
+}
+
+.bar-label span {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: rotate(90deg) !important;
+    display: inline-block !important;
+}
+
+.bar-label.right span {
+    transform: rotate(-90deg) !important;
+}

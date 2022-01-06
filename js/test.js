@@ -189,7 +189,7 @@ $(document).ready(function () {
     }
 
     // update mastery
-    $.fn.updateMastery = function (correct, button) {
+    $.fn.updateMastery = function (correct) {
         clearInterval(newWord);
         // get param values
         var init_label = $('#mini-mastery #progress span').first();
@@ -245,7 +245,7 @@ $(document).ready(function () {
             alert('Sorry, that is incorrect. The answer was: ' + ans + '.');
         }
 
-        $.fn.updateMastery(correct, button); // update mastery
+        $.fn.updateMastery(correct); // update mastery
 
         button.attr("value", "Next >");
         button.attr("title", "Next");
