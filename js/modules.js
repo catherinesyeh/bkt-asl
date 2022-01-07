@@ -53,9 +53,9 @@ $(document).ready(function () {
         }, 500);
     }
 
-    $.fn.updateMastery = function (correct, slip, guess, transit) {
+    $.fn.updateMastery = function (label, correct, slip, guess, transit) {
         // get param values
-        var init_label = $('#mini-mastery #progress span').first();
+        var init_label = $('#mini-mastery.' + label + ' #progress span').first();
         var init = parseFloat(init_label.html().split("</b>").pop());
 
         var p = init;
@@ -68,7 +68,7 @@ $(document).ready(function () {
         newProg = newProg.toFixed(2); // round to 2 decimal places
 
         // update mastery bar
-        $("#mini-mastery #progress").css("width", (newProg * 100) + "%");
+        $("#mini-mastery." + label + " #progress").css("width", (newProg * 100) + "%");
         init_label.html("<b>P(init):</b> " + newProg);
     }
 
@@ -107,12 +107,69 @@ $(document).ready(function () {
             var newProg = oldProg + 10;
             $("#progress").css("width", newProg + "%");
             prog.css("left", newProg + "%");
-            prog.html("&larr; You (0." + newProg + ")");
+            prog.html("<span>&larr;</span> You (0." + newProg + ")");
 
             // update module tracker
             var complete = parseFloat($('#complete-mods').html());
             $('#complete-mods').html(complete + 1);
         }, 500);
+    }
+
+    $.fn.simulateUnexp = function (button) {
+        var slip = $('#slip-slider').val();
+        var guess = $('#guess-slider').val();
+
+        if (button.attr('degen') == 'no') { // normal param values
+            if (slip >= 0.5 || guess >= 0.5) {
+                alert('Please make sure P(slip) and P(guess) are < 0.5.');
+                return;
+            }
+        } else { // degenerate values
+            if (slip <= 0.5 || guess <= 0.5) {
+                alert('Please make sure P(slip) and P(guess) are > 0.5.');
+                return;
+            }
+        }
+
+        setTimeout(() => {
+            $.fn.updateMastery("correct", true, slip, guess, 0.5);
+            $.fn.updateMastery("incorrect", false, slip, guess, 0.5);
+
+            var parent = button.parent();
+            parent.addClass('hide');
+
+            parent.next().removeClass('hide');
+        }, 500);
+    }
+
+    $.fn.reloadUnexp = function () {
+        // make some modifications
+        $('#unexp-q .button.choice').addClass('mc');
+        $('.reload-unexp').addClass('hide');
+        $('#unexp-q .init-ans').addClass('hide');
+        $('#unexp-q .buttons').removeClass('clicked');
+        $('#unexp-q .button').removeClass('selected');
+
+        // change correct answer
+        $('#unexp-q #correct').attr('correct', 'no');
+        $('#unexp-q #incorrect').attr('correct', 'yes');
+        $('#unexp-q .unexp-a').html('incorrect');
+
+        // reset answer text
+        var ans_msg = $('#unexp-q .reveal-ans').html();
+        ans_msg = "Yes" + ans_msg.substring(ans_msg.indexOf(","));
+        $('#unexp-q .reveal-ans').html(ans_msg);
+        $('#unexp-q').addClass('hide');
+
+        $('#unexp-direction').html('&gt; 0.5');
+        $('#unexp-slide #sim').attr('degen', 'yes');
+        $('#unexp-slide').removeClass('hide');
+
+        // reset mini mastery bars
+        $('#mini-mastery #progress span').each(function () {
+            $(this).first().html("<b>P(init):</b> 0.40");
+        });
+        $("#mini-mastery #progress").css("width", "40%");
     }
 
     // CALL FUNCTIONS
@@ -125,10 +182,26 @@ $(document).ready(function () {
         $.fn.incMod(); // start module
     })
 
+    $('#unexpected-button').on('click', function () { // load 'unexpected behavior' module
+        $.fn.freezeMastery($(this)); // freeze mastery bar
+    })
+
     $('.button.choice.mc').on('click', function () { // user answered multiple choice
         clearInterval(newWord); // simulate wrong answer
         setTimeout(() => {
-            $.fn.updateMastery(false, 0.1, 0.1, 0.5);
+            $.fn.updateMastery("mc", false, 0.1, 0.1, 0.5);
         }, 500);
     });
+
+    $('.button.simulate').on('click', function () { // simulating unexpected answers
+        $.fn.simulateUnexp($(this));
+    })
+
+    $('.link.reload-unexp').on('click', function () { // reload unexpected sliders
+        $.fn.reloadUnexp();
+    })
+
+    $('.sliders.test .slider').change(function () { // update slider value
+        $.fn.updateSlider($(this));
+    })
 });

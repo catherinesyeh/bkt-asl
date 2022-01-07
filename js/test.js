@@ -74,19 +74,6 @@ $(document).ready(function () {
         }, 500);
     }
 
-    // update slider value
-    $.fn.updateSlider = function (slider) {
-        // get parameter name
-        var param = slider.attr('id');
-        param = param.substring(0, param.indexOf('-'));
-
-        // get slider value
-        var val = slider.val();
-
-        // update label
-        $('#' + param + '-prob')[0].innerHTML = val;
-    }
-
     var newWord = null;
     var speed = 500;
     var word_list = words;

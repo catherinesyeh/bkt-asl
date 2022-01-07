@@ -31,7 +31,7 @@ $(document).ready(function () {
                     var newProg = arrow.attr('update');
                     $("#progress").css("width", newProg + "%");
                     $("#you-label").css("left", newProg + "%");
-                    $("#you-label").html("&larr; You (0." + newProg + ")");
+                    $("#you-label").html("<span>&larr;</span> You (0." + newProg + ")");
                 }, 1000);
             }
 
@@ -217,7 +217,7 @@ $(document).ready(function () {
                 var newProg = button.attr('update');
                 $("#progress").css("width", newProg + "%");
                 $("#you-label").css("left", newProg + "%");
-                $("#you-label").html("&larr; You (0." + newProg + ")");
+                $("#you-label").html("<span>&larr;</span> You (0." + newProg + ")");
             }, 1000);
         }
     }
@@ -278,6 +278,19 @@ $(document).ready(function () {
         } else {
             symbol.innerHTML = '+';
         }
+    }
+
+    // update slider value
+    $.fn.updateSlider = function (slider) {
+        // get parameter name
+        var param = slider.attr('id');
+        param = param.substring(0, param.indexOf('-'));
+
+        // get slider value
+        var val = slider.val();
+
+        // update label
+        $('#' + param + '-prob')[0].innerHTML = val;
     }
 
     // CALL FUNCTIONS

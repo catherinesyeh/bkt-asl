@@ -65,7 +65,7 @@
             <p>
                 Answer the multiple-choice question below. <i>Pay attention to what happens to your P(init) after you submit your answer.</i>
             </p>
-            <div id="mini-mastery">
+            <div id="mini-mastery" class="mc">
                 <h5 class="left">0</h5>
                 <div class="progress-bar">
                     <div id="progress" style="width:25%"><span><b>P(init):</b> 0.25</span></div>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="init-ans hide">
-                        <p class="reveal-ans mc center">Sorry, that is <span class="red">incorrect</span>. The correct answer is: <span class="blank-answer">dog</span>.</p>
+                        <p class="reveal-ans mc center">Sorry, that is <span class="red">incorrect</span>. The correct answer is: <b>dog</b>.</p>
                     </div>
                 </div>
             </div>
@@ -125,6 +125,135 @@
                 Take a moment to think about this question and when you're ready, click the button below to return to the main scenario menu.
             </p>
             <p class="align-right"><span class="link return-to-menu" title="Back" mod="incorrect">&larr; Go Back</span></p>
+        </div>
+    </section>
+    <!-- UNEXPECTED -->
+    <!-- Slide 5 -->
+    <section id="unexpected-mod" class="hide" mod="unexpected">
+        <div class="content">
+            <h3>
+                What Causes Unexpected Behavior?
+            </h3>
+            <p>
+                Some values cause BKT to act in ways that don't make a lot of sense. Follow the steps below and keep an eye on how the
+                mastery bars change&#8212;in each case, does P(init) increase more for <i class="dark-green">correct</i> or <i class="red">incorrect</i> answers?
+            </p>
+            <div class="two-grid">
+                <div>
+                    <p class="dark-green no-space mini-label">Correct Answer:</p>
+                    <div id="mini-mastery" class="correct">
+                        <h5 class="left">0</h5>
+                        <div class="progress-bar">
+                            <div id="progress" style="width:40%"><span><b>P(init):</b> 0.40</span></div>
+                            <div id="mastery-line"></div>
+                        </div>
+                        <h5 class="right">1</h5>
+                    </div>
+                </div>
+                <div>
+                    <p class="red no-space mini-label">Incorrect Answer:</p>
+                    <div id="mini-mastery" class="incorrect">
+                        <h5 class="left">0</h5>
+                        <div class="progress-bar">
+                            <div id="progress" style="width:40%"><span><b>P(init):</b> 0.40</span></div>
+                            <div id="mastery-line"></div>
+                        </div>
+                        <h5 class="right">1</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="unexp-sliders">
+                <div id="unexp-slide" class="sliders test">
+                    <p>First, set P(guess) and P(slip) to a value <b id="unexp-direction">&lt; 0.5</b>. When you're ready, press the simulation button below.</p>
+                    <div class="slider-all">
+                        <h5 id="slip-label" class="slider-param-label dark-orange" param="P(slip)">P(slip) / Letter Similarity: <span class="prob" id="slip-prob">0.5</span></h5>
+                        <div class="slider-container">
+                            <p class="slider-label">0</p>
+                            <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider orange" id="slip-slider" />
+                            <p class="slider-label">1</p>
+                        </div>
+                    </div>
+                    <div class="slider-all">
+                        <h5 id="guess-label" class="slider-param-label pink" param="P(guess)">P(guess) / Letter Familiarity: <span class="prob" id="guess-prob">0.5</span></h5>
+                        <div class="slider-container">
+                            <p class="slider-label">0</p>
+                            <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider pink" id="guess-slider" />
+                            <p class="slider-label">1</p>
+                        </div>
+                    </div>
+                    <input class="button dark center simulate" id="sim" degen="no" title="Simulate Answers" type="button" value="Simulate Answers">
+                </div>
+                <div id="unexp-q" class="hide">
+                    <div class="button-container no-space">
+                        <p class="button-top-text no-space">Which caused a greater increase in mastery?</p>
+                        <div class="buttons">
+                            <input class="button choice" id="correct" title="Correct Answer" type="button" value="Correct Answer" correct="yes">
+                            <input class="button choice" id="incorrect" title="Incorrect Answer" type="button" value="Incorrect Answer" correct="no">
+                        </div>
+                    </div>
+                    <div class="init-ans hide">
+                        <p class="reveal-ans">Yes, <b class="unexp-a">correct</b> answers increase mastery more in this case.</p>
+                        <p class="link reload-unexp" title="Continue">Continue &rarr;</p>
+                    </div>
+                </div>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#model-degeneracy"></i>
+        </div>
+    </section>
+    <!-- Slide 6 -->
+    <section id="model-degeneracy" class="hide no-reveal" mod="unexpected">
+        <div class="content">
+            <p>
+                Hopefully, you saw that when P(guess) and/or P(slip) was <b>&gt; 0.5</b>, P(init) increased more if you answered incorrectly rather than correctly
+                (and sometimes P(init) might even <i>decrease</i> with correct answers!).
+            </p>
+            <p> 
+                Weird, right? This is an example of <b>model degeneracy</b>, which is when the model does not behave as expected due to inappropriate parameter values.
+            </p>
+            <p>
+                Let's take a step back and think about why it doesn’t make sense for P(guess) and P(slip) to be too large.
+            </p>
+            <p>
+                For P(slip), if the probability of slipping is &gt; 0.5, this suggests that a student who <u>knows</u> the skill is more likely to get the question
+                <i class="red">wrong</i> than <i class="dark-green">right</i>, which doesn't make any sense.
+            </p>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#degeneracy-blanks"></i>
+        </div>
+    </section>
+    <!-- Slide 7 -->
+    <section id="degeneracy-blanks" class="hide has-reveal" mod="unexpected">
+        <div class="content">
+            <form id="q7" class="fill-in-blanks">
+                <p class="no-space">
+                    <b>Can you apply similar logic to P(guess)?</b>
+                    <i class="light-text">Click to fill in the blanks!</i>
+                </p>
+                <p class="inline">
+                    If the probability of guessing is &gt; 0.5, this suggests that a student who doesn't know the skill is more likely to get the question
+                </p>
+                <select id="blank1" name="degen1" title="Fill in the blank!" correct="right">
+                    <option value="right">right</option>
+                    <option value="wrong">wrong</option>
+                </select>
+                <p class="inline">than</p>
+                <select id="blank2" name="degen2" title="Fill in the blank!" correct="wrong">
+                    <option value="right">right</option>
+                    <option value="wrong">wrong</option>
+                </select>
+                <p class="inline">.</p>
+                <input class="button blank-reveal" id="b8" title="Submit answer" type="button" value="Submit answer">
+            </form>
+            <div class="reveal-text hide">
+                <p>
+                    You got it! This is why we often set a maximum threshold for P(slip) and P(guess).
+                    To be extra conservative, P(slip) is typically bounded at 0.1 and P(guess) is typically bounded at 0.3.
+                    This helps us avoid any unexpected behavior (i.e., model degeneracy) from BKT.
+                </p>
+                <p>
+                    When you're ready to continue, press the button below to return to the main scenario menu.
+                </p>
+                <p class="align-right"><span class="link return-to-menu" title="Back" mod="unexpected">&larr; Go Back</span></p>
+            </div>
         </div>
     </section>
     <script src="js/modules.js"></script>

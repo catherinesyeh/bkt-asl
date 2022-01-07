@@ -15,9 +15,11 @@
     --orange: rgba(246, 178, 107); /* #F6B26B */
     --light-orange: rgba(253, 236, 218); /* #FDECDA */
     --red: rgba(204, 65, 37); /* #CC4125 */
+    --lightish-red: rgba(226, 112, 99); /* #E27063 */
     --light-red: rgba(242, 208, 200); /* #F2D0C8 */
     --yellow: rgba(255, 217, 102); /* #FFD966 */
     --light-green: rgba(231, 242, 228); /* #E7F2E4 */
+    --green: rgba(143, 190, 123); /* #8FBE7B */
     --dark-green: rgba(77, 133, 124); /* #4D857C */
 }
 
@@ -150,6 +152,10 @@ p {
     margin-bottom: calc(10px + 0.5vw);
 }
 
+p:last-child {
+    margin-bottom: 0;
+}
+
 p.center {
     text-align: center;
 }
@@ -166,7 +172,7 @@ a:hover, .link:hover {
 }
 
 input, .slider-label, select, .slider-param-label span, .expand, 
-.button.cont, .button.again, .module .button, .button.orange {
+.button.cont, .button.again, .module .button, .button.orange, .mini-label {
     font-family: "Roboto Mono", monospace;
     font-size: calc(12px + 0.4vw);
 }
@@ -831,7 +837,7 @@ form .button {
     margin-bottom: 0 !important;
 }
 
-form.fill-in-blanks, form.radio, form.test, .module, #mc-answer {
+form.fill-in-blanks, form.radio, form.test, .module, #mc-answer, .unexp-sliders {
     padding: calc(20px + 1vw);
     border: 2px solid var(--extra-light-text);
     border-radius: 10px;
@@ -1376,6 +1382,7 @@ form .test-q .button:hover {
     font-size: calc(12px + 0.4vw);
 }
 
+/* INCORRECT MODULE */
 @media (max-width: 1200px) {
     .two-grid.test {
         grid-template-columns: 1fr 2fr !important;
@@ -1404,4 +1411,71 @@ form .test-q .button:hover {
 
 .button.orange:hover {
     background-color: var(--dark-orange);
+}
+
+/* UNEXPECTED MODULE */
+#mini-mastery.correct .progress-bar {
+    background-color: var(--light-green);
+}
+
+#mini-mastery.correct #progress {
+    background-color: var(--green);
+}
+
+#mini-mastery.correct #mastery-line {
+    border-left: calc(2px + 0.2vw) solid var(--dark-green);
+}
+
+#mini-mastery.incorrect .progress-bar {
+    background-color: var(--light-red);
+}
+
+#mini-mastery.incorrect #progress {
+    background-color: var(--lightish-red);
+}
+
+#mini-mastery.incorrect #mastery-line {
+    border-left: calc(2px + 0.2vw) solid var(--red);
+}
+
+.unexp-sliders, #mc-answer {
+    margin-bottom: 0;
+}
+
+#unexp-q.hide, #unexp-slide.hide, .reload-unexp.hide {
+    height: 0 !important;
+    min-height: 0 !important;
+    transform: scale(0) !important;
+}
+
+.button-top-text.no-space {
+    margin-top: 0;
+}
+
+#correct.button {
+    border: 2px solid var(--green);
+    color: var(--green);
+}
+
+#correct.button:hover {
+    background-color: var(--green);
+    color: white;
+}
+
+#incorrect.button {
+    border: 2px solid var(--lightish-red);
+    color: var(--lightish-red);
+}
+
+#incorrect.button:hover {
+    background-color: var(--lightish-red);
+    color: white;
+}
+
+.blank-answer.dark-green {
+    color: var(--dark-green);
+}
+
+.blank-answer.red {
+    color: var(--red);
 }
