@@ -845,7 +845,7 @@ form.fill-in-blanks, form.radio, form.test, .module, #mc-answer, .unexp-sliders,
 }
 
 form.fill-in-blanks .button, form.radio .button, form.test .button, .module .button, 
-.button.orange, .next-slide {
+.button.orange, .val-next {
     display: block;
     height: calc(32px + 0.8vw);
     border-radius: 10px !important;

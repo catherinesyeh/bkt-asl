@@ -207,7 +207,7 @@
                 Hopefully, you saw that when P(guess) and/or P(slip) was <b>&gt; 0.5</b>, P(init) increased more if you answered incorrectly rather than correctly
                 (and sometimes P(init) might even <i>decrease</i> with correct answers!).
             </p>
-            <p> 
+            <p>
                 Weird, right? This is an example of <b>model degeneracy</b>, which is when the model does not behave as expected due to inappropriate parameter values.
             </p>
             <p>
@@ -309,7 +309,7 @@
                         </select>
                         <p class="inline">after you stop reviewing the material.</p>
                     </div>
-                    <input class="button next-slide" id="b9" title="Submit answer" type="button" value="Submit answer">
+                    <input class="button val-next" id="b9" title="Submit answer" type="button" value="Submit answer">
                 </div>
             </div>
         </div>
@@ -341,6 +341,81 @@
                 Take a moment to think about this question and when you're ready, click the button below to return to the main scenario menu.
             </p>
             <p class="align-right"><span class="link return-to-menu" title="Back" mod="forgetting">&larr; Go Back</span></p>
+        </div>
+    </section>
+    <!-- SPEED -->
+    <!-- Slide 11 -->
+    <section id="speed-mod" class="hide" mod="speed">
+        <div class="content">
+            <h3>
+                What is the Role of Speed in BKT?
+            </h3>
+            <p class="center"><i>Read the scenario below and then answer the questions.</i></p>
+            <p>
+                Mac and Cheese are two students being tested on their ASL knowledge. If both students get the exact same score, but Mac takes 10 minutes
+                to finish the test while Cheese takes 3 hours, who will have the higher P(init) according to BKT?
+            </p>
+            <div class="button-container">
+                <div class="buttons two-opt">
+                    <input class="button choice" id="Mac" title="Mac" type="button" value="Mac">
+                    <input class="button choice" id="Cheese" title="Cheese" type="button" value="Cheese">
+                </div>
+            </div>
+            <div class="init-ans hide">
+                <p class="reveal-ans">
+                    Well, it turns out that the answer is <b>neither</b>! BKT doesn't have a parameter for time, so the algorithm doesn't care how fast or slow you
+                    submit your answer (even if it took you a year to press submit!). All it pays attention to is whether you get it correct or not, so Mac
+                    and Cheese would actually have the <i>same</i> P(init) in this case.
+                </p>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#speed-blanks"></i>
+        </div>
+    </section>
+    <!-- Slide 12 -->
+    <section id="speed-blanks" class="hide" mod="speed">
+        <div class="content">
+            <p>
+                However, as you may be thinking, this behavior of BKT isn't the most intuitive and doesn't really reflect how things work in the real life. Think about it.
+                The time it takes you to complete something (aka. your speed) is often an indicator of level of mastery. So in real life, would Mac or Cheese have the higher P(init)?
+            </p>
+            <form id="q10" class="fill-in-blanks">
+                <p class="no-space">
+                    <i class="light-text">Fill in the blanks below!</i>
+                </p>
+                <p class="inline">
+                    According to BKT, Mac's P(init) is
+                </p>
+                <select id="blank1" name="speed1" title="Fill in the blank!" correct="same">
+                    <option value="higher">higher than</option>
+                    <option value="same">the same as</option>
+                    <option value="lower">lower than</option>
+                </select>
+                <p class="inline">Cheese's P(init). But in real life, Mac's P(init) should likely be</p>
+                <select id="blank2" name="speed2" title="Fill in the blank!" correct="higher">
+                    <option value="higher">higher than</option>
+                    <option value="same">the same as</option>
+                    <option value="lower">lower than</option>
+                </select>
+                <p class="inline">Cheese's P(init).</p>
+                <input class="button blank-reveal" id="b10" title="Submit answer" type="button" value="Submit answer">
+            </form>
+            <p class="reveal-text hide">
+                Great work!
+            </p>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#speed-explain"></i>
+        </div>
+    </section>
+    <!-- Slide 13 -->
+    <section id="speed-explain" class="hide" mod="speed">
+        <div class="content">
+            <p>
+                Why is this true? Well, if a student completes a test faster, that may suggest higher recall and fluency (and thus a higher P(init))
+                with the material than a student who gets the same score but takes longer to finish the same test. In other words, correctness is important,
+                but it's not the only thing that matters when it comes to assessing learning and mastery, and thus, BKT's predictions may not always be reliable.
+            </p><p>
+                When you're ready to continue, press the button below to return to the main scenario menu.
+            </p>
+            <p class="align-right"><span class="link return-to-menu" title="Back" mod="speed">&larr; Go Back</span></p>
         </div>
     </section>
     <script src="js/modules.js"></script>

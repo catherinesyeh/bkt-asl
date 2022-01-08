@@ -222,6 +222,10 @@ $(document).ready(function () {
         $.fn.freezeMastery($(this)); // freeze mastery bar
     })
 
+    $('#speed-button').on('click', function () { // load 'speed' module
+        $.fn.freezeMastery($(this)); // freeze mastery bar
+    })
+
     $('.button.choice.mc').on('click', function () { // user answered multiple choice
         clearInterval(newWord); // simulate wrong answer
         setTimeout(() => {
@@ -249,7 +253,7 @@ $(document).ready(function () {
         }, 500);
     })
 
-    $('.button.next-slide').on('click', function () { // validate and go to next slide
+    $('.button.val-next').on('click', function () { // validate and go to next slide
         $.fn.validateQ($(this));
     })
 });
