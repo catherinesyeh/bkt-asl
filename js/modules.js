@@ -77,6 +77,8 @@ $(document).ready(function () {
         var menu = $('#mod-menu');
         var hash = '#' + menu.attr('id');
         var prog = $("#you-label");
+        var complete = parseFloat($('#complete-mods').html());
+        complete += 1;
 
         setTimeout(() => {
             $('#mastery').removeClass('clicked'); // unfreeze main mastery bar
@@ -110,8 +112,14 @@ $(document).ready(function () {
             prog.html("<span>&larr;</span> You (0." + newProg + ")");
 
             // update module tracker
-            var complete = parseFloat($('#complete-mods').html());
-            $('#complete-mods').html(complete + 1);
+            $('#complete-mods').html(complete);
+
+            setTimeout(() => {
+                if (complete == 4) { // user reached mastery
+                    alert("Congratulations! You've achieved mastery. After exiting this pop-up, press the next button to continue.");
+                    $(".next-page").removeClass("hide");
+                }
+            }, 500);
         }, 500);
     }
 
@@ -172,7 +180,7 @@ $(document).ready(function () {
         $("#mini-mastery #progress").css("width", "40%");
     }
 
-    $.fn.validateQ = function (button) { // validate user answer + go to next slide
+    $.fn.validateQ = function () { // validate user answer + go to next slide
         var input = $('#forget-input');
         var num = input.val();
         if (num == '' || isNaN(parseInt(num))) { // check for valid user input
@@ -254,6 +262,6 @@ $(document).ready(function () {
     })
 
     $('.button.val-next').on('click', function () { // validate and go to next slide
-        $.fn.validateQ($(this));
+        $.fn.validateQ();
     })
 });
