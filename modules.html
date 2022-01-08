@@ -256,6 +256,93 @@
             </div>
         </div>
     </section>
+    <!-- FORGETTING -->
+    <!-- Slide 8 -->
+    <section id="forgetting-mod" class="hide" mod="forgetting">
+        <div class="content">
+            <h3>
+                When Do You Lose Mastery?
+            </h3>
+            <p class="center"><i>Read the scenario below and then answer the questions.</i></p>
+            <p>
+                Kris is a student who has been learning ASL for 3 months. Today, she tested her knowledge of fingerspelling with BKT
+                and received a P(init) of <b>0.8</b>. If Kris doesn't review or practice fingerspelling after today, what do you predict her P(init) to be in:
+            </p>
+            <div id="forget-q">
+                <div id="forget-sliders" class="sliders test">
+                    <p class="button-top-text no-space">Drag the sliders!</p>
+                    <div class="slider-all">
+                        <h5 id="slip-label" class="slider-param-label dark-orange">5 days: <span class="prob" id="5day-prob">0.8</span></h5>
+                        <div class="slider-container">
+                            <p class="slider-label">0</p>
+                            <input type="range" min="0.0" max="1.0" value="0.8" step="0.01" class="slider orange" id="5day-slider" />
+                            <p class="slider-label">1</p>
+                        </div>
+                    </div>
+                    <div class="slider-all">
+                        <h5 id="guess-label" class="slider-param-label pink">2 months: <span class="prob" id="2month-prob">0.8</span></h5>
+                        <div class="slider-container">
+                            <p class="slider-label">0</p>
+                            <input type="range" min="0.0" max="1.0" value="0.8" step="0.01" class="slider pink" id="2month-slider" />
+                            <p class="slider-label">1</p>
+                        </div>
+                    </div>
+                    <div class="slider-all">
+                        <h5 id="transit-label" class="slider-param-label darker-pink">1 year: <span class="prob" id="1year-prob">0.8</span></h5>
+                        <div class="slider-container">
+                            <p class="slider-label">0</p>
+                            <input type="range" min="0.0" max="1.0" value="0.8" step="0.01" class="slider dark-pink" id="1year-slider" />
+                            <p class="slider-label">1</p>
+                        </div>
+                    </div>
+                    <input class="button dark center next-q" id="b2" title="Done" type="button" value="Done">
+                </div>
+                <div id="forget-decrease" class="hide">
+                    <p class="button-top-text no-space space-bottom">In general, when do you think P(init) starts decreasing? Enter your answer below.</p>
+                    <div>
+                        <input class="text forget" type="text" id="forget-input" title="Type number here..." placeholder="Type number here..." output="#forget-guess" />
+                        <select id="forget-select" name="forget-select" title="Fill in the blank!">
+                            <option value="days">days</option>
+                            <option value="weeks">weeks</option>
+                            <option value="months">months</option>
+                            <option value="years">months</option>
+                        </select>
+                        <p class="inline">after you stop reviewing the material.</p>
+                    </div>
+                    <input class="button next-slide" id="b9" title="Submit answer" type="button" value="Submit answer">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Slide 9 -->
+    <section id="forget-answer" class="hide" mod="forgetting">
+        <div class="content">
+            <p id="forget-guess" class="output"><b>You guessed:</b> </p>
+            <p>Alright, now that you’ve submitted your guesses, it's time to reveal the answer! BKT will start decreasing your P(init)...</p>
+            <p><span id="reveal-forget" title="Tell me!" class="link reveal">Tell me!</span></p>
+            <div class="reveal-text hide">
+                <p class="emphasis">NEVER!</p>
+                <p>
+                    Did we get you? Sorry, that was a trick question :). But don't feel too bad if you got the answer wrong. You were probably thinking
+                    about how Kris (and people in general) tend to forget things over time. And you're totally right! But BKT doesn't know this, which is why
+                    forgetting is one of the algorithm's key limitations.
+                </p>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#forget-explain"></i>
+        </div>
+    </section>
+    <!-- Slide 10 -->
+    <section id="forget-explain" class="hide" mod="forgetting">
+        <div class="content">
+            <p>
+                Not being able to handle forgetting may impact the reliability of BKT's predictions in certain situations.
+                For example, in a more general educational context, how might summer vacation lead to problematic estimates of P(init) by BKT?
+            </p><p>
+                Take a moment to think about this question and when you're ready, click the button below to return to the main scenario menu.
+            </p>
+            <p class="align-right"><span class="link return-to-menu" title="Back" mod="forgetting">&larr; Go Back</span></p>
+        </div>
+    </section>
     <script src="js/modules.js"></script>
     <script src="js/script.js"></script>
 </body>

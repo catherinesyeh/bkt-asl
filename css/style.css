@@ -156,7 +156,7 @@ p:last-child {
     margin-bottom: 0;
 }
 
-p.center {
+p.center, div.center {
     text-align: center;
 }
 
@@ -171,7 +171,7 @@ a:hover, .link:hover {
     color: var(--dark-pink);
 }
 
-input, .slider-label, select, .slider-param-label span, .expand, 
+input, .slider-label, select, .slider-param-label span, .expand,
 .button.cont, .button.again, .module .button, .button.orange, .mini-label {
     font-family: "Roboto Mono", monospace;
     font-size: calc(12px + 0.4vw);
@@ -837,14 +837,15 @@ form .button {
     margin-bottom: 0 !important;
 }
 
-form.fill-in-blanks, form.radio, form.test, .module, #mc-answer, .unexp-sliders {
+form.fill-in-blanks, form.radio, form.test, .module, #mc-answer, .unexp-sliders, #forget-q {
     padding: calc(20px + 1vw);
     border: 2px solid var(--extra-light-text);
     border-radius: 10px;
     margin-bottom: calc(18px + 0.5vw);
 }
 
-form.fill-in-blanks .button, form.radio .button, form.test .button, .module .button, .button.orange {
+form.fill-in-blanks .button, form.radio .button, form.test .button, .module .button, 
+.button.orange, .next-slide {
     display: block;
     height: calc(32px + 0.8vw);
     border-radius: 10px !important;
@@ -1442,7 +1443,7 @@ form .test-q .button:hover {
     margin-bottom: 0;
 }
 
-#unexp-q.hide, #unexp-slide.hide, .reload-unexp.hide {
+#unexp-q.hide, #unexp-slide.hide, .reload-unexp.hide, #forget-decrease.hide, #forget-sliders.hide {
     height: 0 !important;
     min-height: 0 !important;
     transform: scale(0) !important;
@@ -1478,4 +1479,29 @@ form .test-q .button:hover {
 
 .blank-answer.red {
     color: var(--red);
+}
+
+/* FORGETTING MODULE */
+.text.forget {
+    height: calc(32px + 0.8vw);
+    width: auto;
+    padding-left: calc(10px + 0.2vw);
+    padding-right: calc(24px + 1vw);
+    border: 2px solid var(--light-pink);
+    border-radius: 10px;
+    transition: 0.5s;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.space-bottom {
+    margin-bottom: calc(10px + 0.5vw) !important;
+}
+
+#forget-decrease, #forget-decrease .button-top-text {
+    text-align: left !important;
 }

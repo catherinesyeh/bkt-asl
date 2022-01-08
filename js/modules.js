@@ -96,7 +96,7 @@ $(document).ready(function () {
 
             // mark module as complete
             var module = $(".module[mod='" + mod + "']").first();
-            $("span[mod='" + mod + "']").html('Completed');
+            $(".module span[mod='" + mod + "']").html('Completed');
             module.addClass('clicked');
 
             // update mastery bar
@@ -172,6 +172,38 @@ $(document).ready(function () {
         $("#mini-mastery #progress").css("width", "40%");
     }
 
+    $.fn.validateQ = function (button) { // validate user answer + go to next slide
+        var input = $('#forget-input');
+        var num = input.val();
+        if (num == '' || isNaN(parseInt(num))) { // check for valid user input
+            alert('Please enter a number.');
+            return;
+        }
+
+        // get user guess
+        var guess = num + ' ' + $('#forget-select').val();
+        var output = $(input.attr('output'));
+        var next_slide = output.parent().parent();
+        var this_slide = next_slide.prev();
+
+        // fade current slide and reveal next slide
+        this_slide.addClass("clicked");
+        output.html(output.html() + guess);
+        next_slide.removeClass("hide");
+
+        // store hash
+        var hash = '#' + next_slide.attr('id');
+
+        // using jQuery's animate() method to add smooth page scroll
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top
+        }, function () {
+            // add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+        });
+
+    }
+
     // CALL FUNCTIONS
     $('.return-to-menu').on('click', function () { // update module menu
         $.fn.updateMenu($(this));
@@ -183,6 +215,10 @@ $(document).ready(function () {
     })
 
     $('#unexpected-button').on('click', function () { // load 'unexpected behavior' module
+        $.fn.freezeMastery($(this)); // freeze mastery bar
+    })
+
+    $('#forgetting-button').on('click', function () { // load 'forgetting' module
         $.fn.freezeMastery($(this)); // freeze mastery bar
     })
 
@@ -203,5 +239,17 @@ $(document).ready(function () {
 
     $('.sliders.test .slider').change(function () { // update slider value
         $.fn.updateSlider($(this));
+    })
+
+    $('.button.next-q').on('click', function () { // load next question
+        var parent = $(this).parent();
+        setTimeout(() => {
+            parent.addClass('hide');
+            parent.next().removeClass('hide');
+        }, 500);
+    })
+
+    $('.button.next-slide').on('click', function () { // validate and go to next slide
+        $.fn.validateQ($(this));
     })
 });
