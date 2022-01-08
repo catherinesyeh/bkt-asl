@@ -318,7 +318,7 @@ $(document).ready(function () {
 
     $('.next-page').on('click', function () { // user pressed next page button
         $(this).addClass("clicked");
-        $('.last-slide').addClass("clicked");
+        $(this).parent().addClass("clicked");
     });
 
     $('.button.choice').on('click', function () { // user answered multiple choice
