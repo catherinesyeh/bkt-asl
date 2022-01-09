@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bayesian Knowledge Tracing</title>
+    <meta name="description" content="Explaining Bayesian Knowledge Tracing Using ASL">
+    <meta property="og:image" content="img/socimg.png" />
+    <link rel="stylesheet" href="css/modules.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<!-- END -->
+<body>
+    <!-- Mastery Bar -->
+    <div id="mastery">
+        <div id="progress" style="width:95%"><span>P(init)</span></div>
+        <h5 id="you-label" class="bar-label" style="left:95%"><span>&larr;</span> You (0.95)</h5>
+        <div id="labels">
+            <h5 class="left">0</h5>
+            <h5 class="right">1</h5>
+        </div>
+        <h5 class="bar-label right" style="right:5%">Mastery (0.95) <span>&rarr;</span></h5>
+        <div id="mastery-line"></div>
+    </div>
+    <!-- Slide 1 -->
+    <section id='end-msg' class="auto-cont">
+        <div class='content'>
+            <h3>Congratulations, you're a BKT master!</h3>
+            <p>
+                Awesome job! You've completed all the BKT scenarios and attained mastery. We hope you learned something new today
+                and enjoyed this introduction to ASL and BKT.
+            </p>
+
+            <img id="thank-you" src="gif/thank-you.gif" title="GIF of someone signing 'thank you!'"/>
+            <p class="button-top-text">Thank you!</p>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#resources"></i>
+        </div>
+    </section>
+    <!-- Slide 2 -->
+    <section id="resources" class="hide">
+        <div class="content">
+            <p>
+                Here are some resources if you'd like to learn more about ASL:
+            </p>
+            <ul>
+                <li><a href="https://asl.ms/" class="darker-pink" target="_blank" title="ASL Fingerspelling Practice">ASL Fingerspelling Practice</a></li>
+                <li><a href="https://fingerspelling.xyz/" class="pink" target="_blank" title="Learn Fingerspelling with Machine Learning">Learn Fingerspelling with Machine Learning</a></li>
+                <li><a href="https://asluniversity.com/" class="light-pink" target="_blank" title="ASL University">ASL University</a></li>
+                <li><a href="http://aslized.org/" class="orange" target="_blank" title="ASLized Library">ASLized Library</a></li>
+                <li><a href="https://www.gallaudet.edu/asl-connect/asl-for-free/" class="dark-orange" target="_blank" title="Learn ASL for Free">Learn ASL for Free</a></li>
+            </ul>
+        </div>
+        <p id="credits">Created by Catherine Yeh and Iris Howley, Williams College. Funding for this research was provided by the IIS:Cyber-Human Systems program: NSF CISE award number 1849984.</p>
+    </section>
+    <script src="js/confetti.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

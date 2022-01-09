@@ -160,6 +160,26 @@ p.center, div.center {
     text-align: center;
 }
 
+ul {
+    padding-inline-start: calc(28px + 1vw);
+}
+
+li {
+    font-family: "Source Sans Pro", sans-serif;
+    line-height: calc(24px + 0.5vw);
+    transition: 0.5s;
+    width: fit-content;
+}
+
+li a {
+    margin-left: calc(5px + 0.5vw);
+}
+
+li:hover {
+    margin-left: calc(5px + 0.5vw);
+    transition: 0.5s;
+}
+
 a, .link {
     text-decoration: underline;
     color: var(--text);
@@ -1504,4 +1524,27 @@ form .test-q .button:hover {
 
 #forget-decrease, #forget-decrease .button-top-text {
     text-align: left !important;
+}
+
+/* LAST PAGE */
+#resources {
+    background: linear-gradient(to top, var(--extra-light-pink), white 30%);
+}
+#thank-you {
+    max-width: 350px;
+    width: 80%;
+}
+
+#credits {
+    color: var(--light-text);
+    font-style: italic;
+    margin-top: calc(24px + 0.5vw);
+    font-size: smaller;
+    line-height: calc(24px + 0.5vw);
+    position: absolute;
+    padding: calc(20px + 0.5vw);
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
 }

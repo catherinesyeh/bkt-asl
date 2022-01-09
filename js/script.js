@@ -25,7 +25,7 @@ $(document).ready(function () {
                 window.location.hash = hash;
             });
 
-            if (arrow.attr('update') !== "") {
+            if (arrow.attr('update') !== undefined && arrow.attr('update') !== "") {
                 setTimeout(() => {
                     // update mastery bar
                     var newProg = arrow.attr('update');
