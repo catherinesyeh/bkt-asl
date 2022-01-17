@@ -27,6 +27,7 @@ $(document).ready(function () {
     var newWord = null;
     $.fn.incMod = function () {
         var word = $('#mc-question').attr('word'); // get word
+        word += " ";
         var letter = $('#test-img');
 
         var i = 0; // index
@@ -50,7 +51,7 @@ $(document).ready(function () {
             setTimeout(() => {
                 letter.attr("src", newImg);
             }, 100);
-        }, 500);
+        }, 700);
     }
 
     $.fn.updateMastery = function (label, correct, slip, guess, transit) {
