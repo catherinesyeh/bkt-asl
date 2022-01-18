@@ -61,9 +61,9 @@ $(document).ready(function () {
 
     // Load next slide after user submits answer
     $.fn.nextSlideOnInput = function (input, button, output) {
-        if (input.val() == '') { // check for user input
+        if (input.val() == null || input.val() == '') { // check for user input
             alert('Please enter a ' + output.attr('id') + '.');
-            return;
+            return false;
         }
 
         input.blur(); // unfocus cursor
@@ -134,7 +134,7 @@ $(document).ready(function () {
             var choice = $(".radio-choice input[type='radio']:checked")[0];
             if (choice == null) { // check for user input
                 alert('Please select an option.');
-                return;
+                return false;
             }
             if (choice.getAttribute("correct") == "no") { // user wrong
                 ans.innerHTML = "Actually" + ans.innerHTML.substring(3);
@@ -185,7 +185,7 @@ $(document).ready(function () {
 
         if (!correct) { // ask user to try again
             alert('Almost there! Please correct the questions outlined in red.');
-            return;
+            return false;
         }
 
         // otherwise all correct and can move on!
@@ -230,10 +230,10 @@ $(document).ready(function () {
 
         $('#' + form.attr('id') + ' select').each(function () {
             var val = $(this).val();
-            if (unique.has(val)) { // duplicate answer
+            if (val == null || val == '' || unique.has(val)) { // empty/duplicate answer
                 valid = false;
                 alert(form.attr('message'));
-                return;
+                return false;
             }
             unique.add(val); // add to set
         });
@@ -260,7 +260,7 @@ $(document).ready(function () {
 
         if (!correct) { // ask user to try again
             alert('Almost there! Please correct the questions outlined in red.');
-            return;
+            return false;
         }
 
         $.fn.revealRest(button); // if valid, reveal rest of slide

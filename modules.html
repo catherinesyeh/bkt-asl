@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <a class="next-page hide" title="Next Page" href="end" target="_blank">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+        <a class="next-page hide" title="Next Page" href="end" target="_self">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
     </section>
     <!-- INCORRECT -->
     <!-- Slide 2 -->
@@ -233,11 +233,13 @@
                     If the probability of guessing is &gt; 0.5, this suggests that a student who doesn't know the skill is more likely to get the question
                 </p>
                 <select id="blank1" name="degen1" title="Fill in the blank!" correct="right">
+                    <option disabled selected value=""> -- select -- </option>
                     <option value="right">right</option>
                     <option value="wrong">wrong</option>
                 </select>
                 <p class="inline">than</p>
                 <select id="blank2" name="degen2" title="Fill in the blank!" correct="wrong">
+                    <option disabled selected value=""> -- select -- </option>
                     <option value="right">right</option>
                     <option value="wrong">wrong</option>
                 </select>
@@ -247,7 +249,7 @@
             <div class="reveal-text hide">
                 <p>
                     You got it! This is why we often set a maximum threshold for P(slip) and P(guess).
-                    To be extra conservative, P(slip) is typically bounded at 0.1 and P(guess) is typically bounded at 0.3.
+                    To be extra conservative, P(slip) is typically bounded at <b>0.1</b> and P(guess) is typically bounded at <b>0.3</b>.
                     This helps us avoid any unexpected behavior (i.e., model degeneracy) from BKT.
                 </p>
                 <p>
@@ -303,10 +305,11 @@
                     <div>
                         <input class="text forget" type="text" id="forget-input" title="Type number here..." placeholder="Type number here..." output="#forget-guess" />
                         <select id="forget-select" name="forget-select" title="Fill in the blank!">
+                            <option disabled selected value=""> -- select -- </option>
                             <option value="days">days</option>
                             <option value="weeks">weeks</option>
                             <option value="months">months</option>
-                            <option value="years">months</option>
+                            <option value="years">years</option>
                         </select>
                         <p class="inline">after you stop reviewing the material.</p>
                     </div>
@@ -387,12 +390,14 @@
                     According to BKT, Mac's P(init) is
                 </p>
                 <select id="blank1" name="speed1" title="Fill in the blank!" correct="same">
+                    <option disabled selected value=""> -- select -- </option>
                     <option value="higher">higher than</option>
                     <option value="same">the same as</option>
                     <option value="lower">lower than</option>
                 </select>
                 <p class="inline">Cheese's P(init). But in real life, Mac's P(init) should likely be</p>
                 <select id="blank2" name="speed2" title="Fill in the blank!" correct="higher">
+                    <option disabled selected value=""> -- select -- </option>
                     <option value="higher">higher than</option>
                     <option value="same">the same as</option>
                     <option value="lower">lower than</option>

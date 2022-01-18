@@ -203,7 +203,7 @@ $(document).ready(function () {
                 $('.test-q').first().addClass("hide");
                 $('#congrats-msg').removeClass("hide");
                 alert('You did it! Congrats on achieving mastery!')
-                return;
+                return true;
             } // else, continue
         }, 1000);
     }
@@ -214,7 +214,7 @@ $(document).ready(function () {
         var val = input.val().toLowerCase();
         if (val == '') { // check for user input
             alert('Please enter a guess.');
-            return;
+            return false;
         }
 
         input.blur(); // unfocus cursor

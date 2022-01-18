@@ -131,12 +131,12 @@ $(document).ready(function () {
         if (button.attr('degen') == 'no') { // normal param values
             if (slip >= 0.5 || guess >= 0.5) {
                 alert('Please make sure P(slip) and P(guess) are < 0.5.');
-                return;
+                return false;
             }
         } else { // degenerate values
             if (slip <= 0.5 || guess <= 0.5) {
                 alert('Please make sure P(slip) and P(guess) are > 0.5.');
-                return;
+                return false;
             }
         }
 
@@ -183,14 +183,18 @@ $(document).ready(function () {
 
     $.fn.validateQ = function () { // validate user answer + go to next slide
         var input = $('#forget-input');
+        var time = $('#forget-select').val();
         var num = input.val();
-        if (num == '' || isNaN(parseInt(num))) { // check for valid user input
+        if (num == null || num == '' || isNaN(parseInt(num))) { // check for valid user input
             alert('Please enter a number.');
-            return;
+            return false;
+        } else if (time == null || time == '') {
+            alert('Please choose an option from the dropdown menu.');
+            return false;
         }
 
         // get user guess
-        var guess = num + ' ' + $('#forget-select').val();
+        var guess = num + ' ' + time;
         var output = $(input.attr('output'));
         var next_slide = output.parent().parent();
         var this_slide = next_slide.prev();
