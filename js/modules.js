@@ -170,6 +170,7 @@ $(document).ready(function () {
         $('#unexp-q .reveal-ans').html(ans_msg);
         $('#unexp-q').addClass('hide');
 
+        $('#unexp-word').html('Now');
         $('#unexp-direction').html('&gt; 0.5');
         $('#unexp-slide #sim').attr('degen', 'yes');
         $('#unexp-slide').removeClass('hide');
