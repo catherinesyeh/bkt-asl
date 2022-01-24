@@ -162,6 +162,7 @@ p.center, div.center {
 
 ul {
     padding-inline-start: calc(28px + 1vw);
+    margin-bottom: calc(24px + 0.5vw);
 }
 
 li {
