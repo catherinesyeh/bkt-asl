@@ -105,7 +105,7 @@ $(document).ready(function () {
         // time to spell word
         var letter = $('#test-img');
         letter.next().next().attr("ans", word); // store word as answer
-        word += " ";
+        word += "  ";
 
         var i = 0; // index
         var char = word.charAt(i);
