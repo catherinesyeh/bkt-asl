@@ -1406,7 +1406,7 @@ form .test-q .button:hover {
 
 /* INCORRECT MODULE */
 @media (max-width: 1200px) {
-    .two-grid.test {
+    #mc-answer {
         grid-template-columns: 1fr 2fr !important;
     }
 }
