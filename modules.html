@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Bayesian Knowledge Tracing</title>
+    <meta name="description" content="Explaining Bayesian Knowledge Tracing Using ASL">
+    <meta property="og:image" content="img/socimg.png" />
+    <link rel="stylesheet" href="css/modules.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="img/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<!-- MODULES -->
+<body>
+    <!-- Mastery Bar -->
+    <div id="mastery">
+        <div id="progress" style="width:55%"><span>P(init)</span></div>
+        <h5 id="you-label" class="bar-label" style="left:55%"><span>&larr;</span> You (0.55)</h5>
+        <div id="labels">
+            <h5 class="left">0</h5>
+            <h5 class="right">1</h5>
+        </div>
+        <h5 class="bar-label right" style="right:5%">Mastery (0.95) <span>&rarr;</span></h5>
+        <div id="mastery-line"></div>
+    </div>
+    <!-- Slide 1 -->
+    <section id='mod-menu'>
+        <div class='content'>
+            <p>
+                Now, let's explore BKT more deeply to find out more about its limitations and behavior in different situations.
+                Complete all four scenarios below to proceed.
+            </p>
+            <p id="mod-tracker" class="no-space"><span id="complete-mods">0</span> / 4 scenarios complete</p>
+            <div id="mod-grid" class="two-grid">
+                <div class="module" mod="incorrect">
+                    <h5>How do Incorrect Answers Impact Mastery?</h5>
+                    <a class="button dark" id="incorrect-button" title="Begin"><span mod="incorrect">Begin</span></a>
+                </div>
+                <div class="module" mod="unexpected">
+                    <h5>What Causes Unexpected Model Behavior?</h5>
+                    <a class="button dark" id="unexpected-button" title="Begin"><span mod="unexpected">Begin</span></a>
+                </div>
+                <div class="module" mod="forgetting">
+                    <h5>When Do You Lose Mastery?</h5>
+                    <a class="button dark" id="forgetting-button" title="Begin"><span mod="forgetting">Begin</span></a>
+                </div>
+                <div class="module" mod="speed">
+                    <h5>What is the Role of Speed in BKT?</h5>
+                    <a class="button dark" id="speed-button" title="Begin"><span mod="speed">Begin</span></a>
+                </div>
+            </div>
+        </div>
+        <a class="next-page hide" title="Next Page" href="end" target="_self">Next <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+    </section>
+    <!-- INCORRECT -->
+    <!-- Slide 2 -->
+    <section id="incorrect-mod" class="hide" mod="incorrect">
+        <div class="content">
+            <h3>
+                How do Incorrect Answers Impact Mastery?
+            </h3>
+            <p>
+                Answer the multiple-choice question below. <i>Pay attention to what happens to your P(init) after you submit your answer.</i>
+            </p>
+            <div id="mini-mastery" class="mc">
+                <h5 class="left">0</h5>
+                <div class="progress-bar">
+                    <div id="progress" style="width:25%"><span><b>P(init):</b> 0.25</span></div>
+                    <div id="mastery-line"></div>
+                </div>
+                <h5 class="right">1</h5>
+            </div>
+            <div id="mc-answer" class="two-grid test">
+                <div id="mc-question" word="dog">
+                    <img id="test-img" src="gif/letters/blank.gif" />
+                </div>
+                <div>
+                    <div class="button-container mc">
+                        <h5 class="button-top-text bold">What is the word being signed?</h5>
+                        <p class="button-top-text">Hint: There may not be a correct answer.</p>
+                        <div class="buttons four-opt">
+                            <input class="button choice mc" id="bat" title="Bat" type="button" value="Bat" correct="no">
+                            <input class="button choice mc" id="pen" title="Pen" type="button" value="Pen" correct="no">
+                            <input class="button choice mc" id="log" title="Log" type="button" value="Log" correct="no">
+                            <input class="button choice mc" id="car" title="Car" type="button" value="Car" correct="no">
+                        </div>
+                    </div>
+                    <div class="init-ans hide">
+                        <p class="reveal-ans mc center">Sorry, that is <span class="red">incorrect</span>. The correct answer is: <b>dog</b>.</p>
+                    </div>
+                </div>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#inc-explain"></i>
+        </div>
+    </section>
+    <!-- Slide 3 -->
+    <section id="inc-explain" class="hide" mod="incorrect">
+        <div class="content">
+            <p>
+                Did you notice that your P(init) increased, even though you got the answer wrong? <i>We promise there really wasn't a correct answer option.</i>
+                This is another interesting characteristic of BKT, but it isn't necessarily a flaw.
+            </p>
+            <p>
+                Why might it make sense for P(init) to increase regardless of the correctness of your answer?
+                <span id="reveal-inc" title="Tell me!" class="link reveal">Tell me!</span>
+            </p>
+            <p class="reveal-text hide">
+                Well, BKT considers every answer, wrong or right, as a learning opportunity that brings you one step closer to mastery.
+                As you might have experienced in real life, reviewing incorrect answers often helps to solidify your knowledge even more
+                and reduce the chance that you'll make the same mistake again.
+            </p>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#inc-think"></i>
+        </div>
+    </section>
+    <!-- Slide 4 -->
+    <section id="inc-think" class="hide" mod="incorrect">
+        <div class="content">
+            <p>
+                Do you think answering incorrectly should always increase P(init). Why or why not?
+            </p>
+            <p>
+                Take a moment to think about this question and when you're ready, click the button below to return to the main scenario menu.
+            </p>
+            <p class="align-right"><span class="link return-to-menu" title="Back" mod="incorrect">&larr; Go Back</span></p>
+        </div>
+    </section>
+    <!-- UNEXPECTED -->
+    <!-- Slide 5 -->
+    <section id="unexpected-mod" class="hide" mod="unexpected">
+        <div class="content">
+            <h3>
+                What Causes Unexpected Behavior?
+            </h3>
+            <p>
+                Some parameter values cause BKT to act in ways that don't make a lot of sense. Follow the steps below and keep an eye on how the
+                mastery bars change&#8212;in each case, does P(init) increase more for <i class="dark-green">correct</i> or <i class="red">incorrect</i> answers?
+            </p>
+            <div class="two-grid">
+                <div>
+                    <p class="dark-green no-space mini-label">Correct Answer:</p>
+                    <div id="mini-mastery" class="correct">
+                        <h5 class="left">0</h5>
+                        <div class="progress-bar">
+                            <div id="progress" style="width:40%"><span><b>P(init):</b> 0.40</span></div>
+                            <div id="mastery-line"></div>
+                        </div>
+                        <h5 class="right">1</h5>
+                    </div>
+                </div>
+                <div>
+                    <p class="red no-space mini-label">Incorrect Answer:</p>
+                    <div id="mini-mastery" class="incorrect">
+                        <h5 class="left">0</h5>
+                        <div class="progress-bar">
+                            <div id="progress" style="width:40%"><span><b>P(init):</b> 0.40</span></div>
+                            <div id="mastery-line"></div>
+                        </div>
+                        <h5 class="right">1</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="unexp-sliders">
+                <div id="unexp-slide" class="sliders test">
+                    <p><span id="unexp-word">First</span>, set P(guess) and P(slip) to a value <b id="unexp-direction">&lt; 0.5</b>. When you're ready, press the simulation button below.</p>
+                    <div class="slider-all">
+                        <h5 id="slip-label" class="slider-param-label dark-orange" param="P(slip)">P(slip) / Letter Similarity: <span class="prob" id="slip-prob">0.5</span></h5>
+                        <div class="slider-container">
+                            <p class="slider-label">0</p>
+                            <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider orange" id="slip-slider" />
+                            <p class="slider-label">1</p>
+                        </div>
+                    </div>
+                    <div class="slider-all">
+                        <h5 id="guess-label" class="slider-param-label pink" param="P(guess)">P(guess) / Letter Familiarity: <span class="prob" id="guess-prob">0.5</span></h5>
+                        <div class="slider-container">
+                            <p class="slider-label">0</p>
+                            <input type="range" min="0.0" max="1.0" value="0.5" step="0.01" class="slider pink" id="guess-slider" />
+                            <p class="slider-label">1</p>
+                        </div>
+                    </div>
+                    <input class="button dark center simulate" id="sim" degen="no" title="Simulate Answers" type="button" value="Simulate Answers">
+                </div>
+                <div id="unexp-q" class="hide">
+                    <div class="button-container no-space">
+                        <p class="button-top-text no-space">Which caused a greater increase in mastery?</p>
+                        <div class="buttons">
+                            <input class="button choice" id="correct" title="Correct Answer" type="button" value="Correct Answer" correct="yes">
+                            <input class="button choice" id="incorrect" title="Incorrect Answer" type="button" value="Incorrect Answer" correct="no">
+                        </div>
+                    </div>
+                    <div class="init-ans hide">
+                        <p class="reveal-ans">Yes, <b class="unexp-a">correct</b> answers increase mastery more in this case.</p>
+                        <p class="link reload-unexp" title="Continue">Continue &rarr;</p>
+                    </div>
+                </div>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#model-degeneracy"></i>
+        </div>
+    </section>
+    <!-- Slide 6 -->
+    <section id="model-degeneracy" class="hide no-reveal" mod="unexpected">
+        <div class="content">
+            <p>
+                Hopefully, you saw that when P(guess) and/or P(slip) was <b>&gt; 0.5</b>, P(init) increased more if you answered incorrectly rather than correctly
+                (and sometimes P(init) might even <i>decrease</i> with correct answers!).
+            </p>
+            <p>
+                Weird, right? This is an example of <b>model degeneracy</b>, which is when the model does not behave as expected due to inappropriate parameter values.
+            </p>
+            <p>
+                Let's take a step back and think about why it doesn’t make sense for P(guess) and P(slip) to be too large.
+            </p>
+            <p>
+                For P(slip), if the probability of slipping is &gt; 0.5, this suggests that a student who <u>knows</u> the skill is more likely to get the question
+                <i class="red">wrong</i> than <i class="dark-green">right</i>, which doesn't make any sense.
+            </p>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#degeneracy-blanks"></i>
+        </div>
+    </section>
+    <!-- Slide 7 -->
+    <section id="degeneracy-blanks" class="hide has-reveal" mod="unexpected">
+        <div class="content">
+            <form id="q7" class="fill-in-blanks">
+                <p class="no-space">
+                    <b>Can you apply similar logic to P(guess)?</b>
+                    <i class="light-text">Click to fill in the blanks!</i>
+                </p>
+                <p class="inline">
+                    If the probability of guessing is &gt; 0.5, this suggests that a student who doesn't know the skill is more likely to get the question
+                </p>
+                <select id="blank1" name="degen1" title="Fill in the blank!" correct="right">
+                    <option disabled selected value=""> -- select -- </option>
+                    <option value="right">right</option>
+                    <option value="wrong">wrong</option>
+                </select>
+                <p class="inline">than</p>
+                <select id="blank2" name="degen2" title="Fill in the blank!" correct="wrong">
+                    <option disabled selected value=""> -- select -- </option>
+                    <option value="right">right</option>
+                    <option value="wrong">wrong</option>
+                </select>
+                <p class="inline">.</p>
+                <input class="button blank-reveal" id="b8" title="Submit answer" type="button" value="Submit answer">
+            </form>
+            <div class="reveal-text hide">
+                <p>
+                    You got it! This is why we often set a maximum threshold for P(slip) and P(guess).
+                    To be extra conservative, P(slip) is typically bounded at <b>0.1</b> and P(guess) is typically bounded at <b>0.3</b>.
+                    This helps us avoid any unexpected behavior (i.e., model degeneracy) from BKT.
+                </p>
+                <p>
+                    When you're ready to continue, press the button below to return to the main scenario menu.
+                </p>
+                <p class="align-right"><span class="link return-to-menu" title="Back" mod="unexpected">&larr; Go Back</span></p>
+            </div>
+        </div>
+    </section>
+    <!-- FORGETTING -->
+    <!-- Slide 8 -->
+    <section id="forgetting-mod" class="hide" mod="forgetting">
+        <div class="content">
+            <h3>
+                When Do You Lose Mastery?
+            </h3>
+            <p class="center"><i>Read the scenario below and then answer the questions.</i></p>
+            <p>
+                Kris is a student who has been learning ASL for 3 months. Today, she tested her knowledge of fingerspelling with BKT
+                and received a P(init) of <b>0.8</b>. If Kris doesn't review or practice fingerspelling after today, what do you predict her P(init) to be in:
+            </p>
+            <div id="forget-q">
+                <div id="forget-sliders" class="sliders test">
+                    <p class="button-top-text no-space">Drag the sliders!</p>
+                    <div class="slider-all">
+                        <h5 id="slip-label" class="slider-param-label dark-orange">5 days: <span class="prob" id="5day-prob">0.8</span></h5>
+                        <div class="slider-container">
+                            <p class="slider-label">0</p>
+                            <input type="range" min="0.0" max="1.0" value="0.8" step="0.01" class="slider orange" id="5day-slider" />
+                            <p class="slider-label">1</p>
+                        </div>
+                    </div>
+                    <div class="slider-all">
+                        <h5 id="guess-label" class="slider-param-label pink">2 months: <span class="prob" id="2month-prob">0.8</span></h5>
+                        <div class="slider-container">
+                            <p class="slider-label">0</p>
+                            <input type="range" min="0.0" max="1.0" value="0.8" step="0.01" class="slider pink" id="2month-slider" />
+                            <p class="slider-label">1</p>
+                        </div>
+                    </div>
+                    <div class="slider-all">
+                        <h5 id="transit-label" class="slider-param-label darker-pink">1 year: <span class="prob" id="1year-prob">0.8</span></h5>
+                        <div class="slider-container">
+                            <p class="slider-label">0</p>
+                            <input type="range" min="0.0" max="1.0" value="0.8" step="0.01" class="slider dark-pink" id="1year-slider" />
+                            <p class="slider-label">1</p>
+                        </div>
+                    </div>
+                    <input class="button dark center next-q" id="b2" title="Done" type="button" value="Done">
+                </div>
+                <div id="forget-decrease" class="hide">
+                    <p class="button-top-text no-space space-bottom">In general, when do you think P(init) starts decreasing? Enter your answer below.</p>
+                    <div>
+                        <input class="text forget" type="text" id="forget-input" title="Type number here..." placeholder="Type number here..." output="#forget-guess" />
+                        <select id="forget-select" name="forget-select" title="Fill in the blank!">
+                            <option disabled selected value=""> -- select -- </option>
+                            <option value="days">days</option>
+                            <option value="weeks">weeks</option>
+                            <option value="months">months</option>
+                            <option value="years">years</option>
+                        </select>
+                        <p class="inline">after you stop reviewing the material.</p>
+                    </div>
+                    <input class="button val-next" id="b9" title="Submit answer" type="button" value="Submit answer">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Slide 9 -->
+    <section id="forget-answer" class="hide" mod="forgetting">
+        <div class="content">
+            <p id="forget-guess" class="output"><b>You guessed:</b> </p>
+            <p>Alright, now that you’ve submitted your guesses, it's time to reveal the answer! BKT will start decreasing your P(init)...</p>
+            <p><span id="reveal-forget" title="Tell me!" class="link reveal">Tell me!</span></p>
+            <div class="reveal-text hide">
+                <p class="emphasis">NEVER!</p>
+                <p>
+                    Did we get you? Sorry, that was a trick question :). But don't feel too bad if you got the answer wrong. You were probably thinking
+                    about how Kris (and people in general) tend to forget things over time. And you're totally right! But BKT doesn't know this, which is why
+                    forgetting is one of the algorithm's key limitations.
+                </p>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#forget-explain"></i>
+        </div>
+    </section>
+    <!-- Slide 10 -->
+    <section id="forget-explain" class="hide" mod="forgetting">
+        <div class="content">
+            <p>
+                Not being able to handle forgetting may impact the reliability of BKT's predictions in certain situations.
+                For example, in a more general educational context, how might summer vacation lead to problematic estimates of P(init) by BKT?
+            </p><p>
+                Take a moment to think about this question and when you're ready, click the button below to return to the main scenario menu.
+            </p>
+            <p class="align-right"><span class="link return-to-menu" title="Back" mod="forgetting">&larr; Go Back</span></p>
+        </div>
+    </section>
+    <!-- SPEED -->
+    <!-- Slide 11 -->
+    <section id="speed-mod" class="hide" mod="speed">
+        <div class="content">
+            <h3>
+                What is the Role of Speed in BKT?
+            </h3>
+            <p class="center"><i>Read the scenario below and then answer the questions.</i></p>
+            <p>
+                Mac and Cheese are two students being tested on their ASL knowledge. If both students get the exact same score, but Mac takes 10 minutes
+                to finish the test while Cheese takes 3 hours, who will have the higher P(init) according to BKT?
+            </p>
+            <div class="button-container">
+                <div class="buttons two-opt">
+                    <input class="button choice" id="Mac" title="Mac" type="button" value="Mac">
+                    <input class="button choice" id="Cheese" title="Cheese" type="button" value="Cheese">
+                </div>
+            </div>
+            <div class="init-ans hide">
+                <p class="reveal-ans">
+                    Well, it turns out that the answer is <b>neither</b>! BKT doesn't have a parameter for time, so the algorithm doesn't care how fast or slow you
+                    submit your answer (even if it took you a year to press submit!). All it pays attention to is whether you get it correct or not, so Mac
+                    and Cheese would actually have the <i>same</i> P(init) in this case.
+                </p>
+            </div>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#speed-blanks"></i>
+        </div>
+    </section>
+    <!-- Slide 12 -->
+    <section id="speed-blanks" class="hide" mod="speed">
+        <div class="content">
+            <p>
+                However, as you may be thinking, this behavior of BKT isn't the most intuitive and doesn't really reflect how things work in real life. Think about it.
+                The time it takes you to complete something (aka. your speed) is often an indicator of level of mastery. So in real life, would Mac or Cheese have the higher P(init)?
+            </p>
+            <form id="q10" class="fill-in-blanks">
+                <p class="no-space">
+                    <i class="light-text">Fill in the blanks below!</i>
+                </p>
+                <p class="inline">
+                    According to BKT, Mac's P(init) is
+                </p>
+                <select id="blank1" name="speed1" title="Fill in the blank!" correct="same">
+                    <option disabled selected value=""> -- select -- </option>
+                    <option value="higher">higher than</option>
+                    <option value="same">the same as</option>
+                    <option value="lower">lower than</option>
+                </select>
+                <p class="inline">Cheese's P(init). But in real life, Mac's P(init) should likely be</p>
+                <select id="blank2" name="speed2" title="Fill in the blank!" correct="higher">
+                    <option disabled selected value=""> -- select -- </option>
+                    <option value="higher">higher than</option>
+                    <option value="same">the same as</option>
+                    <option value="lower">lower than</option>
+                </select>
+                <p class="inline">Cheese's P(init).</p>
+                <input class="button blank-reveal" id="b10" title="Submit answer" type="button" value="Submit answer">
+            </form>
+            <p class="reveal-text hide">
+                Great work!
+            </p>
+            <i class="continue hide fa fa-caret-down" title="Continue" aria-hidden="true" link="#speed-explain"></i>
+        </div>
+    </section>
+    <!-- Slide 13 -->
+    <section id="speed-explain" class="hide" mod="speed">
+        <div class="content">
+            <p>
+                Why is this true? Well, if a student completes a test faster, that may suggest higher recall and fluency (and thus a higher P(init))
+                with the material than a student who gets the same score but takes longer to finish the same test. In other words, correctness is important,
+                but it's not the only thing that matters when it comes to assessing learning and mastery, and thus, BKT's predictions may not always be reliable.
+            </p><p>
+                When you're ready to continue, press the button below to return to the main scenario menu.
+            </p>
+            <p class="align-right"><span class="link return-to-menu" title="Back" mod="speed">&larr; Go Back</span></p>
+        </div>
+    </section>
+    <script src="js/modules.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

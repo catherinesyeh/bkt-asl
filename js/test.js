@@ -74,20 +74,10 @@ $(document).ready(function () {
         }, 500);
     }
 
-    // update slider value
-    $.fn.updateSlider = function (slider) {
-        // get parameter name
-        var param = slider.attr('id');
-        param = param.substring(0, param.indexOf('-'));
-
-        // get slider value
-        var val = slider.val();
-
-        // update label
-        $('#' + param + '-prob')[0].innerHTML = val;
-    }
-
     var newWord = null;
+    var speed = 500;
+    var word_list = words;
+    var tested_words = [];
 
     // load new question
     $.fn.loadQuestion = function () {
@@ -101,11 +91,21 @@ $(document).ready(function () {
         button.attr("title", "Submit guess!");
         button.removeClass("next wrong correct");
 
+        if (tested_words.length == word_list.length) {
+            tested_words = []; // empty tested list if already used up all words
+        }
+
         // choose random word
-        var word = words[Math.floor(Math.random() * words.length)];
+        var word = word_list[Math.floor(Math.random() * word_list.length)];
+        while (tested_words.includes(word)) { // make sure word hasn't been tested before
+            word = word_list[Math.floor(Math.random() * word_list.length)];
+        }
+        tested_words.push(word); // add word to already tested list
+
+        // time to spell word
         var letter = $('#test-img');
         letter.next().next().attr("ans", word); // store word as answer
-        word += " ";
+        word += "  ";
 
         var i = 0; // index
         var char = word.charAt(i);
@@ -128,13 +128,46 @@ $(document).ready(function () {
             setTimeout(() => {
                 letter.attr("src", newImg);
             }, 100);
-        }, 500);
+        }, speed);
+    }
+
+    // find range slip/guess prob falls in
+    $.fn.getIndex = function (prob) {
+        const max_ind = ranges.length;
+        for (var i = 0; i < max_ind; i++) {
+            if (prob < ranges[i]) {
+                return max_ind - i;
+            }
+        }
+        return 0;
     }
 
     // start test!
     $.fn.startTest = function () { 
         $('.slider-container').addClass('clicked');
         $('.param-desc').addClass('hide');
+
+        // get param values
+        var slip = $('#slip-slider').val();
+        var guess = $('#guess-slider').val();
+        var transit = $('#transit-slider').val();
+
+        tested_words = [] // reset list of already tested words
+        word_list = words; // reset list of possible words
+        speed = 200 + transit * 1000; // adjust speed of signing
+
+        // filter list of words depending on slip and guess values
+        // higher guess = more familiar letters
+        var mismatch = $.fn.getIndex(guess);
+        word_list = word_list.filter(word => famWord(word, mismatch));
+
+        // higher slip = more similar letters
+        avoid_list = []; // reset list of letters to avoid
+        var sim = $.fn.getIndex(slip);
+        avoidLetters(sim); // choose which letters to avoid accordingly
+        word_list = word_list.filter(word => simWord(word));
+
+        // load first question
         $.fn.loadQuestion();
 
         $('#b7').addClass("hide");
@@ -143,7 +176,7 @@ $(document).ready(function () {
     }
 
     // update mastery
-    $.fn.updateMastery = function (correct, button) {
+    $.fn.updateMastery = function (correct) {
         clearInterval(newWord);
         // get param values
         var init_label = $('#mini-mastery #progress span').first();
@@ -170,7 +203,7 @@ $(document).ready(function () {
                 $('.test-q').first().addClass("hide");
                 $('#congrats-msg').removeClass("hide");
                 alert('You did it! Congrats on achieving mastery!')
-                return;
+                return true;
             } // else, continue
         }, 1000);
     }
@@ -181,9 +214,10 @@ $(document).ready(function () {
         var val = input.val().toLowerCase();
         if (val == '') { // check for user input
             alert('Please enter a guess.');
-            return;
+            return false;
         }
 
+        input.blur(); // unfocus cursor
         // is answer correct?
         var ans = input.attr("ans");
         var correct = true;
@@ -198,7 +232,7 @@ $(document).ready(function () {
             alert('Sorry, that is incorrect. The answer was: ' + ans + '.');
         }
 
-        $.fn.updateMastery(correct, button); // update mastery
+        $.fn.updateMastery(correct); // update mastery
 
         button.attr("value", "Next >");
         button.attr("title", "Next");
@@ -228,6 +262,7 @@ $(document).ready(function () {
 
     $('.test-q input.text').keypress(function (e) { // user pressed enter
         if (e.which == 13) {
+            e.preventDefault();
             $.fn.checkAnswer($(this).next());
         }
     });

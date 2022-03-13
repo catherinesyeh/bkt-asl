@@ -14,7 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-<!-- P(slip) -->
+<!-- TEST -->
 <body>
     <!-- Mastery Bar -->
     <div id="mastery">
@@ -32,7 +32,7 @@
         <div class='content'>
             <h3>Putting it all together</h3>
             <p class="center"><em>It's time to put your knowledge to the test!</em></p>
-            <p id="test-text">How do the settings below relate to the BKT parameters? Answer the questions to the right. <i>The sliders will unlock after you submit your answers.</i></p>
+            <p id="test-text">How do the settings below relate to the BKT parameters? Answer the questions to the right. <i>The sliders will unlock before the test begins.</i></p>
             <div id="mini-mastery" class="hide">
                 <h5 class="left">0</h5>
                 <div class="progress-bar">
@@ -79,7 +79,7 @@
                         </p>
                         <div class="buttons two-opt">
                             <a class="button again" id="ba" title="Try Again">Try Again</a>
-                            <a href="modules.html" target="_blank" class="button cont" id="bc" title="Continue">Continue</a>
+                            <a href="modules" target="_self" class="button cont" id="bc" title="Continue">Continue</a>
                         </div>
                     </div>
                     <div class="test-q hide">
@@ -96,6 +96,7 @@
                             Which parameter is <i>most directly</i> impacted by <b class="dark-orange">letter similarity</b>?
                         </p>
                         <select id="blank1" class="orange" name="sim" title="Fill in the blank!" correct="slip">
+                            <option disabled selected value=""> -- select -- </option>
                             <option value="guess">P(guess)</option>
                             <option value="slip">P(slip)</option>
                             <option value="transit">P(transit)</option>
@@ -104,6 +105,7 @@
                             Which parameter is <i>most directly</i> impacted by <b class="pink">letter familiarity</b>?
                         </p>
                         <select id="blank2" class="pink" name="fam" title="Fill in the blank!" correct="guess">
+                            <option disabled selected value=""> -- select -- </option>
                             <option value="guess">P(guess)</option>
                             <option value="slip">P(slip)</option>
                             <option value="transit">P(transit)</option>
@@ -112,6 +114,7 @@
                             Which parameter is <i>most directly</i> impacted by <b class="darker-pink">time to sign</b>?
                         </p>
                         <select id="blank3" class="dark-pink" name="time" title="Fill in the blank!" correct="transit">
+                            <option disabled selected value=""> -- select -- </option>
                             <option value="guess">P(guess)</option>
                             <option value="slip">P(slip)</option>
                             <option value="transit">P(transit)</option>

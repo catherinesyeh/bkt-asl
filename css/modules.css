@@ -1,0 +1,18 @@
+.bar-label {
+    position: relative !important;
+    display: inline-block !important;
+    left: 0 !important;
+    right: 0 !important;
+}
+
+.bar-label.right {
+    float: right !important;
+}
+
+.bar-label span {
+    display: none;
+}
+
+.bar-label.right span {
+    display: none;
+}

@@ -11,13 +11,10 @@
     }
 
     .bar-label span {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        transform: rotate(90deg) !important;
-        display: inline-block !important;
+        display: none;
     }
 
     .bar-label.right span {
-        transform: rotate(-90deg) !important;
+        display: none;
     }
 }

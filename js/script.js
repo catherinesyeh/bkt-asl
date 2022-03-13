@@ -25,13 +25,13 @@ $(document).ready(function () {
                 window.location.hash = hash;
             });
 
-            if (arrow.attr('update') !== "") {
+            if (arrow.attr('update') !== undefined && arrow.attr('update') !== "") {
                 setTimeout(() => {
                     // update mastery bar
                     var newProg = arrow.attr('update');
                     $("#progress").css("width", newProg + "%");
                     $("#you-label").css("left", newProg + "%");
-                    $("#you-label").html("&larr; You (0." + newProg + ")");
+                    $("#you-label").html("<span>&larr;</span> You (0." + newProg + ")");
                 }, 1000);
             }
 
@@ -61,9 +61,9 @@ $(document).ready(function () {
 
     // Load next slide after user submits answer
     $.fn.nextSlideOnInput = function (input, button, output) {
-        if (input.val() == '') { // check for user input
+        if (input.val() == null || input.val() == '') { // check for user input
             alert('Please enter a ' + output.attr('id') + '.');
-            return;
+            return false;
         }
 
         input.blur(); // unfocus cursor
@@ -128,19 +128,19 @@ $(document).ready(function () {
         var rest = button.parent().parent().next(); // rest of slide
         var ans = rest.children()[0]; // answer
 
-        if (button.hasClass("radio-reveal")) { // for radio butotn questions
+        if (button.hasClass("radio-reveal")) { // for radio button questions
             rest = button.parent().next();
             ans = rest.children()[0];
             var choice = $(".radio-choice input[type='radio']:checked")[0];
             if (choice == null) { // check for user input
                 alert('Please select an option.');
-                return;
+                return false;
             }
             if (choice.getAttribute("correct") == "no") { // user wrong
                 ans.innerHTML = "Actually" + ans.innerHTML.substring(3);
             }
         } else {
-            if (button.attr("correct") == "no") { // user wrong
+            if (button.attr("correct") == "no" && !ans.classList.contains("mc")) { // user wrong
                 ans.innerHTML = "Actually" + ans.innerHTML.substring(3);
             }
         }
@@ -150,7 +150,12 @@ $(document).ready(function () {
         rest.removeClass("hide");
 
         var slide = rest.parent().parent(); // current slide
-        if (!slide.hasClass("has-reveal")) {
+        if (button.hasClass("mc")) {
+            var cont = rest.parent().parent().next(); // continue button
+            setTimeout(() => {
+                cont.removeClass("hide");
+            }, 3000);
+        } else if (!slide.hasClass("has-reveal")) {
             var cont = rest.next(); // continue button
             setTimeout(() => {
                 cont.removeClass("hide");
@@ -180,7 +185,7 @@ $(document).ready(function () {
 
         if (!correct) { // ask user to try again
             alert('Almost there! Please correct the questions outlined in red.');
-            return;
+            return false;
         }
 
         // otherwise all correct and can move on!
@@ -212,7 +217,7 @@ $(document).ready(function () {
                 var newProg = button.attr('update');
                 $("#progress").css("width", newProg + "%");
                 $("#you-label").css("left", newProg + "%");
-                $("#you-label").html("&larr; You (0." + newProg + ")");
+                $("#you-label").html("<span>&larr;</span> You (0." + newProg + ")");
             }, 1000);
         }
     }
@@ -225,10 +230,10 @@ $(document).ready(function () {
 
         $('#' + form.attr('id') + ' select').each(function () {
             var val = $(this).val();
-            if (unique.has(val)) { // duplicate answer
+            if (val == null || val == '' || unique.has(val)) { // empty/duplicate answer
                 valid = false;
                 alert(form.attr('message'));
-                return;
+                return false;
             }
             unique.add(val); // add to set
         });
@@ -255,7 +260,7 @@ $(document).ready(function () {
 
         if (!correct) { // ask user to try again
             alert('Almost there! Please correct the questions outlined in red.');
-            return;
+            return false;
         }
 
         $.fn.revealRest(button); // if valid, reveal rest of slide
@@ -273,6 +278,19 @@ $(document).ready(function () {
         } else {
             symbol.innerHTML = '+';
         }
+    }
+
+    // update slider value
+    $.fn.updateSlider = function (slider) {
+        // get parameter name
+        var param = slider.attr('id');
+        param = param.substring(0, param.indexOf('-'));
+
+        // get slider value
+        var val = slider.val();
+
+        // update label
+        $('#' + param + '-prob')[0].innerHTML = val;
     }
 
     // CALL FUNCTIONS
@@ -300,7 +318,7 @@ $(document).ready(function () {
 
     $('.next-page').on('click', function () { // user pressed next page button
         $(this).addClass("clicked");
-        $('.last-slide').addClass("clicked");
+        $(this).parent().addClass("clicked");
     });
 
     $('.button.choice').on('click', function () { // user answered multiple choice
