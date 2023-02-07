@@ -12,6 +12,7 @@
     --light-pink: rgba(213, 166, 189); /* #D5A6BD */
     --extra-light-pink: rgba(245, 233, 234); /* #F5E9EA */
     --dark-orange: rgba(217, 116, 26); /* #D9741A */
+    --darker-orange: rgba(111, 54, 4); /* #6f3604 */
     --orange: rgba(246, 178, 107); /* #F6B26B */
     --light-orange: rgba(253, 236, 218); /* #FDECDA */
     --red: rgba(204, 65, 37); /* #CC4125 */
@@ -45,6 +46,10 @@
 
 .dark-orange {
     color: var(--dark-orange);
+}
+
+.darker-orange {
+    color: var(--darker-orange);
 }
 
 .red {
